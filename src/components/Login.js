@@ -1,20 +1,18 @@
 import React from 'react'
 import Header from './Header'
 import assets from '../utils/assets'
+import LoginForm from './GenericForm';
+
 
 const Login = () => {
-  const bgImgStyle = {
-    backgroundImage: `url(${assets.bgImgUrl})`
-  };
-
   return (
-    <div className="login-wrapper bg-cover bg-center bg-no-repeat inset-0 h-full min-h-screen overflow-hidden absolute w-full z-0"
-      style={bgImgStyle}>
+    <div className="bg-black z-0 relative min-h-screen">
+      <div className="bg-cover max-sm:hidden opacity-50 bg-center bg-no-repeat inset-0 h-full min-h-screen overflow-hidden absolute w-full -z-10">
+        <img alt="bg_img" src={assets.bgImgUrl} className="min-h-full min-w-full"></img>
+      </div>
       <Header />
-      <div className="max-w-md my-0 mx-auto py-12 px-16 opacity-70 bg-black">
-        <form className="text-white">
-          <h1>Sign In</h1>
-        </form>
+      <div className="max-w-md px-6 my-0 mx-auto">
+        <LoginForm />
       </div>
     </div>
   )
