@@ -9,6 +9,9 @@ npx create-react-app nr-movie-db
  - Testing
   
 
+
+
+
 ## Available Scripts
 
 In the project directory, you can run:
