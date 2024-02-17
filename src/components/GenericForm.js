@@ -1,5 +1,7 @@
 import {useState, useRef} from 'react';
 import {validateLoginForm, validateSignupForm} from '../utils/validations';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import auth from '../utils/firebase';
 
 const LOGIN = 'login';
 const SIGNUP = 'signup';
@@ -10,31 +12,62 @@ const GenericForm = () => {
 
   const formTitle = formType === LOGIN ? 'Sign In' : 'Sign Up';
   const toggleForm = () => {
-    setErrorMessage(null);
-    
     setFormType(formType === LOGIN ? SIGNUP : LOGIN);
+    setErrorMessage(null);
   };
 
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
   const confirmPassword = useRef(null);
-  const handleOnClick = () => {
-    if (formType === LOGIN) {
-      setErrorMessage(validateLoginForm(email.current.value, password.current.value));
-    } else {
-      setErrorMessage(validateSignupForm(name.current.value, email.current.value, password.current.value, confirmPassword.current.value));
-    }
 
-    if (errorMessage) {
-      return;
-    } else {}
+  const catchHandler = (error) => {
+    const message = error.message;
+    console.log(message);
+    setErrorMessage(message);
+  };
+
+  const handleOnClick = (e) => {
+    e.preventDefault();
+    if (formType === LOGIN) {
+      let message = validateLoginForm(email.current.value);
+      setErrorMessage(message);
+      if (message) {
+        return;
+      }
+      signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+        // TODO: route to browse page
+      })
+      .catch((error) => {
+        catchHandler(error);
+      });
+    } else {
+      const message = validateSignupForm(name.current.value, email.current.value, password.current.value, confirmPassword.current.value);
+      setErrorMessage(message);
+      if (message) {
+        return;
+      }
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user);
+        // TODO: route to browse page
+      })
+      .catch((error) => {
+        catchHandler(error);
+      });
+    }
   };
 
   return (
     <div className="max-w-md my-0 mx-auto py-12 sm:px-16 bg-opacity-80 bg-black rounded">
       <h1 className="text-white text-4xl mb-7 font-bold">{formTitle}</h1>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <div onSubmit={(e) => e.preventDefault()}>
       {
         formType === SIGNUP && (
         <input ref={name} type="text" placeholder="Full name" className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
@@ -46,11 +79,11 @@ const GenericForm = () => {
             <input ref={confirmPassword} type="password" placeholder="Confirm password" className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
         )}
         {/* Submit button */}
-        <button type="submit" onClick={handleOnClick} className="w-full bg-red-600 text-white p-3 opacity-100 rounded hover:bg-[rgb(193,17,25)]">
+        <button onClick={handleOnClick} className="w-full bg-red-600 text-white p-3 opacity-100 rounded hover:bg-[rgb(193,17,25)]">
           {formTitle}
         </button>
         {errorMessage && <p className="text-red-500 font-thin text-sm my-2">{errorMessage}</p>}
-      </form>
+      </div>
 
       {/* form footer */}
       {formType === LOGIN ? (
