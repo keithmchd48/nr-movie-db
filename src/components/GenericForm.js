@@ -1,11 +1,13 @@
 import {useState, useRef} from 'react';
 import {validateLoginForm, validateSignupForm} from '../utils/validations';
 import { signInUser, signUpUser } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom'
 
 const LOGIN = 'login';
 const SIGNUP = 'signup';
 
 const GenericForm = () => {
+  const navigate = useNavigate();
   const [formType, setFormType] = useState(LOGIN);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -33,6 +35,7 @@ const GenericForm = () => {
         setErrorMessage(message);
         if (!message) {
           // TODO: Redirect to browse page
+          navigate('/browse');
         }
       });
     } else {
@@ -46,6 +49,7 @@ const GenericForm = () => {
         setErrorMessage(message);
         if (!message) {
           // TODO: Redirect to browse page
+          navigate('/browse');
         }
       });
     }

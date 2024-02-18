@@ -1,7 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth, signOut,
+  createUserWithEmailAndPassword, signInWithEmailAndPassword,
+  onAuthStateChanged
+} from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,10 +24,7 @@ const auth = getAuth();
 
 export const signInUser = (email, password) => {
   return signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    console.log(user);
+  .then(() => {
     return null;
   })
   .catch((error) => {
@@ -36,10 +36,8 @@ export const signInUser = (email, password) => {
 
 export const signUpUser = (email, password) => {
   return createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed up 
-      const user = userCredential.user;
-      console.log(user);
+    .then(() => {
+      // Signed up
       return null;
     })
     .catch((error) => {
@@ -48,3 +46,27 @@ export const signUpUser = (email, password) => {
       return message;
     });
 };
+
+export const authStateChangedListener = () => {
+  return onAuthStateChanged(auth, (user) => {
+    if (user) {
+      return user;
+      // dispatch(signInUser(user));
+      // navigate('/browse');
+    } else {
+      return null;
+      // dispatch(logoutUser());
+      // navigate('/');
+    }
+  });
+};
+
+export const logoutUser = () =>{
+  signOut(auth).then(() => {
+    console.log('Sign-out successful');
+  }).catch((error) => {
+    const message = error.message;
+    console.log(message);
+  });
+};
+
