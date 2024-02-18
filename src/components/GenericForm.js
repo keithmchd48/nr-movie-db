@@ -1,7 +1,6 @@
 import {useState, useRef} from 'react';
 import {validateLoginForm, validateSignupForm} from '../utils/validations';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import auth from '../utils/firebase';
+import { signInUser, signUpUser } from '../utils/firebase';
 
 const LOGIN = 'login';
 const SIGNUP = 'signup';
@@ -21,12 +20,6 @@ const GenericForm = () => {
   const password = useRef(null);
   const confirmPassword = useRef(null);
 
-  const catchHandler = (error) => {
-    const message = error.message;
-    console.log(message);
-    setErrorMessage(message);
-  };
-
   const handleOnClick = (e) => {
     e.preventDefault();
     if (formType === LOGIN) {
@@ -35,15 +28,12 @@ const GenericForm = () => {
       if (message) {
         return;
       }
-      signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-        // TODO: route to browse page
-      })
-      .catch((error) => {
-        catchHandler(error);
+
+      signInUser(email.current.value, password.current.value).then((message) => {
+        setErrorMessage(message);
+        if (!message) {
+          // TODO: Redirect to browse page
+        }
       });
     } else {
       const message = validateSignupForm(name.current.value, email.current.value, password.current.value, confirmPassword.current.value);
@@ -51,15 +41,12 @@ const GenericForm = () => {
       if (message) {
         return;
       }
-      createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up 
-        const user = userCredential.user;
-        console.log(user);
-        // TODO: route to browse page
-      })
-      .catch((error) => {
-        catchHandler(error);
+
+      signUpUser(email.current.value, password.current.value).then((message) => {
+        setErrorMessage(message);
+        if (!message) {
+          // TODO: Redirect to browse page
+        }
       });
     }
   };
