@@ -1,6 +1,7 @@
 import {useState, useRef} from 'react';
 import {validateLoginForm, validateSignupForm} from '../utils/validations';
-import { signInUser, signUpUser } from '../utils/firebase';
+import auth from '../utils/firebase';
+import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'
 
 const LOGIN = 'login';
@@ -31,12 +32,12 @@ const GenericForm = () => {
         return;
       }
 
-      signInUser(email.current.value, password.current.value).then((message) => {
-        setErrorMessage(message);
-        if (!message) {
-          // TODO: Redirect to browse page
-          navigate('/browse');
-        }
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value).then(() => {
+        setErrorMessage(null);
+        navigate('/browse');
+      }).catch((error) => {
+        const message = error.message;
+        console.log(message);
       });
     } else {
       const message = validateSignupForm(name.current.value, email.current.value, password.current.value, confirmPassword.current.value);
@@ -45,12 +46,19 @@ const GenericForm = () => {
         return;
       }
 
-      signUpUser(email.current.value, password.current.value, name.current.value).then((message) => {
-        setErrorMessage(message);
-        if (!message) {
-          // TODO: Redirect to browse page
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value).then(() => {
+        setErrorMessage(null);
+        updateProfile(auth.currentUser, {
+          displayName: name.current.value
+        }).then(() => {
           navigate('/browse');
-        }
+        }).catch((error) => {
+          const message = error.message;
+          console.log(message);
+        });
+      }).catch((error) => {
+        const message = error.message;
+        console.log(message);
       });
     }
   };

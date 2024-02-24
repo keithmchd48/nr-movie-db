@@ -1,10 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {
-  getAuth, signOut,
-  createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  updateProfile
-} from "firebase/auth";
+import { getAuth } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,49 +17,6 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 const auth = getAuth();
-
-export const signInUser = (email, password) => {
-  return signInWithEmailAndPassword(auth, email, password)
-  .then(() => {
-    return null;
-  })
-  .catch((error) => {
-    const message = error.message;
-    console.log(message);
-    return message;
-  });
-};
-
-export const signUpUser = (email, password, name) => {
-  return createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      return updateProfile(auth.currentUser, {
-        displayName: name
-      }).then(() => {
-      // Signed up
-      return null;
-      }).catch((error) => {
-        // An error occurred
-        console.log(error.message);
-        return error.message;
-      });
-    })
-    .catch((error) => {
-      const message = error.message;
-      console.log(message);
-      return message;
-    });
-};
-
-export const logUserOut = () =>{
-  return signOut(auth).then(() => {
-    return null;
-  }).catch((error) => {
-    const message = error.message;
-    console.log(message);
-    return message;
-  });
-};
 
 export default auth;
 

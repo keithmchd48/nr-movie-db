@@ -1,18 +1,17 @@
 import React from 'react'
 import assets from '../utils/assets'
 import { useNavigate } from 'react-router-dom'
-import { logUserOut } from '../utils/firebase';
+import auth from '../utils/firebase';
+import {signOut} from 'firebase/auth';
 
 const Header = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    logUserOut().then((message) => {
-      console.log(message);
-      if (!message) {
-        navigate('/');
-      } else {
-        navigate('/error');
-      }
+    signOut(auth).then(() => {
+      navigate('/');
+    }).catch((error) => {
+      console.log(error.message);
+      navigate('/error');
     });
   };
 
