@@ -8,7 +8,11 @@ const Header = () => {
   const handleLogout = () => {
     logUserOut().then((message) => {
       console.log(message);
-      navigate('/');
+      if (!message) {
+        navigate('/');
+      } else {
+        navigate('/error');
+      }
     });
   };
 

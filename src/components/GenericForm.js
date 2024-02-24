@@ -45,7 +45,7 @@ const GenericForm = () => {
         return;
       }
 
-      signUpUser(email.current.value, password.current.value).then((message) => {
+      signUpUser(email.current.value, password.current.value, name.current.value).then((message) => {
         setErrorMessage(message);
         if (!message) {
           // TODO: Redirect to browse page

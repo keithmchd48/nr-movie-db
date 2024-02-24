@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import {
   getAuth, signOut,
   createUserWithEmailAndPassword, signInWithEmailAndPassword,
-  onAuthStateChanged
+  updateProfile
 } from "firebase/auth";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -34,27 +34,25 @@ export const signInUser = (email, password) => {
   });
 };
 
-export const signUpUser = (email, password) => {
+export const signUpUser = (email, password, name) => {
   return createUserWithEmailAndPassword(auth, email, password)
     .then(() => {
+      return updateProfile(auth.currentUser, {
+        displayName: name
+      }).then(() => {
       // Signed up
       return null;
+      }).catch((error) => {
+        // An error occurred
+        console.log(error.message);
+        return error.message;
+      });
     })
     .catch((error) => {
       const message = error.message;
       console.log(message);
       return message;
     });
-};
-
-export const authStateChangedListener = () => {
-  return onAuthStateChanged(auth, (user) => {
-    if (user) {
-      return user;
-    } else {
-      return null;
-    }
-  });
 };
 
 export const logUserOut = () =>{
@@ -66,4 +64,6 @@ export const logUserOut = () =>{
     return message;
   });
 };
+
+export default auth;
 
