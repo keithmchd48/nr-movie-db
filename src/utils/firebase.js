@@ -51,22 +51,19 @@ export const authStateChangedListener = () => {
   return onAuthStateChanged(auth, (user) => {
     if (user) {
       return user;
-      // dispatch(signInUser(user));
-      // navigate('/browse');
     } else {
       return null;
-      // dispatch(logoutUser());
-      // navigate('/');
     }
   });
 };
 
-export const logoutUser = () =>{
-  signOut(auth).then(() => {
-    console.log('Sign-out successful');
+export const logUserOut = () =>{
+  return signOut(auth).then(() => {
+    return null;
   }).catch((error) => {
     const message = error.message;
     console.log(message);
+    return message;
   });
 };
 

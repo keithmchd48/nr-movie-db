@@ -16,10 +16,11 @@ const Body = () => {
 
   useEffect(() => {
     let user = authStateChangedListener();
-    console.log('user', user);
+    console.log('user auth changed login', user);
     if (user) {
       dispatch(signInUser({}));
     } else {
+      console.log('user auth changed logout', user);
       dispatch(logoutUser());
     }
   }, []);
