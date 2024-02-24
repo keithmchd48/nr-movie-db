@@ -3,12 +3,15 @@ import {validateLoginForm, validateSignupForm} from '../utils/validations';
 import auth from '../utils/firebase';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/slices/userSlice';
 
 const LOGIN = 'login';
 const SIGNUP = 'signup';
 
 const GenericForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formType, setFormType] = useState(LOGIN);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -48,9 +51,14 @@ const GenericForm = () => {
 
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value).then(() => {
         setErrorMessage(null);
+        
         updateProfile(auth.currentUser, {
           displayName: name.current.value
         }).then(() => {
+          const {uid, email, displayName} = auth.currentUser;
+          // dispatching again on purpose because displayName is not updated onAuthChanged because it
+          // triggers before updateProfile is called
+          dispatch(addUser({uid, email, displayName}));
           navigate('/browse');
         }).catch((error) => {
           const message = error.message;

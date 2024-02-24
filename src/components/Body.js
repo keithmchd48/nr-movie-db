@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import auth from '../utils/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
-import { logoutUser, signInUser } from '../utils/slices/userSlice';
+import { logoutUser, addUser } from '../utils/slices/userSlice';
 
 const Body = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const Body = () => {
       console.log('user auth changed', user);
       if(user){
         const {uid, email, displayName} = user;
-        dispatch(signInUser({uid, email, displayName}));
+        dispatch(addUser({uid, email, displayName}));
       } else {
         dispatch(logoutUser());
       }
