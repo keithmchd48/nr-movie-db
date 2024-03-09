@@ -54,7 +54,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`fixed w-screen z-10 flex justify-between items-center px-4 ${scroll ? 'bg-black' : 'bg-gradient-to-b from-black'}`}>
+    <div className={`fixed w-screen z-10 flex justify-between items-center px-4 ${scroll ? 'bg-netflix-black' : 'bg-gradient-to-b from-black'}`}>
       <img alt="main_logo" src={MAIN_LOGO} className="h-16"></img>
       {user && (
         <div ref={profileDropdownRef} className="relative">

@@ -4,7 +4,7 @@ import { LuInfo } from "react-icons/lu";
 
 const VideoTitle = ({title, overview}) => {
   return (
-    <div className="absolute pt-[20%] px-16 w-screen aspect-video bg-gradient-to-r from-black">
+    <div className="absolute pt-[20%] px-16 w-screen aspect-video bg-gradient-to-r from-netflix-black">
       <h1 className="text-6xl text-white font-bold">{title}</h1>
       <p className="py-6 text-lg w-1/2 text-white">{overview}</p>
       <div className="flex">

@@ -10,6 +10,12 @@ module.exports = {
     extend: {
       fontFamily: {
         Roboto: ['Roboto', ...defaultTheme.fontFamily.sans]
+      },
+      colors: {
+        netflix: {
+          black: '#141414'
+          
+        },
       }
     },
   },
