@@ -3,7 +3,7 @@ import {validateLoginForm, validateSignupForm} from '../utils/validations';
 import auth from '../utils/firebase';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { useDispatch } from 'react-redux';
-import { addUser } from '../utils/slices/userSlice';
+import { ADD_USER } from '../utils/slices/userSlice';
 import {AVATAR} from '../utils/assets';
 
 const LOGIN = 'login';
@@ -57,7 +57,7 @@ const GenericForm = () => {
           const {uid, email, displayName, photoURL} = auth.currentUser;
           // dispatching again on purpose because displayName is not updated onAuthChanged because it
           // triggers before updateProfile is called
-          dispatch(addUser({uid, email, displayName, photoURL}));
+          dispatch(ADD_USER({uid, email, displayName, photoURL}));
         }).catch((error) => {
           const message = error.message;
           console.log(message);
