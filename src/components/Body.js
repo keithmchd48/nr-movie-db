@@ -1,6 +1,6 @@
 
-import AuthPage from './AuthPage'
-import Browse from './Browse'
+import AuthPage from './pages/AuthPage'
+import Browse from './pages/Browse'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const Body = () => {

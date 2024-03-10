@@ -1,14 +1,14 @@
-import MovieCard from "./MovieCard";
+import SampleCard from "./SampleCard";
 
-const MovieList = ({title, movies}) => {
+const SampleList = ({title, samples}) => {
   return (
     <div className="px-16 mb-11 last:mb-0">
       <h1 className="text-white text-2xl mb-3">{title}</h1>
         <div className="flex overflow-x-scroll no-scrollbar">
           <div className="flex w-100">
             {
-              movies && (movies.map((movie) => {
-                return <MovieCard movie={movie} key={movie.id} />;
+              samples && (samples.map((sample) => {
+                return <SampleCard sample={sample} key={sample.id} />;
               }))
             }
           </div>
@@ -17,4 +17,4 @@ const MovieList = ({title, movies}) => {
   );
 };
 
-export default MovieList;
+export default SampleList;

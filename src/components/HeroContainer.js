@@ -1,20 +1,19 @@
-import { useSelector } from 'react-redux';
 import VideoBackground from './VideoBackground';
 import VideoTitle from './VideoTitle';
 import VideoMeta from './VideoMeta';
+import { useSelector } from "react-redux";
 
-const HeroContainer = () => {
-  const movies = useSelector(store => store.movies?.nowPlayingMovies);
+const HeroContainer = ({sample, fetchTrailer}) => {
+  const {original_title, overview, id, adult} = sample;
 
-  if (!movies) return;
+  fetchTrailer(id);
+  let trailer = useSelector((store) => store.trailer.trailer);
 
-  const movie = movies?.[0];
-  const {original_title, overview, id, adult} = movie;
   return (
     <div>
       <VideoTitle title={original_title} overview={overview} />
       <VideoMeta isAdult={adult} />
-      <VideoBackground movieId={id} />
+      <VideoBackground id={id} trailer={trailer} />
     </div>
   )
 };

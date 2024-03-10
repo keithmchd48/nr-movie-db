@@ -1,6 +1,6 @@
-import {API_REQUEST_OPTIONS} from '../utils/assets';
+import {API_REQUEST_OPTIONS} from '../../utils/assets';
 import {useDispatch} from 'react-redux';
-import {ADD_TOP_RATED_MOVIES} from '../utils/slices/movieSlice';
+import {ADD_TOP_RATED_MOVIES} from '../../utils/slices/movieSlice';
 import {useEffect} from 'react';
 
 const useTopRatedMovies = () => {

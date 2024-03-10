@@ -1,6 +1,6 @@
-import { API_REQUEST_OPTIONS } from "../utils/assets";
+import { API_REQUEST_OPTIONS } from "../../utils/assets";
 import { useEffect } from "react";
-import { ADD_TRAILER } from "../utils/slices/movieSlice";
+import { ADD_TRAILER } from "../../utils/slices/trailerSlice";
 import { useDispatch } from "react-redux";
 
 const useMovieTrailer = (movieId) => {

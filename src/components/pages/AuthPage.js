@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from './Header'
-import {BG_IMG_URL} from '../utils/assets'
+import Header from '../Header'
+import {BG_IMG_URL} from '../../utils/assets'
 
-import GenericForm from './GenericForm';
+import GenericForm from '../GenericForm';
 
 
 const Auth = () => {
