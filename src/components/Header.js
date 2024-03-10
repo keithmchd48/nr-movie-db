@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {MAIN_LOGO, AVATAR} from '../utils/assets';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, NavLink } from 'react-router-dom';
 import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
 import { useSelector, useDispatch } from 'react-redux';
@@ -31,6 +31,10 @@ const Header = () => {
     setScroll(window.scrollY > 50);
   };
 
+  const activeClassNames = ({ isActive }) => {
+    return isActive ? 'text-white font-normal' : '';
+  }
+
   useEffect(() => {
     window.addEventListener("scroll", addGradient);
 
@@ -39,7 +43,7 @@ const Header = () => {
       if(user){
         const {uid, email, displayName, photoURL} = user;
         dispatch(ADD_USER({uid, email, displayName, photoURL}));
-        navigate('/browse');
+        navigate();
       } else {
         dispatch(LOGOUT_USER());
         navigate('/');
@@ -54,8 +58,23 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`fixed w-screen z-10 flex justify-between items-center px-4 ${scroll ? 'bg-netflix-black' : 'bg-gradient-to-b from-black'}`}>
-      <img alt="main_logo" src={MAIN_LOGO} className="h-16"></img>
+    <div className={`fixed w-screen z-30 flex justify-between items-center px-16 py-3 ${scroll ? 'bg-netflix-black' : 'bg-gradient-to-b from-black'}`}>
+      <div className="flex">
+        <NavLink to="/browse">
+          <img alt="main_logo" src={MAIN_LOGO} className="h-12"></img>
+        </NavLink>
+        <ul className="ml-4 text-sm flex items-center gap-4 font-light text-gray-200">
+          <li>
+            <NavLink to="/browse" className={activeClassNames}>Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/shows" className={activeClassNames}>TV Shows</NavLink>
+          </li>
+          <li>
+            <NavLink to="/movies" className={activeClassNames}>Movies</NavLink>
+          </li>
+        </ul>
+      </div>
       {user && (
         <div ref={profileDropdownRef} className="relative">
           <button onClick={toggleProfileOptions} tabIndex="0">

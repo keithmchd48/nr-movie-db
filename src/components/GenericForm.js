@@ -1,6 +1,7 @@
 import {useState, useRef} from 'react';
 import {validateLoginForm, validateSignupForm} from '../utils/validations';
 import auth from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { ADD_USER } from '../utils/slices/userSlice';
@@ -11,6 +12,7 @@ const SIGNUP = 'signup';
 
 const GenericForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [formType, setFormType] = useState(LOGIN);
   const [errorMessage, setErrorMessage] = useState(null);
 
@@ -36,6 +38,7 @@ const GenericForm = () => {
 
       signInWithEmailAndPassword(auth, email.current.value, password.current.value).then(() => {
         setErrorMessage(null);
+        navigate('/browse');
       }).catch((error) => {
         const message = error.message;
         console.log(message);

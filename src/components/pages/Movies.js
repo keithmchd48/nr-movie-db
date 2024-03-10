@@ -1,28 +1,27 @@
-import useNowPlayingMovies from '../../hooks/movies/useNowPlayingMovies';
 import useTopRatedMovies from '../../hooks/movies/useTopRatedMovies';
-import useAiringTodayShows from '../../hooks/tvshows/useAiringTodayShows';
+import useNowPlayingMovies from '../../hooks/movies/useNowPlayingMovies';
+import useUpcomingMovies from '../../hooks/movies/useUpcomingMovies';
 import HeroContainer from '../HeroContainer';
 import SecondaryContainer from '../SecondaryContainer';
 import { useSelector } from 'react-redux';
 import useMovieTrailer from "../../hooks/movies/useMovieTrailer";
 import MainLayout from '../layouts/MainLayout';
 
-const Browse = () => {
-  useNowPlayingMovies();
-  useAiringTodayShows();
+const Movies = () => {
   useTopRatedMovies();
-  
+  useNowPlayingMovies();
+  useUpcomingMovies();
+
   const movies = useSelector((store) => store.movies);
-  const tvShows = useSelector((store) => store.tvShows);
 
   let content = [
     {
-    title: "Now Playing Movies",
+    title: "Now Playing",
     samples: movies?.nowPlayingMovies
     },
     {
-      title: "TV Shows",
-      samples: tvShows?.airingToday
+      title: "Upcoming Movies",
+      samples: movies?.upcomingMovies
     },
     {
       title: "Top Rated Movies",
@@ -41,4 +40,4 @@ const Browse = () => {
   )
 }
 
-export default Browse
+export default Movies

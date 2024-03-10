@@ -1,6 +1,6 @@
 import {API_REQUEST_OPTIONS} from '../../utils/assets';
 import {useDispatch} from 'react-redux';
-import {ADD_ON_AIR_SHOWS} from '../utils/slices/tvshowsSlice';
+import {ADD_ON_AIR_SHOWS} from '../../utils/slices/tvshowSlice';
 import {useEffect} from 'react';
 
 const useOnAirShows = () => {
