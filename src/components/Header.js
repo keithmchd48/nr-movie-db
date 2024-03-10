@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {MAIN_LOGO, AVATAR} from '../utils/assets';
+import {MAIN_LOGO, AVATAR, HEADER_ROUTES} from '../utils/assets';
 import { useNavigate, NavLink } from 'react-router-dom';
 import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
@@ -64,15 +64,13 @@ const Header = () => {
           <img alt="main_logo" src={MAIN_LOGO} className="h-12"></img>
         </NavLink>
         <ul className="ml-4 text-sm flex items-center gap-4 font-light text-gray-200">
-          <li>
-            <NavLink to="/browse" className={activeClassNames}>Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/shows" className={activeClassNames}>TV Shows</NavLink>
-          </li>
-          <li>
-            <NavLink to="/movies" className={activeClassNames}>Movies</NavLink>
-          </li>
+          {HEADER_ROUTES.map((route, index) => {
+            return (
+              <li key={index}>
+                <NavLink to={route.path} className={activeClassNames}>{route.title}</NavLink>
+              </li>
+            )
+          })}
         </ul>
       </div>
       {user && (
