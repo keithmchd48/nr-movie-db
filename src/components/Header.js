@@ -1,46 +1,18 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {MAIN_LOGO, AVATAR, HEADER_ROUTES} from '../utils/assets';
+import React, {useEffect, useState} from 'react';
+import {MAIN_LOGO, HEADER_ROUTES} from '../utils/assets';
 import { useNavigate, NavLink } from 'react-router-dom';
 import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { LOGOUT_USER, ADD_USER } from '../utils/slices/userSlice';
-import useClickOutside from '../hooks/useClickOutside';
-import ProfileOptions from './ProfileOptions';
-import { GoSearch } from "react-icons/go";
-import SearchInput from './SearchInput';
+import ProfileDropdown from './ProfileDropdown';
+import SearchComponent from './SearchComponent';
 
 
 const Header = () => {
   const navigate = useNavigate();
-  const user = useSelector(store => store.user);
+
   const dispatch = useDispatch();
-  const [isProfileOptionsOpen, setIsProfileOptionsOpen] = useState(false);
-  const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
-  const profileDropdownRef = useRef(null);
-  const searchInputRef = useRef(null);
-  const searchIcon = useRef(null);
-
-  useClickOutside(profileDropdownRef, null, () => {
-    if (isProfileOptionsOpen) {
-      setIsProfileOptionsOpen(false);
-    }
-  });
-
-  useClickOutside(searchInputRef, searchIcon, () => {
-    if (isSearchInputVisible) {
-      setIsSearchInputVisible(false);
-    }
-  });
-
-  const toggleProfileOptions = () => {
-    setIsProfileOptionsOpen(prev => !prev);
-  };
-
-  const toggleSearch = () => {
-    console.log('toggleSearch', isSearchInputVisible);
-    setIsSearchInputVisible(true);
-  };
 
   const [scroll, setScroll] = useState(false);
   const addGradient = () => {
@@ -90,22 +62,8 @@ const Header = () => {
         </ul>
       </div>
       <div className="flex items-center">
-        <div className="mr-6">
-          <div ref={searchIcon}>
-            <GoSearch onClick={toggleSearch} className={`text-white text-2xl cursor-pointer ${isSearchInputVisible ? 'hidden' : 'block'}`} />
-          </div>
-          <div ref={searchInputRef}>
-            <SearchInput isVisible={isSearchInputVisible} />
-          </div>
-        </div>
-        {user && (
-          <div ref={profileDropdownRef} className="relative">
-            <button onClick={toggleProfileOptions} tabIndex="0" className="flex items-center">
-              <img alt="avatar" src={user.photoURL || AVATAR} className="w-8 sm:w-8 cursor-pointer"></img>
-            </button>
-            <ProfileOptions isOpen={isProfileOptionsOpen} />
-          </div>
-        )}
+        <SearchComponent />
+        <ProfileDropdown />
       </div>
     </div>
   )
