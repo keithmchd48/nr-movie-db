@@ -6,6 +6,7 @@ import SecondaryContainer from '../SecondaryContainer';
 import { useSelector } from 'react-redux';
 import useTvshowTrailer from "../../hooks/tvshows/useTvshowTrailer";
 import MainLayout from '../layouts/MainLayout';
+import {TrailerProvider} from '../contexts/TrailerContext';
 
 const TVShows = () => {
   useAiringTodayShows();
@@ -30,12 +31,13 @@ const TVShows = () => {
   ]
 
   const show = tvShows?.topRatedShows?.[0];
-  console.log(show);
   if(!show) return;
 
   return (
     <MainLayout>
-      <HeroContainer sample={show} fetchTrailer={useTvshowTrailer}/>
+      <TrailerProvider sampleId={show.id} fetchTrailer={useTvshowTrailer}>
+        <HeroContainer sample={show}/>
+      </TrailerProvider>
       <SecondaryContainer content={content} />
     </MainLayout>
   )

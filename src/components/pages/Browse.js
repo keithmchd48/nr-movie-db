@@ -6,6 +6,7 @@ import SecondaryContainer from '../SecondaryContainer';
 import { useSelector } from 'react-redux';
 import useMovieTrailer from "../../hooks/movies/useMovieTrailer";
 import MainLayout from '../layouts/MainLayout';
+import {TrailerProvider} from '../contexts/TrailerContext';
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -35,7 +36,9 @@ const Browse = () => {
 
   return (
     <MainLayout>
-      <HeroContainer sample={movie} fetchTrailer={useMovieTrailer}/>
+      <TrailerProvider sampleId={movie.id} fetchTrailer={useMovieTrailer}>
+        <HeroContainer sample={movie}/>
+      </TrailerProvider>
       <SecondaryContainer content={content} />
     </MainLayout>
   )
