@@ -6,6 +6,8 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfil
 import { useDispatch } from 'react-redux';
 import { ADD_USER } from '../utils/slices/userSlice';
 import {AVATAR, PATHS} from '../utils/assets';
+import {LANG} from '../utils/languages';
+import {useSelector} from 'react-redux';
 
 const LOGIN = 'login';
 const SIGNUP = 'signup';
@@ -15,8 +17,10 @@ const GenericForm = () => {
   const navigate = useNavigate();
   const [formType, setFormType] = useState(LOGIN);
   const [errorMessage, setErrorMessage] = useState(null);
+  const preferredLang = useSelector(store => store.config.preferredLang);
+  const TRANSLATIONS = LANG[preferredLang].auth;
 
-  const formTitle = formType === LOGIN ? 'Sign In' : 'Sign Up';
+  const formTitle = formType === LOGIN ? TRANSLATIONS.signIn : TRANSLATIONS.signUp;
   const toggleForm = () => {
     setFormType(formType === LOGIN ? SIGNUP : LOGIN);
     setErrorMessage(null);
@@ -78,13 +82,13 @@ const GenericForm = () => {
       <div onSubmit={(e) => e.preventDefault()}>
       {
         formType === SIGNUP && (
-        <input ref={name} type="text" placeholder="Full name" className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
+        <input ref={name} type="text" placeholder={TRANSLATIONS.fullNamePlaceholder} className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
       )}
-        <input ref={email} type="text" placeholder="Email" className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
-        <input ref={password} type="password" placeholder="Password" className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
+        <input ref={email} type="text" placeholder={TRANSLATIONS.emailPlaceholder} className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
+        <input ref={password} type="password" placeholder={TRANSLATIONS.passwordPlaceholder} className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
         {
           formType === SIGNUP && (
-            <input ref={confirmPassword} type="password" placeholder="Confirm password" className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
+            <input ref={confirmPassword} type="password" placeholder={TRANSLATIONS.confirmPasswordPlaceholder} className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
         )}
         {/* Submit button */}
         <button onClick={handleOnClick} className="w-full bg-red-600 text-white p-3 opacity-100 rounded hover:bg-[rgb(193,17,25)]">
@@ -96,11 +100,11 @@ const GenericForm = () => {
       {/* form footer */}
       {formType === LOGIN ? (
         <p className="text-gray-300 mt-40 font-normal">
-          New to Netflix? <button onClick={toggleForm} className="text-white hover:underline font-medium ml-2">Sign up now.</button>
+          {TRANSLATIONS.newToApp} <button onClick={toggleForm} className="text-white hover:underline font-medium ml-2">{TRANSLATIONS.signUpNow}</button>
         </p>
       ) : (
         <p className="text-gray-300 mt-40 font-normal">
-        Already have an account? <button onClick={toggleForm} className="text-white hover:underline font-medium ml-2">Sign In.</button>
+          {TRANSLATIONS.alreadyMember} <button onClick={toggleForm} className="text-white hover:underline font-medium ml-2">{TRANSLATIONS.signInNow}</button>
         </p>
       )}
       

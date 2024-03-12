@@ -2,6 +2,12 @@ export const LANG = {
   en: {
     identifier: 'en',
     label: 'EN',
+    validations: {
+      invalidEmail: 'Email format is invalid',
+      invalidPassword: 'Password must contain at least 8 characters, one letter, one number and one special character',
+      passwordMismatch: 'Passwords do not match',
+      fullNameRequired: 'Full name is required',
+    },
     auth: {
       newToApp: 'New to Netflix?',
       alreadyMember: 'Already have an account?',
@@ -44,6 +50,12 @@ export const LANG = {
   dk: {
     identifier: 'dk',
     label: 'DK',
+    validations: {
+      invalidEmail: 'Email format er ugyldig',
+      invalidPassword: 'Adgangskoden skal indeholde mindst 8 tegn, et bogstav, et tal og et specialtegn',
+      passwordMismatch: 'Adgangskoderne matcher ikke',
+      fullNameRequired: 'Fulde navn er påkrævet',
+    },
     auth: {
       newToApp: 'Ny på Netflix?',
       alreadyMember: 'Har du allerede en konto',
@@ -86,6 +98,12 @@ export const LANG = {
   es: {
     identifier: 'es',
     label: 'ES',
+    validations: {
+      invalidEmail: 'El formato de correo electrónico es inválido',
+      invalidPassword: 'La contraseña debe contener al menos 8 caracteres, una letra, un número y un carácter especial',
+      passwordMismatch: 'Las contraseñas no coinciden',
+      fullNameRequired: 'Se requiere el nombre completo',
+    },
     auth: {
       newToApp: '¿Nuevo en Netflix?',
       alreadyMember: '¿Ya tienes una cuenta?',
