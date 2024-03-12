@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { ADD_USER } from '../utils/slices/userSlice';
-import {AVATAR} from '../utils/assets';
+import {AVATAR, PATHS} from '../utils/assets';
 
 const LOGIN = 'login';
 const SIGNUP = 'signup';
@@ -38,7 +38,7 @@ const GenericForm = () => {
 
       signInWithEmailAndPassword(auth, email.current.value, password.current.value).then(() => {
         setErrorMessage(null);
-        navigate('/browse');
+        navigate(PATHS.BROWSE);
       }).catch((error) => {
         const message = error.message;
         console.log(message);

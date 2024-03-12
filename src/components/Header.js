@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {MAIN_LOGO, HEADER_ROUTES} from '../utils/assets';
+import {MAIN_LOGO, HEADER_MENU, PATHS} from '../utils/assets';
 import { useNavigate, NavLink } from 'react-router-dom';
 import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
@@ -32,17 +32,16 @@ const Header = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log('user auth changed', user);
       if(user){
-        console.log('location', location);
         const {uid, email, displayName, photoURL} = user;
         dispatch(ADD_USER({uid, email, displayName, photoURL}));
-        if (location.pathname !== '/') {
+        if (location.pathname !== PATHS.AUTH) {
           navigate(location.pathname);
         } else {
-          navigate('/browse');
+          navigate(PATHS.BROWSE);
         }
       } else {
         dispatch(LOGOUT_USER());
-        navigate('/');
+        navigate(PATHS.AUTH);
       }
     });
 
@@ -56,12 +55,12 @@ const Header = () => {
   return (
     <div className={`fixed w-screen z-30 flex justify-between items-center px-16 py-3 ${scroll ? 'bg-netflix-black' : 'bg-gradient-to-b from-black'}`}>
       <div className="flex">
-        <NavLink to="/browse">
+        <NavLink to={PATHS.AUTH}>
           <img alt="main_logo" src={MAIN_LOGO} className="h-12"></img>
         </NavLink>
         {user && (
           <ul className="ml-4 text-sm flex items-center gap-4 font-light text-gray-200">
-          {HEADER_ROUTES.map((route, index) => {
+          {HEADER_MENU.map((route, index) => {
             return (
               <li key={index}>
                 <NavLink to={route.path} className={activeClassNames}>{route.title}</NavLink>
