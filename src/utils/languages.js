@@ -7,6 +7,7 @@ export const LANG = {
       invalidPassword: 'Password must contain at least 8 characters, one letter, one number and one special character',
       passwordMismatch: 'Passwords do not match',
       fullNameRequired: 'Full name is required',
+      invalidCredentials: 'Invalid credentials'
     },
     auth: {
       newToApp: 'New to Netflix?',
@@ -55,6 +56,7 @@ export const LANG = {
       invalidPassword: 'Adgangskoden skal indeholde mindst 8 tegn, et bogstav, et tal og et specialtegn',
       passwordMismatch: 'Adgangskoderne matcher ikke',
       fullNameRequired: 'Fulde navn er påkrævet',
+      invalidCredentials: 'Ugyldige legitimationsoplysninger'
     },
     auth: {
       newToApp: 'Ny på Netflix?',
@@ -103,6 +105,7 @@ export const LANG = {
       invalidPassword: 'La contraseña debe contener al menos 8 caracteres, una letra, un número y un carácter especial',
       passwordMismatch: 'Las contraseñas no coinciden',
       fullNameRequired: 'Se requiere el nombre completo',
+      invalidCredentials: 'Credenciales inválidas'
     },
     auth: {
       newToApp: '¿Nuevo en Netflix?',

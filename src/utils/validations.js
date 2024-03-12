@@ -6,7 +6,7 @@ export const validateLoginForm = (email) => {
   const isEmailValid = emailRegex.test(email);
 
   if (!isEmailValid) {
-    return 'Email format is invalid';
+    return 'invalidEmail';
   }
 
   return null;
@@ -18,16 +18,16 @@ export const validateSignupForm = (name, email, password, confirmPassword) => {
   const isPasswordValid = passwordRegex.test(password);
 
   if (!name) {
-    return 'Full name is required';
+    return 'fullNameRequired';
   }
   if (!isEmailValid) {
-    return 'Email format is invalid';
+    return 'invalidEmail';
   }
   if (!isPasswordValid) {
-    return 'Password must contain at least 8 characters, one letter, one number and one special character';
+    return 'invalidPassword';
   }
   if (password !== confirmPassword) {
-    return 'Passwords do not match';
+    return 'passwordMismatch';
   }
 
   return null;
