@@ -13,17 +13,17 @@ export const PATHS = {
 export const HEADER_MENU = [
   {
     name: "home",
-    title: "Home",
+    title: "home",
     path: PATHS.BROWSE
   },
   {
     name: "shows",
-    title: "TV Shows",
+    title: "shows",
     path: PATHS.SHOWS
   },
   {
     name: "movies",
-    title: "Movies",
+    title: "movies",
     path: PATHS.MOVIES
   }
 ];

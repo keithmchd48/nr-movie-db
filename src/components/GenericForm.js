@@ -6,8 +6,7 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfil
 import { useDispatch } from 'react-redux';
 import { ADD_USER } from '../utils/slices/userSlice';
 import {AVATAR, PATHS} from '../utils/assets';
-import {LANG} from '../utils/languages';
-import {useSelector} from 'react-redux';
+import useTranslations from '../hooks/useTranslations';
 
 const LOGIN = 'login';
 const SIGNUP = 'signup';
@@ -18,10 +17,10 @@ const GenericForm = () => {
   const navigate = useNavigate();
   const [formType, setFormType] = useState(LOGIN);
   const [errorMessage, setErrorMessage] = useState(null);
-  const preferredLang = useSelector(store => store.config.preferredLang);
-  const TRANSLATIONS_AUTH = LANG[preferredLang].auth;
-  const TRANSLATIONS_VALIDATIONS = LANG[preferredLang].validations;
 
+  const TRANSLATIONS = useTranslations();
+  const TRANSLATIONS_AUTH = TRANSLATIONS.auth;
+  const TRANSLATIONS_VALIDATIONS = TRANSLATIONS.validations;
 
   const formTitle = formType === LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;
   const toggleForm = () => {

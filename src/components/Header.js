@@ -11,13 +11,15 @@ import SearchComponent from './SearchComponent';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import LangSelect from './LangSelect';
+import useTranslations from '../hooks/useTranslations';
 
 const Header = () => {
   const user = useSelector(store => store.user);
   const location = useLocation()
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
+  const TRANSLATIONS = useTranslations();
 
   const [scroll, setScroll] = useState(false);
   const addGradient = () => {
@@ -66,7 +68,9 @@ const Header = () => {
           {HEADER_MENU.map((route, index) => {
             return (
               <li key={index}>
-                <NavLink to={route.path} className={activeClassNames}>{route.title}</NavLink>
+                <NavLink to={route.path} className={activeClassNames}>
+                  {TRANSLATIONS.headerMenu[route.title]}
+                </NavLink>
               </li>
             )
           })}
