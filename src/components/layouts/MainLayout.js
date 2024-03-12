@@ -6,11 +6,13 @@ const MainLayout = ({ children }) => {
   const searchQuery = useSelector(store => store.gptSearch.searchQuery);
 
   return (
-    <div className="w-screen h-screen">
+    <>
       <Header />
       {searchQuery && <SearchResults />}
-      <div className={searchQuery ? 'hidden' : 'block'}>{children}</div>
-    </div>
+      <div className={searchQuery ? 'hidden' : 'block'}>
+        {children}
+      </div>
+    </>
   );
 }
 

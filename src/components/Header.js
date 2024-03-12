@@ -5,6 +5,7 @@ import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { LOGOUT_USER, ADD_USER } from '../utils/slices/userSlice';
+import {UPDATE_SEARCH_QUERY} from '../utils/slices/gptSlice';
 import ProfileDropdown from './ProfileDropdown';
 import SearchComponent from './SearchComponent';
 import { useSelector } from 'react-redux';
@@ -40,6 +41,7 @@ const Header = () => {
           navigate(PATHS.BROWSE);
         }
       } else {
+        dispatch(UPDATE_SEARCH_QUERY(''));
         dispatch(LOGOUT_USER());
         navigate(PATHS.AUTH);
       }
