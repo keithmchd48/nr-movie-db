@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from '../Header'
 import {BG_IMG_URL} from '../../utils/assets'
 
