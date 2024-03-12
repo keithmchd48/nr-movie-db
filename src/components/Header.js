@@ -1,35 +1,30 @@
-import React, {useEffect, useState, useRef} from 'react';
-import {MAIN_LOGO, AVATAR} from '../utils/assets';
-import { useNavigate } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {MAIN_LOGO, HEADER_MENU, PATHS} from '../utils/assets';
+import { useNavigate, NavLink } from 'react-router-dom';
 import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { LOGOUT_USER, ADD_USER } from '../utils/slices/userSlice';
-import useClickOutside from '../hooks/useClickOutside';
-import ProfileOptions from './ProfileOptions';
-
+import ProfileDropdown from './ProfileDropdown';
+import SearchComponent from './SearchComponent';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
-  const navigate = useNavigate();
   const user = useSelector(store => store.user);
+  const location = useLocation()
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
-  const [isProfileOptionsOpen, setIsProfileOptionsOpen] = useState(false);
-  const profileDropdownRef = useRef(null);
-
-  useClickOutside(profileDropdownRef, () => {
-    if (isProfileOptionsOpen) {
-      setIsProfileOptionsOpen(false);
-    }
-  });
-
-  const toggleProfileOptions = () => {
-    setIsProfileOptionsOpen(prev => !prev);
-  };
 
   const [scroll, setScroll] = useState(false);
   const addGradient = () => {
     setScroll(window.scrollY > 50);
   };
+
+  const activeClassNames = ({ isActive }) => {
+    return isActive ? 'text-white font-normal' : '';
+  }
 
   useEffect(() => {
     window.addEventListener("scroll", addGradient);
@@ -39,10 +34,14 @@ const Header = () => {
       if(user){
         const {uid, email, displayName, photoURL} = user;
         dispatch(ADD_USER({uid, email, displayName, photoURL}));
-        navigate('/browse');
+        if (location.pathname !== PATHS.AUTH) {
+          navigate(location.pathname);
+        } else {
+          navigate(PATHS.BROWSE);
+        }
       } else {
         dispatch(LOGOUT_USER());
-        navigate('/');
+        navigate(PATHS.AUTH);
       }
     });
 
@@ -54,16 +53,27 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`fixed w-screen z-10 flex justify-between items-center px-4 ${scroll ? 'bg-netflix-black' : 'bg-gradient-to-b from-black'}`}>
-      <img alt="main_logo" src={MAIN_LOGO} className="h-16"></img>
-      {user && (
-        <div ref={profileDropdownRef} className="relative">
-          <button onClick={toggleProfileOptions} tabIndex="0">
-            <img alt="avatar" src={user.photoURL || AVATAR} className="h-8 w-8 sm:h-8 sm:w-8 cursor-pointer"></img>
-          </button>
-          <ProfileOptions isOpen={isProfileOptionsOpen} />
-        </div>
-      )}
+    <div className={`fixed w-screen z-30 flex justify-between items-center px-16 py-3 ${scroll ? 'bg-netflix-black' : 'bg-gradient-to-b from-black'}`}>
+      <div className="flex">
+        <NavLink to={PATHS.AUTH}>
+          <img alt="main_logo" src={MAIN_LOGO} className="h-12"></img>
+        </NavLink>
+        {user && (
+          <ul className="ml-4 text-sm flex items-center gap-4 font-light text-gray-200">
+          {HEADER_MENU.map((route, index) => {
+            return (
+              <li key={index}>
+                <NavLink to={route.path} className={activeClassNames}>{route.title}</NavLink>
+              </li>
+            )
+          })}
+        </ul>
+        )}
+      </div>
+      <div className="flex items-center">
+        {user && <SearchComponent />}
+        <ProfileDropdown />
+      </div>
     </div>
   )
 }

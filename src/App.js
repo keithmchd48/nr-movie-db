@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 function App() {
   return (
     <Provider store={appStore}>
-    <div className="font-Roboto">
-      <Body />
-    </div>
+      <div className="font-Roboto">
+        <Body />
+      </div>
     </Provider>
   );
 }

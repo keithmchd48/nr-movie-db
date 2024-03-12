@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from './Header'
-import {BG_IMG_URL} from '../utils/assets'
+import Header from '../Header'
+import {BG_IMG_URL} from '../../utils/assets'
 
-import GenericForm from './GenericForm';
+import GenericForm from '../GenericForm';
 
 
 const Auth = () => {
@@ -12,8 +12,10 @@ const Auth = () => {
         <img alt="bg_img" src={BG_IMG_URL} className="min-h-full min-w-full"></img>
       </div>
       <Header />
-      <div className="max-w-md px-6 my-0 mx-auto">
-        <GenericForm />
+      <div className="flex items-center h-screen">
+        <div className="max-w-md px-6 my-0 mx-auto">
+          <GenericForm />
+        </div>
       </div>
     </div>
   )
