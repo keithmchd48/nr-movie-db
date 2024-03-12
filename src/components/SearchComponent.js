@@ -29,7 +29,7 @@ const SearchComponent = () => {
   };
 
   return (
-    <div className="mr-6">
+    <div>
       <div ref={searchIcon}>
         <GoSearch onClick={toggleSearch} className={`text-white text-2xl cursor-pointer ${isSearchInputVisible ? 'hidden' : 'block'}`} />
       </div>

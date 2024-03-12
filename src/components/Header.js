@@ -10,6 +10,7 @@ import ProfileDropdown from './ProfileDropdown';
 import SearchComponent from './SearchComponent';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import LangSelect from './LangSelect';
 
 const Header = () => {
   const user = useSelector(store => store.user);
@@ -72,8 +73,9 @@ const Header = () => {
         </ul>
         )}
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-4">
         {user && <SearchComponent />}
+        <LangSelect />
         <ProfileDropdown />
       </div>
     </div>
