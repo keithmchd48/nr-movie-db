@@ -7,9 +7,12 @@ import { useDispatch } from 'react-redux';
 import { LOGOUT_USER, ADD_USER } from '../utils/slices/userSlice';
 import ProfileDropdown from './ProfileDropdown';
 import SearchComponent from './SearchComponent';
-
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const user = useSelector(store => store.user);
+  const location = useLocation()
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
@@ -29,9 +32,14 @@ const Header = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       console.log('user auth changed', user);
       if(user){
+        console.log('location', location);
         const {uid, email, displayName, photoURL} = user;
         dispatch(ADD_USER({uid, email, displayName, photoURL}));
-        navigate();
+        if (location.pathname !== '/') {
+          navigate(location.pathname);
+        } else {
+          navigate('/browse');
+        }
       } else {
         dispatch(LOGOUT_USER());
         navigate('/');
@@ -51,7 +59,8 @@ const Header = () => {
         <NavLink to="/browse">
           <img alt="main_logo" src={MAIN_LOGO} className="h-12"></img>
         </NavLink>
-        <ul className="ml-4 text-sm flex items-center gap-4 font-light text-gray-200">
+        {user && (
+          <ul className="ml-4 text-sm flex items-center gap-4 font-light text-gray-200">
           {HEADER_ROUTES.map((route, index) => {
             return (
               <li key={index}>
@@ -60,9 +69,10 @@ const Header = () => {
             )
           })}
         </ul>
+        )}
       </div>
       <div className="flex items-center">
-        <SearchComponent />
+        {user && <SearchComponent />}
         <ProfileDropdown />
       </div>
     </div>
