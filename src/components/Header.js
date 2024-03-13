@@ -1,21 +1,25 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {MAIN_LOGO, HEADER_MENU, PATHS} from '../utils/assets';
 import { useNavigate, NavLink } from 'react-router-dom';
 import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { LOGOUT_USER, ADD_USER } from '../utils/slices/userSlice';
+import {UPDATE_SEARCH_QUERY} from '../utils/slices/gptSlice';
 import ProfileDropdown from './ProfileDropdown';
 import SearchComponent from './SearchComponent';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import LangSelect from './LangSelect';
+import useTranslations from '../hooks/useTranslations';
 
 const Header = () => {
   const user = useSelector(store => store.user);
   const location = useLocation()
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
+  const TRANSLATIONS = useTranslations();
 
   const [scroll, setScroll] = useState(false);
   const addGradient = () => {
@@ -40,6 +44,7 @@ const Header = () => {
           navigate(PATHS.BROWSE);
         }
       } else {
+        dispatch(UPDATE_SEARCH_QUERY(''));
         dispatch(LOGOUT_USER());
         navigate(PATHS.AUTH);
       }
@@ -63,15 +68,18 @@ const Header = () => {
           {HEADER_MENU.map((route, index) => {
             return (
               <li key={index}>
-                <NavLink to={route.path} className={activeClassNames}>{route.title}</NavLink>
+                <NavLink to={route.path} className={activeClassNames}>
+                  {TRANSLATIONS.headerMenu[route.title]}
+                </NavLink>
               </li>
             )
           })}
         </ul>
         )}
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-4">
         {user && <SearchComponent />}
+        <LangSelect />
         <ProfileDropdown />
       </div>
     </div>

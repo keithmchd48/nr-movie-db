@@ -5,7 +5,7 @@ const SecondaryContainer = ({content}) => {
     <div>
       <div className="-mt-56 relative z-20">
         {content.map((section) => {
-          return <SampleList title={section.title} samples={section.samples} key={section.title} />;
+          return <SampleList title={section.title} samples={section.samples} key={section.id} />;
         })}
       </div>
     </div>

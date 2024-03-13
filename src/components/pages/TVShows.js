@@ -7,25 +7,30 @@ import { useSelector } from 'react-redux';
 import useTvshowTrailer from "../../hooks/tvshows/useTvshowTrailer";
 import MainLayout from '../layouts/MainLayout';
 import {TrailerProvider} from '../contexts/TrailerContext';
+import useTranslations from '../../hooks/useTranslations';
 
 const TVShows = () => {
   useAiringTodayShows();
   useOnTheAirShows();
   useTopRatedShows();
+  const TRANSLATIONS = useTranslations();
 
   const tvShows = useSelector((store) => store.tvShows);
 
   let content = [
     {
-    title: "Airing Today",
-    samples: tvShows?.airingToday
+      id: 'tvshows-airing-today',
+      title: TRANSLATIONS.shows.airingToday,
+      samples: tvShows?.airingToday
     },
     {
-      title: "On The Air",
+      id: 'tvshows-on-the-air',
+      title: TRANSLATIONS.shows.onTheAir,
       samples: tvShows?.onAirShows
     },
     {
-      title: "Top Rated",
+      id: 'tvshows-top-rated',
+      title: TRANSLATIONS.shows.topRated,
       samples: tvShows?.topRatedShows
     }
   ]

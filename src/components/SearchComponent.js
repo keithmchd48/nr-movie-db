@@ -4,6 +4,7 @@ import useClickOutside from '../hooks/useClickOutside';
 import { useRef, useState } from 'react';
 import {UPDATE_SEARCH_QUERY} from '../utils/slices/gptSlice';
 import { useDispatch } from "react-redux";
+import useTranslations from '../hooks/useTranslations';
 
 const SearchComponent = () => {
   const dispatch = useDispatch();
@@ -12,8 +13,10 @@ const SearchComponent = () => {
   const searchInputRef = useRef(null);
   const searchIcon = useRef(null);
 
+  const TRANSLATIONS = useTranslations();
+
   useClickOutside(searchInputRef, searchIcon, () => {
-    if (isSearchInputVisible) {
+    if (isSearchInputVisible && !query) {
       setIsSearchInputVisible(false);
     }
   });
@@ -28,13 +31,23 @@ const SearchComponent = () => {
     dispatch(UPDATE_SEARCH_QUERY(e.target.value));
   };
 
+  const clearQuery = () => {
+    setQuery('');
+    dispatch(UPDATE_SEARCH_QUERY(''));
+  };
+
   return (
-    <div className="mr-6">
+    <div>
       <div ref={searchIcon}>
         <GoSearch onClick={toggleSearch} className={`text-white text-2xl cursor-pointer ${isSearchInputVisible ? 'hidden' : 'block'}`} />
       </div>
       <div ref={searchInputRef}>
-        <SearchInput value={query} onChange={updateQuery} isVisible={isSearchInputVisible} />
+        <SearchInput
+          placeholder={TRANSLATIONS.headerMenu.gptSearchPlaceholder}
+          value={query}
+          onChange={updateQuery}
+          onClear={clearQuery}
+          isVisible={isSearchInputVisible} />
       </div>
     </div>
   );

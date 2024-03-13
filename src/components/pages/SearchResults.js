@@ -1,6 +1,6 @@
 const SearchResults = () => {
   return (
-    <div>
+    <div className="h-full w-full">
       <h1>Search Results</h1>
     </div>
   );

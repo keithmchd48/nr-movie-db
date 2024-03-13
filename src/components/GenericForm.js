@@ -6,9 +6,11 @@ import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfil
 import { useDispatch } from 'react-redux';
 import { ADD_USER } from '../utils/slices/userSlice';
 import {AVATAR, PATHS} from '../utils/assets';
+import useTranslations from '../hooks/useTranslations';
 
 const LOGIN = 'login';
 const SIGNUP = 'signup';
+const INVALID_CREDENTIALS = 'auth/invalid-credential';
 
 const GenericForm = () => {
   const dispatch = useDispatch();
@@ -16,7 +18,11 @@ const GenericForm = () => {
   const [formType, setFormType] = useState(LOGIN);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const formTitle = formType === LOGIN ? 'Sign In' : 'Sign Up';
+  const TRANSLATIONS = useTranslations();
+  const TRANSLATIONS_AUTH = TRANSLATIONS.auth;
+  const TRANSLATIONS_VALIDATIONS = TRANSLATIONS.validations;
+
+  const formTitle = formType === LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;
   const toggleForm = () => {
     setFormType(formType === LOGIN ? SIGNUP : LOGIN);
     setErrorMessage(null);
@@ -31,7 +37,7 @@ const GenericForm = () => {
     e.preventDefault();
     if (formType === LOGIN) {
       let message = validateLoginForm(email.current.value);
-      setErrorMessage(message);
+      setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message]);
       if (message) {
         return;
       }
@@ -40,12 +46,14 @@ const GenericForm = () => {
         setErrorMessage(null);
         navigate(PATHS.BROWSE);
       }).catch((error) => {
-        const message = error.message;
-        console.log(message);
+        console.log(error.code);
+        if (error.code === INVALID_CREDENTIALS) {
+          setErrorMessage(() => TRANSLATIONS_VALIDATIONS.invalidCredentials);
+        }
       });
     } else {
       const message = validateSignupForm(name.current.value, email.current.value, password.current.value, confirmPassword.current.value);
-      setErrorMessage(message);
+      setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message]);
       if (message) {
         return;
       }
@@ -78,13 +86,13 @@ const GenericForm = () => {
       <div onSubmit={(e) => e.preventDefault()}>
       {
         formType === SIGNUP && (
-        <input ref={name} type="text" placeholder="Full name" className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
+        <input ref={name} type="text" placeholder={TRANSLATIONS_AUTH.fullNamePlaceholder} className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
       )}
-        <input ref={email} type="text" placeholder="Email" className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
-        <input ref={password} type="password" placeholder="Password" className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
+        <input ref={email} type="text" placeholder={TRANSLATIONS_AUTH.emailPlaceholder} className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded" />
+        <input ref={password} type="password" placeholder={TRANSLATIONS_AUTH.passwordPlaceholder} className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
         {
           formType === SIGNUP && (
-            <input ref={confirmPassword} type="password" placeholder="Confirm password" className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
+            <input ref={confirmPassword} type="password" placeholder={TRANSLATIONS_AUTH.confirmPasswordPlaceholder} className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
         )}
         {/* Submit button */}
         <button onClick={handleOnClick} className="w-full bg-red-600 text-white p-3 opacity-100 rounded hover:bg-[rgb(193,17,25)]">
@@ -96,11 +104,11 @@ const GenericForm = () => {
       {/* form footer */}
       {formType === LOGIN ? (
         <p className="text-gray-300 mt-40 font-normal">
-          New to Netflix? <button onClick={toggleForm} className="text-white hover:underline font-medium ml-2">Sign up now.</button>
+          {TRANSLATIONS_AUTH.newToApp} <button onClick={toggleForm} className="text-white hover:underline font-medium ml-2">{TRANSLATIONS_AUTH.signUpNow}</button>
         </p>
       ) : (
         <p className="text-gray-300 mt-40 font-normal">
-        Already have an account? <button onClick={toggleForm} className="text-white hover:underline font-medium ml-2">Sign In.</button>
+          {TRANSLATIONS_AUTH.alreadyMember} <button onClick={toggleForm} className="text-white hover:underline font-medium ml-2">{TRANSLATIONS_AUTH.signInNow}</button>
         </p>
       )}
       

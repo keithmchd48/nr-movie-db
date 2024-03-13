@@ -7,25 +7,30 @@ import { useSelector } from 'react-redux';
 import useMovieTrailer from "../../hooks/movies/useMovieTrailer";
 import MainLayout from '../layouts/MainLayout';
 import {TrailerProvider} from '../contexts/TrailerContext';
+import useTranslations from '../../hooks/useTranslations';
 
 const Movies = () => {
   useTopRatedMovies();
   useNowPlayingMovies();
   useUpcomingMovies();
+  const TRANSLATIONS = useTranslations();
 
   const movies = useSelector((store) => store.movies);
 
   let content = [
     {
-    title: "Now Playing",
-    samples: movies?.nowPlayingMovies
+      id: 'movies-now-playing',
+      title: TRANSLATIONS.movies.nowPlaying,
+      samples: movies?.nowPlayingMovies
     },
     {
-      title: "Upcoming Movies",
+      id: 'movies-upcoming',
+      title:TRANSLATIONS.movies.upcoming,
       samples: movies?.upcomingMovies
     },
     {
-      title: "Top Rated Movies",
+      id: 'movies-top-rated',
+      title: TRANSLATIONS.movies.topRated,
       samples: movies?.topRatedMovies
     }
   ]
