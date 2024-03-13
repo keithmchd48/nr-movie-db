@@ -40,7 +40,7 @@ export const LANG = {
     shows: {
       airingToday: 'Airing Today',
       onTheAir: 'On The Air',
-      topRatedShows: 'Top Rated',
+      topRated: 'Top Rated',
     },
     movies: {
       nowPlaying: 'Now Playing',
