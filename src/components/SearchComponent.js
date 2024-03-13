@@ -16,7 +16,7 @@ const SearchComponent = () => {
   const TRANSLATIONS = useTranslations();
 
   useClickOutside(searchInputRef, searchIcon, () => {
-    if (isSearchInputVisible) {
+    if (isSearchInputVisible && !query) {
       setIsSearchInputVisible(false);
     }
   });
