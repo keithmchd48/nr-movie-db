@@ -31,13 +31,23 @@ const SearchComponent = () => {
     dispatch(UPDATE_SEARCH_QUERY(e.target.value));
   };
 
+  const clearQuery = () => {
+    setQuery('');
+    dispatch(UPDATE_SEARCH_QUERY(''));
+  };
+
   return (
     <div>
       <div ref={searchIcon}>
         <GoSearch onClick={toggleSearch} className={`text-white text-2xl cursor-pointer ${isSearchInputVisible ? 'hidden' : 'block'}`} />
       </div>
       <div ref={searchInputRef}>
-        <SearchInput placeholder={TRANSLATIONS.headerMenu.gptSearchPlaceholder} value={query} onChange={updateQuery} isVisible={isSearchInputVisible} />
+        <SearchInput
+          placeholder={TRANSLATIONS.headerMenu.gptSearchPlaceholder}
+          value={query}
+          onChange={updateQuery}
+          onClear={clearQuery}
+          isVisible={isSearchInputVisible} />
       </div>
     </div>
   );
