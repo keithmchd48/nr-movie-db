@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
 import {MAIN_LOGO, HEADER_MENU, PATHS} from '../utils/assets';
 import { useNavigate, NavLink } from 'react-router-dom';

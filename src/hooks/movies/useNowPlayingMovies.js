@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {API_REQUEST_OPTIONS, TMDB_API_DOMAIN} from '../../utils/assets';
 import {useDispatch} from 'react-redux';
 import {ADD_NOW_PLAYING_MOVIES} from '../../utils/slices/movieSlice';
