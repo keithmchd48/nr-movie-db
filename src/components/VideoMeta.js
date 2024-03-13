@@ -1,9 +1,9 @@
-import { VscUnmute } from "react-icons/vsc";
-import { VscMute } from "react-icons/vsc";
+// import { VscUnmute } from "react-icons/vsc";
+// import { VscMute } from "react-icons/vsc";
 
 
 const VideoMeta = ({isAdult}) => {
-  const toggleMute = () => {};
+  // const toggleMute = () => {};
 
   return (
     <div className="absolute right-0 top-[500px] flex items-center">
