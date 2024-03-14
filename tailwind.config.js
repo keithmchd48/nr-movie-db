@@ -12,7 +12,7 @@ module.exports = {
         Roboto: ['Roboto', ...defaultTheme.fontFamily.sans]
       },
       colors: {
-        netflix: {
+        primary: {
           black: '#141414'
           
         },

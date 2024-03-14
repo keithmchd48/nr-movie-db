@@ -10,7 +10,7 @@ export const LANG = {
       invalidCredentials: 'Invalid credentials'
     },
     auth: {
-      newToApp: 'New to Netflix?',
+      newToApp: 'New here?',
       alreadyMember: 'Already have an account?',
       signIn: 'Sign In',
       signUp: 'Sign Up',
@@ -59,7 +59,7 @@ export const LANG = {
       invalidCredentials: 'Ugyldige legitimationsoplysninger'
     },
     auth: {
-      newToApp: 'Ny på Netflix?',
+      newToApp: 'Ny her?',
       alreadyMember: 'Har du allerede en konto',
       signIn: 'Log ind',
       signUp: 'Tilmeld dig',
@@ -108,7 +108,7 @@ export const LANG = {
       invalidCredentials: 'Credenciales inválidas'
     },
     auth: {
-      newToApp: '¿Nuevo en Netflix?',
+      newToApp: '¿Nuevo aqui?',
       alreadyMember: '¿Ya tienes una cuenta?',
       signIn: 'Iniciar sesión',
       signUp: 'Regístrate',

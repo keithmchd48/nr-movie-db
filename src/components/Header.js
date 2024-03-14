@@ -59,7 +59,7 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`fixed w-screen z-30 flex justify-between items-center px-16 py-3 ${scroll ? 'bg-netflix-black' : 'bg-gradient-to-b from-black'}`}>
+    <div className={`fixed w-screen z-30 flex justify-between items-center px-16 py-3 ${scroll ? 'bg-primary-black' : 'bg-gradient-to-b from-black'}`}>
       <div className="flex">
         <NavLink to={PATHS.AUTH}>
           <img alt="main_logo" src={MAIN_LOGO} className="h-12"></img>
