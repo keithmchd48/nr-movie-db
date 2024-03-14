@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {useEffect, useState} from 'react';
-import {MAIN_LOGO, HEADER_MENU, PATHS} from '../utils/assets';
-import { useNavigate, NavLink } from 'react-router-dom';
+import {PATHS} from '../utils/assets';
+import { useNavigate } from 'react-router-dom';
 import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
 import { useDispatch } from 'react-redux';
@@ -12,7 +12,10 @@ import SearchComponent from './SearchComponent';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import LangSelect from './LangSelect';
-import useTranslations from '../hooks/useTranslations';
+import HeaderMenu from './HeaderMenu';
+import HamburgerMenu from './HamburgerMenu'
+import { GiHamburgerMenu } from "react-icons/gi";
+import MainLogo from './MainLogo';
 
 const Header = () => {
   const user = useSelector(store => store.user);
@@ -20,16 +23,10 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const TRANSLATIONS = useTranslations();
-
   const [scroll, setScroll] = useState(false);
   const addGradient = () => {
-    setScroll(window.scrollY > 50);
+    setScroll(window.scrollY > 20);
   };
-
-  const activeClassNames = ({ isActive }) => {
-    return isActive ? 'text-white font-normal' : '';
-  }
 
   useEffect(() => {
     window.addEventListener("scroll", addGradient);
@@ -59,29 +56,19 @@ const Header = () => {
   }, []);
 
   return (
-    <div className={`fixed w-screen z-30 flex justify-between items-center lg:px-16 xs:px-8 py-3 ${scroll ? 'bg-brand-black' : 'bg-gradient-to-b from-black'}`}>
-      <div className="flex">
-        <NavLink to={PATHS.AUTH}>
-          <img alt="main_logo" src={MAIN_LOGO} className="h-7"></img>
-        </NavLink>
-        {user && (
-          <ul className="ml-4 xs:text-xs m:text-sm flex items-center gap-4 font-light text-gray-200">
-          {HEADER_MENU.map((route, index) => {
-            return (
-              <li key={index}>
-                <NavLink to={route.path} className={activeClassNames}>
-                  {TRANSLATIONS.headerMenu[route.title]}
-                </NavLink>
-              </li>
-            )
-          })}
-        </ul>
-        )}
-      </div>
-      <div className="flex items-center gap-4">
-        {user && <SearchComponent />}
-        <LangSelect />
-        <ProfileDropdown />
+    <div>
+      {user && <HamburgerMenu />}
+      <div className={`flex fixed w-screen z-30 justify-between items-center lg:px-16 xs:px-4 py-3 ${scroll ? 'bg-brand-black' : 'bg-gradient-to-b from-black'}`}>
+        <div className="flex gap-3 items-center">
+          {user && <GiHamburgerMenu className="text-white text-xl xs:block m:hidden" />}
+          <MainLogo />
+          <HeaderMenu />
+        </div>
+        <div className="flex items-center xs:gap-1 l:gap-3">
+          {user && <SearchComponent />}
+          <LangSelect />
+          <ProfileDropdown />
+        </div>
       </div>
     </div>
   )

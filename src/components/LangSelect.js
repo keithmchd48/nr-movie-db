@@ -10,7 +10,7 @@ const LangSelect = () => {
   };
 
   return (
-    <select className="max-w-11 bg-transparent text-white outline-none" onChange={selectLanguage}>
+    <select className="max-w-11 bg-transparent xs:text-xs l:text-sm text-white outline-none" onChange={selectLanguage}>
       {SUPPORTED_LANGUAGES.map(lang => {
         return (
           <option key={lang.identifier} value={lang.identifier}>

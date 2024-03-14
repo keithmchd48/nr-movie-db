@@ -39,7 +39,7 @@ const SearchComponent = () => {
   return (
     <div>
       <div ref={searchIcon}>
-        <GoSearch onClick={toggleSearch} className={`text-white text-2xl cursor-pointer ${isSearchInputVisible ? 'hidden' : 'block'}`} />
+        <GoSearch onClick={toggleSearch} className={`text-white l:text-xl cursor-pointer ${isSearchInputVisible ? 'hidden' : 'block'}`} />
       </div>
       <div ref={searchInputRef}>
         <SearchInput
