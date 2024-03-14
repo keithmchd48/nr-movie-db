@@ -16,9 +16,11 @@ const VideoTitle = ({title, overview, videoKey, tmdbLink}) => {
   };
 
   return (
-    <div className="absolute pt-[20%] lg:px-16 m:px-8 w-screen aspect-video bg-gradient-to-r from-brand-black">
-      <h1 className="lg:text-6xl md:text-3xl m:text-lg text-white font-bold">{title}</h1>
-      <p className="lg:text-lg md:text-md py-6 m:text-sm w-1/2 text-white">{overview}</p>
+    <div className="absolute pt-[20%] lg:px-16 xs:px-8 w-screen aspect-video bg-gradient-to-r from-brand-black">
+      {/* Title and Overview */}
+      <h1 className="lg:text-6xl m:text-3xl xs:text-xl text-white font-bold">{title}</h1>
+      <p className="lg:text-lg m:text-base xs:text-sm py-6 xs:w-full sm:w-3/4 lg:w-1/2 text-white">{overview}</p>
+      {/* Play and More Info buttons */}
       <div className="flex">
         <button
           className="lg:text-lg md:text-md s:text-sm lg:p-3 lg:px-10 md:p-2 md:px-5 s:p-2 s:px-3 bg-white text-black flex items-center rounded font-bold cursor-pointer hover:bg-opacity-85"
