@@ -95,7 +95,7 @@ const GenericForm = () => {
             <input ref={confirmPassword} type="password" placeholder={TRANSLATIONS_AUTH.confirmPasswordPlaceholder} className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded" />
         )}
         {/* Submit button */}
-        <button onClick={handleOnClick} className="w-full bg-red-600 text-white p-3 opacity-100 rounded hover:bg-[rgb(193,17,25)]">
+        <button onClick={handleOnClick} className="w-full bg-brand-orange text-white p-3 opacity-100 rounded hover:bg-[#e55303]">
           {formTitle}
         </button>
         {errorMessage && <p className="text-red-500 font-thin text-sm my-2">{errorMessage}</p>}

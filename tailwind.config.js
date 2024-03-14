@@ -12,9 +12,9 @@ module.exports = {
         Roboto: ['Roboto', ...defaultTheme.fontFamily.sans]
       },
       colors: {
-        primary: {
-          black: '#141414'
-          
+        brand: {
+          black: '#141414',
+          orange: '#FF5A00'
         },
       }
     },

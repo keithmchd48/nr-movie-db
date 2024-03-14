@@ -7,7 +7,7 @@ const VideoTitle = ({title, overview}) => {
   const TRANSLATIONS = useTranslations();
 
   return (
-    <div className="absolute pt-[20%] px-16 w-screen aspect-video bg-gradient-to-r from-primary-black">
+    <div className="absolute pt-[20%] px-16 w-screen aspect-video bg-gradient-to-r from-brand-black">
       <h1 className="text-6xl text-white font-bold">{title}</h1>
       <p className="py-6 text-lg w-1/2 text-white">{overview}</p>
       <div className="flex">
