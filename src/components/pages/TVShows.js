@@ -8,6 +8,7 @@ import useTvshowTrailer from "../../hooks/tvshows/useTvshowTrailer";
 import MainLayout from '../layouts/MainLayout';
 import {TrailerProvider} from '../contexts/TrailerContext';
 import useTranslations from '../../hooks/useTranslations';
+import { TMDB_DOMAIN_SHOW } from '../../utils/assets';
 
 const TVShows = () => {
   useAiringTodayShows();
@@ -38,10 +39,12 @@ const TVShows = () => {
   const show = tvShows?.topRatedShows?.[0];
   if(!show) return;
 
+  const tmdbLink = `${TMDB_DOMAIN_SHOW}${show.id}`;
+
   return (
     <MainLayout>
       <TrailerProvider sampleId={show.id} fetchTrailer={useTvshowTrailer}>
-        <HeroContainer sample={show}/>
+        <HeroContainer sample={show} tmdbLink={tmdbLink} />
       </TrailerProvider>
       <SecondaryContainer content={content} />
     </MainLayout>

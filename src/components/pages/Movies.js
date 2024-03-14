@@ -8,6 +8,7 @@ import useMovieTrailer from "../../hooks/movies/useMovieTrailer";
 import MainLayout from '../layouts/MainLayout';
 import {TrailerProvider} from '../contexts/TrailerContext';
 import useTranslations from '../../hooks/useTranslations';
+import { TMDB_DOMAIN_MOVIE } from '../../utils/assets';
 
 const Movies = () => {
   useTopRatedMovies();
@@ -38,10 +39,12 @@ const Movies = () => {
   const movie = movies?.nowPlayingMovies?.[0];
   if(!movie) return;
 
+  const tmdbLink = `${TMDB_DOMAIN_MOVIE}${movie.id}`;
+
   return (
     <MainLayout>
       <TrailerProvider sampleId={movie.id} fetchTrailer={useMovieTrailer}>
-        <HeroContainer sample={movie}/>
+        <HeroContainer sample={movie} tmdbLink={tmdbLink} />
       </TrailerProvider>
       <SecondaryContainer content={content} />
     </MainLayout>
