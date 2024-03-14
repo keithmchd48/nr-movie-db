@@ -65,7 +65,7 @@ const Header = () => {
           <img alt="main_logo" src={MAIN_LOGO} className="h-7"></img>
         </NavLink>
         {user && (
-          <ul className="ml-4 text-sm flex items-center gap-4 font-light text-gray-200">
+          <ul className="ml-4 xs:text-xs m:text-sm flex items-center gap-4 font-light text-gray-200">
           {HEADER_MENU.map((route, index) => {
             return (
               <li key={index}>
