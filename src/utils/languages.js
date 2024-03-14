@@ -46,6 +46,9 @@ export const LANG = {
       nowPlaying: 'Now Playing',
       upcoming: 'Upcoming Movies',
       topRated: 'Top Rated Movies'
+    },
+    footer: {
+      madeBy: 'Made by'
     }
   },
   dk: {
@@ -95,6 +98,9 @@ export const LANG = {
       nowPlaying: 'Nu spiller',
       upcoming: 'Kommende film',
       topRated: 'Bedst bedømte film'
+    },
+    footer: {
+      madeBy: 'Lavet af'
     }
   },
   es: {
@@ -144,6 +150,9 @@ export const LANG = {
       nowPlaying: 'Reproduciendo ahora',
       upcoming: 'Próximas películas',
       topRated: 'Películas mejor calificadas'
+    },
+    footer: {
+      madeBy: 'Hecho por'
     }
   }
 };
