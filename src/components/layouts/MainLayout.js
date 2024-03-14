@@ -1,4 +1,5 @@
 import Header from '../Header';
+import Footer from '../Footer';
 import SearchResults from '../pages/SearchResults';
 import { useSelector } from 'react-redux';
 
@@ -12,6 +13,7 @@ const MainLayout = ({ children }) => {
       <div className={searchQuery ? 'hidden' : 'block'}>
         {children}
       </div>
+      <Footer />
     </>
   );
 }
