@@ -7,6 +7,7 @@ import {onAuthStateChanged} from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { LOGOUT_USER, ADD_USER } from '../utils/slices/userSlice';
 import {UPDATE_SEARCH_QUERY} from '../utils/slices/gptSlice';
+import {TOGGLE_HAMBURGER_MENU} from '../utils/slices/configSlice';
 import ProfileDropdown from './ProfileDropdown';
 import SearchComponent from './SearchComponent';
 import { useSelector } from 'react-redux';
@@ -15,10 +16,13 @@ import LangSelect from './LangSelect';
 import HeaderMenu from './HeaderMenu';
 import HamburgerMenu from './HamburgerMenu'
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaTimes } from "react-icons/fa";
 import MainLogo from './MainLogo';
 
 const Header = () => {
   const user = useSelector(store => store.user);
+  const hamburgerMenuOpen = useSelector(store => store.config.hamburgerMenuOpen);
+
   const location = useLocation()
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -26,6 +30,14 @@ const Header = () => {
   const [scroll, setScroll] = useState(false);
   const addGradient = () => {
     setScroll(window.scrollY > 20);
+  };
+
+  const openMenu = () => {
+    dispatch(TOGGLE_HAMBURGER_MENU(true));
+  };
+
+  const closeMenu = () => {
+    dispatch(TOGGLE_HAMBURGER_MENU(false));
   };
 
   useEffect(() => {
@@ -61,7 +73,10 @@ const Header = () => {
       <div className={`flex fixed w-screen z-30 justify-between items-center lg:px-16 xs:px-4 py-3 ${scroll ? 'bg-brand-black' : 'bg-gradient-to-b from-black'}`}>
         <div className="flex gap-3 items-center">
           {/*Hamburger Icon*/}
-          {user && <GiHamburgerMenu className="text-white text-xl xs:block m:hidden" />}
+          {user && (
+            (!hamburgerMenuOpen && <GiHamburgerMenu onClick={openMenu} className="text-white text-xl xs:block m:hidden" />) 
+            || (hamburgerMenuOpen && <FaTimes onClick={closeMenu} className="text-white text-xl xs:block m:hidden" />)
+          )}
           <MainLogo />
           <HeaderMenu />
         </div>
