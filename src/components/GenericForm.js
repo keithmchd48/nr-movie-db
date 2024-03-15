@@ -81,7 +81,7 @@ const GenericForm = () => {
   };
 
   return (
-    <div className="max-w-md my-0 mx-auto py-12 sm:px-16 bg-opacity-80 bg-black rounded">
+    <div className="max-w-md my-0 mx-auto py-12 sm:px-16 bg-opacity-80 bg-brand-black rounded">
       <h1 className="text-white text-4xl mb-7 font-bold">{formTitle}</h1>
       <div onSubmit={(e) => e.preventDefault()}>
       {

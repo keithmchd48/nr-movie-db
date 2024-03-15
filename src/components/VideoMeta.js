@@ -7,7 +7,7 @@ const VideoMeta = ({isAdult}) => {
 
   return (
     <div className="relative right-0 xs:top-40 s:top-40 m:top-50 l:top-56 sm:top-64 md:top-72 lg:top-[500px] flex items-center justify-end">
-      {/*<div onClick={toggleMute} className="w-10 h-10 border border-white rounded-full bg-black bg-opacity-0 mr-3 cursor-pointer flex items-center justify-center hover:bg-opacity-10">
+      {/*<div onClick={toggleMute} className="w-10 h-10 border border-white rounded-full bg-brand-black bg-opacity-0 mr-3 cursor-pointer flex items-center justify-center hover:bg-opacity-10">
         <VscUnmute className="text-white text-2xl hidden" />
         <VscMute className="text-white text-2xl" />
   </div>*/}

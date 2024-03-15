@@ -70,7 +70,7 @@ const Header = () => {
   return (
     <div>
       {user && <HamburgerMenu />}
-      <div className={`flex fixed w-screen z-30 justify-between items-center lg:px-16 xs:px-4 py-3 ${scroll ? 'bg-brand-black' : 'bg-gradient-to-b from-black'}`}>
+      <div className={`flex fixed w-screen z-30 justify-between items-center lg:px-16 xs:px-4 py-3 ${scroll ? 'bg-brand-black' : 'bg-gradient-to-b from-brand-black'}`}>
         <div className="flex gap-3 items-center">
           {/*Hamburger Icon*/}
           {user && (

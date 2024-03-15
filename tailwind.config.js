@@ -13,7 +13,7 @@ module.exports = {
       },
       colors: {
         brand: {
-          black: '#141414',
+          black: '#000',
           orange: '#FF5A00'
         },
       },
