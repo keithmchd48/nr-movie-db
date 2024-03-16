@@ -17,35 +17,37 @@ const YTComponent = ({trailer, muted}) => {
   };
 
   useEffect(() => {
-    const iframeScript = document.getElementById(YOUTUBE_SCRIPT_ID);
-    let tag = null;
+    let iframeScript = document.getElementById(YOUTUBE_SCRIPT_ID);
 
-    if(!iframeScript){
-      tag = document.createElement('script');
-      tag.id = YOUTUBE_SCRIPT_ID;
-      tag.src = `${YOUTUBE_DOMAIN}iframe_api`;
+    if(!iframeScript) {
+      iframeScript = document.createElement('script');
+      iframeScript.id = YOUTUBE_SCRIPT_ID;
+      iframeScript.src = `${YOUTUBE_DOMAIN}iframe_api`;
       const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      firstScriptTag.parentNode.insertBefore(iframeScript, firstScriptTag);
+    }
+
+    window.onYouTubeIframeAPIReady = () => {
+      loadPlayerRef();
     };
 
-    if(window.YT && window.YT.Player) {
-      loadPlayerRef();
-    }
-    window.onYouTubeIframeAPIReady = () => {
-      console.log('YT loaded');
-      loadPlayerRef();
+    return () => {
+      if(iframeScript) {
+        iframeScript.remove();
+      }
+      window.YT = null;
+      window.onYouTubeIframeAPIReady = null;
     };
   }, []);
 
   useEffect(() => {
-    console.log('Muted:', playerRef.current);
-    // if (playerRef.current) {
-    //   if (playerRef.current.isMuted()) {
-    //     playerRef.current.unMute();
-    //   } else {
-    //     playerRef.current.mute();
-    //   }
-    // }
+    if (playerRef.current) {
+      if (playerRef.current.isMuted()) {
+        playerRef.current.unMute();
+      } else {
+        playerRef.current.mute();
+      }
+    }
   }, [muted]);
 
   return (
