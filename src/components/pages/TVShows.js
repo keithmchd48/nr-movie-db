@@ -6,7 +6,6 @@ import SecondaryContainer from '../SecondaryContainer';
 import { useSelector } from 'react-redux';
 import useTvshowTrailer from "../../hooks/tvshows/useTvshowTrailer";
 import MainLayout from '../layouts/MainLayout';
-import {TrailerProvider} from '../contexts/TrailerContext';
 import useTranslations from '../../hooks/useTranslations';
 import { TMDB_DOMAIN_SHOW } from '../../utils/assets';
 
@@ -43,9 +42,7 @@ const TVShows = () => {
 
   return (
     <MainLayout>
-      <TrailerProvider sampleId={show.id} fetchTrailer={useTvshowTrailer}>
-        <HeroContainer sample={show} tmdbLink={tmdbLink} />
-      </TrailerProvider>
+      <HeroContainer sample={show} tmdbLink={tmdbLink} fetchTrailer={useTvshowTrailer}/>
       <SecondaryContainer content={content} />
     </MainLayout>
   )
