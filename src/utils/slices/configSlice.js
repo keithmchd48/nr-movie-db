@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {LANG} from '../languages';
+import {LANG} from '../translations/languages';
 
 const configSlice = createSlice({
   name: "config",

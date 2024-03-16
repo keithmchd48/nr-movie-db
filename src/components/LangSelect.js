@@ -1,4 +1,4 @@
-import {SUPPORTED_LANGUAGES} from "../utils/languages";
+import {SUPPORTED_LANGUAGES} from "../utils/translations/languages";
 import { useDispatch } from 'react-redux';
 import { SELECT_LANGUAGE } from '../utils/slices/configSlice';
 
