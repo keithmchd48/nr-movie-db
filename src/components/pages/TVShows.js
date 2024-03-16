@@ -21,17 +21,20 @@ const TVShows = () => {
     {
       id: 'tvshows-airing-today',
       title: TRANSLATIONS.shows.airingToday,
-      samples: tvShows?.airingToday
+      samples: tvShows?.airingToday,
+      sampleType: 'tv'
     },
     {
       id: 'tvshows-on-the-air',
       title: TRANSLATIONS.shows.onTheAir,
-      samples: tvShows?.onAirShows
+      samples: tvShows?.onAirShows,
+      sampleType: 'tv'
     },
     {
       id: 'tvshows-top-rated',
       title: TRANSLATIONS.shows.topRated,
-      samples: tvShows?.topRatedShows
+      samples: tvShows?.topRatedShows,
+      sampleType: 'tv'
     }
   ]
 

@@ -21,17 +21,20 @@ const Movies = () => {
     {
       id: 'movies-now-playing',
       title: TRANSLATIONS.movies.nowPlaying,
-      samples: movies?.nowPlayingMovies
+      samples: movies?.nowPlayingMovies,
+      sampleType: 'movie'
     },
     {
       id: 'movies-upcoming',
       title:TRANSLATIONS.movies.upcoming,
-      samples: movies?.upcomingMovies
+      samples: movies?.upcomingMovies,
+      sampleType: 'movie'
     },
     {
       id: 'movies-top-rated',
       title: TRANSLATIONS.movies.topRated,
-      samples: movies?.topRatedMovies
+      samples: movies?.topRatedMovies,
+      sampleType: 'movie'
     }
   ]
 

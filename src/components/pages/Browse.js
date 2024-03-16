@@ -22,17 +22,20 @@ const Browse = () => {
     {
       id: 'browse-now-playing',
       title: TRANSLATIONS.browse.nowPlaying,
-      samples: movies?.nowPlayingMovies
+      samples: movies?.nowPlayingMovies,
+      sampleType: 'movie'
     },
     {
       id: 'browse-airing-today',
       title: TRANSLATIONS.browse.tvShows,
-      samples: tvShows?.airingToday
+      samples: tvShows?.airingToday,
+      sampleType: 'tv'
     },
     {
       id: 'browse-top-rated',
       title: TRANSLATIONS.browse.topRatedMovies,
-      samples: movies?.topRatedMovies
+      samples: movies?.topRatedMovies,
+      sampleType: 'movie'
     }
   ]
 
