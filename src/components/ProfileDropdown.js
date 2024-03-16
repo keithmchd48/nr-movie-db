@@ -25,7 +25,7 @@ const ProfileDropdown = () => {
       {user && (
         <div ref={profileDropdownRef} className="relative">
           <button onClick={toggleProfileOptions} tabIndex="0" className="flex items-center">
-            <img alt="avatar" src={user.photoURL || AVATAR} className="xs:w-8 cursor-pointer"></img>
+            <img alt="avatar" src={user.photoURL || AVATAR} className="xs:w-6 l:w-8 cursor-pointer"></img>
           </button>
           <ProfileOptions isOpen={isProfileOptionsOpen} />
         </div>
