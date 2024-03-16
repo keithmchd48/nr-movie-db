@@ -1,3 +1,5 @@
+import {MONTHS} from './months';
+
 export const LANG = {
   en: {
     identifier: 'en',
@@ -49,7 +51,8 @@ export const LANG = {
     },
     footer: {
       madeBy: 'Made by'
-    }
+    },
+    months: MONTHS.en
   },
   dk: {
     identifier: 'dk',
@@ -101,7 +104,8 @@ export const LANG = {
     },
     footer: {
       madeBy: 'Lavet af'
-    }
+    },
+    months: MONTHS.dk
   },
   es: {
     identifier: 'es',
@@ -153,7 +157,8 @@ export const LANG = {
     },
     footer: {
       madeBy: 'Hecho por'
-    }
+    },
+    months: MONTHS.es
   }
 };
 export const SUPPORTED_LANGUAGES = [
