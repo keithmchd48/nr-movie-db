@@ -101,8 +101,8 @@ const Header = () => {
           <HeaderMenu />
         </div>
         <div className="flex items-center xs:gap-1 l:gap-3">
-          {user && <SearchComponent />}
           <LangSelect />
+          {user && <SearchComponent />}
           <ProfileDropdown />
         </div>
       </div>
