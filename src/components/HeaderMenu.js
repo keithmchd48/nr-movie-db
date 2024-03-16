@@ -8,7 +8,7 @@ const HeaderMenu = () => {
   return (
     <div className="xs:hidden m:flex">
       {user && (
-        <ul className="xs:text-xs l:text-sm flex items-center gap-4 font-light text-gray-200">
+        <ul className="xs:text-xs m:text-sm l:text-base flex items-center gap-4 font-light text-gray-200">
           {menuItems}
         </ul>
       )}

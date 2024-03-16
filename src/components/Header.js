@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import {PATHS} from '../utils/assets';
 import { useNavigate } from 'react-router-dom';
 import auth from '../utils/firebase';
@@ -18,6 +18,7 @@ import HamburgerMenu from './HamburgerMenu'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
 import MainLogo from './MainLogo';
+import useClickOutside from '../hooks/useClickOutside';
 
 const Header = () => {
   const user = useSelector(store => store.user);
@@ -26,8 +27,16 @@ const Header = () => {
   const location = useLocation()
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [scroll, setScroll] = useState(false);
+  const hbMenuRef = useRef(null);
+  const hbIconRef = useRef(null);
+
+  useClickOutside(hbMenuRef, hbIconRef, () => {
+    if (hbMenuRef) {
+      dispatch(TOGGLE_HAMBURGER_MENU(false));
+    }
+  });
+
   const addGradient = () => {
     setScroll(window.scrollY > 20);
   };
@@ -39,6 +48,10 @@ const Header = () => {
   const closeMenu = () => {
     dispatch(TOGGLE_HAMBURGER_MENU(false));
   };
+
+  const isHamburgerIconVisible = user && !hamburgerMenuOpen;
+
+  const isCloseIconVisible = user && hamburgerMenuOpen;
 
   useEffect(() => {
     window.addEventListener("scroll", addGradient);
@@ -69,13 +82,20 @@ const Header = () => {
 
   return (
     <div>
-      {user && <HamburgerMenu />}
-      <div className={`flex fixed w-screen z-30 justify-between items-center lg:px-16 xs:px-4 py-3 ${scroll ? 'bg-brand-black' : 'bg-gradient-to-b from-brand-black'}`}>
+      {<HamburgerMenu innerRef={hbMenuRef} />}
+      <div className={`flex fixed w-screen z-30 justify-between items-center xs:px-4 sm:px-16 py-3 ${scroll ? 'bg-brand-black' : 'bg-gradient-to-b from-brand-black'}`}>
         <div className="flex gap-3 items-center">
+          {(
+          <>
           {/*Hamburger Icon*/}
-          {user && (
-            (!hamburgerMenuOpen && <GiHamburgerMenu onClick={openMenu} className="text-white text-xl xs:block m:hidden" />) 
-            || (hamburgerMenuOpen && <FaTimes onClick={closeMenu} className="text-white text-xl xs:block m:hidden" />)
+            <div ref={hbIconRef} onClick={openMenu} className={`m:hidden text-white text-xl ${isHamburgerIconVisible ? 'xs:block' : 'xs:hidden'}`}>
+              <GiHamburgerMenu />
+            </div>
+          {/*close Icon*/}
+            <div onClick={closeMenu} className={`m:hidden text-white text-xl ${isCloseIconVisible ? 'xs:block' : 'xs:hidden'}`}>
+              <FaTimes  />
+            </div>
+          </>
           )}
           <MainLogo />
           <HeaderMenu />
