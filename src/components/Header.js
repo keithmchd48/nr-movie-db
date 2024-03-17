@@ -83,7 +83,7 @@ const Header = () => {
   return (
     <div>
       {<HamburgerMenu innerRef={hbMenuRef} />}
-      <div className={`flex fixed w-screen z-30 justify-between items-center xs:px-4 sm:px-16 py-3 ${scroll ? 'bg-brand-black' : 'xs:bg-brand-black l:bg-transparent l:bg-gradient-to-b l:from-brand-black'}`}>
+      <div className={`layout-padding flex fixed w-screen z-30 justify-between items-center py-3 ${scroll ? 'bg-brand-black' : 'xs:bg-brand-black l:bg-transparent l:bg-gradient-to-b l:from-brand-black'}`}>
         <div className="flex gap-3 items-center">
           {(
           <>
