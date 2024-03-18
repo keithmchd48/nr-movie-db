@@ -22,7 +22,6 @@ const SearchComponent = () => {
   });
 
   const toggleSearch = () => {
-    console.log('toggleSearch', isSearchInputVisible);
     setIsSearchInputVisible(true);
   };
 

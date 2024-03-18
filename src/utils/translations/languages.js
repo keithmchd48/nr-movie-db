@@ -52,7 +52,11 @@ export const LANG = {
     footer: {
       madeBy: 'Made by'
     },
-    months: MONTHS.en
+    months: MONTHS.en,
+    searchResults: {
+      movies: 'Movies',
+      tvShows: 'TV Shows',
+    }
   },
   dk: {
     identifier: 'dk',
@@ -105,7 +109,11 @@ export const LANG = {
     footer: {
       madeBy: 'Lavet af'
     },
-    months: MONTHS.dk
+    months: MONTHS.dk,
+    searchResults: {
+      movies: 'Film',
+      tvShows: 'TV Shows',
+    }
   },
   es: {
     identifier: 'es',
@@ -158,7 +166,11 @@ export const LANG = {
     footer: {
       madeBy: 'Hecho por'
     },
-    months: MONTHS.es
+    months: MONTHS.es,
+    searchResults: {
+      movies: 'Películas',
+      tvShows: 'Series de televisión',
+    }
   }
 };
 export const SUPPORTED_LANGUAGES = [
