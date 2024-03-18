@@ -6,7 +6,7 @@ import auth from '../utils/firebase';
 import {onAuthStateChanged} from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import { LOGOUT_USER, ADD_USER } from '../utils/slices/userSlice';
-import {UPDATE_SEARCH_QUERY} from '../utils/slices/gptSlice';
+import {UPDATE_SEARCH_QUERY} from '../utils/slices/searchSlice';
 import {TOGGLE_HAMBURGER_MENU} from '../utils/slices/configSlice';
 import ProfileDropdown from './ProfileDropdown';
 import SearchComponent from './SearchComponent';

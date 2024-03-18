@@ -27,7 +27,7 @@ export const LANG = {
       home: 'Home',
       shows: 'TV Shows',
       movies: 'Movies',
-      gptSearchPlaceholder: 'Titles, people, genres',
+      searchPlaceholder: 'Titles, people, genres',
       profileDropdown: {
         signOut: 'Sign out',
       }
@@ -80,7 +80,7 @@ export const LANG = {
       home: 'Hjem',
       shows: 'TV Shows',
       movies: 'Film',
-      gptSearchPlaceholder: 'Titler, personer, genrer',
+      searchPlaceholder: 'Titler, personer, genrer',
       profileDropdown: {
         signOut: 'Log ud',
       }
@@ -133,7 +133,7 @@ export const LANG = {
       home: 'Inicio',
       shows: 'Series',
       movies: 'Películas',
-      gptSearchPlaceholder: 'Títulos, personas, géneros',
+      searchPlaceholder: 'Títulos, personas, géneros',
       profileDropdown: {
         signOut: 'Cerrar sesión',
       }

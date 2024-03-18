@@ -13,7 +13,10 @@ const YTComponent = ({trailer, muted}) => {
   }
 
   const loadPlayerRef = () => {
-    playerRef.current = new window.YT.Player(YOUTUBE_IFRAME_ID);
+    playerRef.current = new window.YT.Player(YOUTUBE_IFRAME_ID, {
+      videoId: trailer?.key,
+      playerVars: { 'autoplay': 1, 'controls': 0 },
+    });
   };
 
   useEffect(() => {

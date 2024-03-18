@@ -4,7 +4,7 @@ import SearchResults from '../pages/SearchResults';
 import { useSelector } from 'react-redux';
 
 const MainLayout = ({ children }) => {
-  const searchQuery = useSelector(store => store.gptSearch.searchQuery);
+  const searchQuery = useSelector(store => store.search.searchQuery);
 
   return (
     <>
