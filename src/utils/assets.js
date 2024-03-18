@@ -11,6 +11,10 @@ export const TMDB_DOMAIN_SHOW = `${TMDB_DOMAIN}tv/`;
 export const TMDB_API_DOMAIN = "https://api.themoviedb.org/3";
 export const YOUTUBE_DOMAIN = "https://www.youtube.com/";
 export const MY_BIO_LINK = "https://bio.to/keith-dev";
+export const MEDIA_TYPES = {
+  MOVIE: "movie",
+  TV: "tv"
+};
 export const PATHS = {
   AUTH: "/",
   BROWSE: "/browse",

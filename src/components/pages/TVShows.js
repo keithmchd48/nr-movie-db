@@ -7,13 +7,15 @@ import { useSelector } from 'react-redux';
 import useTvshowTrailer from "../../hooks/tvshows/useTvshowTrailer";
 import MainLayout from '../layouts/MainLayout';
 import useTranslations from '../../hooks/useTranslations';
-import { TMDB_DOMAIN_SHOW } from '../../utils/assets';
+import { TMDB_DOMAIN_SHOW, MEDIA_TYPES } from '../../utils/assets';
 
 const TVShows = () => {
   useAiringTodayShows();
   useOnTheAirShows();
   useTopRatedShows();
   const TRANSLATIONS = useTranslations();
+
+  const {TV} = MEDIA_TYPES;
 
   const tvShows = useSelector((store) => store.tvShows);
 
@@ -22,19 +24,19 @@ const TVShows = () => {
       id: 'tvshows-airing-today',
       title: TRANSLATIONS.shows.airingToday,
       samples: tvShows?.airingToday,
-      sampleType: 'tv'
+      sampleType: TV
     },
     {
       id: 'tvshows-on-the-air',
       title: TRANSLATIONS.shows.onTheAir,
       samples: tvShows?.onAirShows,
-      sampleType: 'tv'
+      sampleType: TV
     },
     {
       id: 'tvshows-top-rated',
       title: TRANSLATIONS.shows.topRated,
       samples: tvShows?.topRatedShows,
-      sampleType: 'tv'
+      sampleType: TV
     }
   ]
 

@@ -1,4 +1,4 @@
-import { API_REQUEST_OPTIONS, TMDB_API_DOMAIN } from "../../utils/assets";
+import { API_REQUEST_OPTIONS, TMDB_API_DOMAIN, MEDIA_TYPES } from "../../utils/assets";
 import useTranslations from '../../hooks/useTranslations';
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
@@ -8,21 +8,24 @@ import SampleList from "../SampleList";
 const SearchResults = () => {
   const searchQuery = useSelector((state) => state.search.searchQuery);
   const TRANSLATIONS = useTranslations();
+  const {MOVIE, TV} = MEDIA_TYPES;
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
+  
+  const searchApi = async (query) => {
+    const response = await fetch(
+      `${TMDB_API_DOMAIN}/search/multi?query=${query}&page=1&include_adult=true`,
+      API_REQUEST_OPTIONS
+    );
+    const results = await response.json();
+    let movies = results?.results.filter((result) => result.media_type === MOVIE);
+    setMovies(movies);
+    let tvShows = results?.results.filter((result) => result.media_type === TV);
+    setTvShows(tvShows);
+  };
 
   const doSearch = useMemo(() => {
-    return debounce(async (query) => {
-      const response = await fetch(
-        `${TMDB_API_DOMAIN}/search/multi?query=${query}&page=1&include_adult=true`,
-        API_REQUEST_OPTIONS
-      );
-      const results = await response.json();
-      let movies = results?.results.filter((result) => result.media_type === "movie");
-      setMovies(movies);
-      let tvShows = results?.results.filter((result) => result.media_type === "tv");
-      setTvShows(tvShows);
-    }, 2000);
+    return debounce(searchApi, 2000);
   }, []);
 
   const content = [
@@ -30,15 +33,17 @@ const SearchResults = () => {
       id: 'search-movies',
       title: TRANSLATIONS.searchResults.movies,
       samples: movies,
-      sampleType: 'movie'
+      sampleType: MOVIE
     },
     {
       id: 'search-tvshows',
       title: TRANSLATIONS.searchResults.tvShows,
       samples: tvShows,
-      sampleType: 'tv'
+      sampleType: TV
     }
   ];
+
+  const filteredContent = content.filter((section) => section.samples.length > 0);
 
   useEffect(() => {
     doSearch(searchQuery);
@@ -46,9 +51,9 @@ const SearchResults = () => {
 
   return (
     <div className="h-screen w-full layout-padding flex flex-col justify-center">
-    {content.map((section) => {
-      return <SampleList sectionData={section} key={section.id} />;
-    })}
+      {filteredContent.map((section) => {
+        return <SampleList sectionData={section} key={section.id} />;
+      })}
     </div>
   );
 };
