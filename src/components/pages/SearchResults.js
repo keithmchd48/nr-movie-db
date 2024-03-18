@@ -31,6 +31,7 @@ const SearchResults = () => {
   const doSearch = useMemo(() => {
     setIsSearching(true);
     return debounce(searchApi, 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const content = [

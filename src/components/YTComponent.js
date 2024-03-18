@@ -41,6 +41,7 @@ const YTComponent = ({trailer, muted}) => {
       window.YT = null;
       window.onYouTubeIframeAPIReady = null;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
