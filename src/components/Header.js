@@ -80,6 +80,10 @@ const Header = () => {
     };
   }, []);
 
+  useEffect(() => {
+    dispatch(UPDATE_SEARCH_QUERY(''));
+  }, [location]);
+
   return (
     <div>
       {<HamburgerMenu innerRef={hbMenuRef} />}

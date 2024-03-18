@@ -56,6 +56,7 @@ export const LANG = {
     searchResults: {
       movies: 'Movies',
       tvShows: 'TV Shows',
+      searching: 'Searching...'
     }
   },
   dk: {
@@ -113,6 +114,7 @@ export const LANG = {
     searchResults: {
       movies: 'Film',
       tvShows: 'TV Shows',
+      searching: 'Søger...'
     }
   },
   es: {
@@ -170,6 +172,7 @@ export const LANG = {
     searchResults: {
       movies: 'Películas',
       tvShows: 'Series de televisión',
+      searching: 'Buscando...'
     }
   }
 };

@@ -11,6 +11,7 @@ const SearchResults = () => {
   const {MOVIE, TV} = MEDIA_TYPES;
   const [movies, setMovies] = useState([]);
   const [tvShows, setTvShows] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
   
   const searchApi = async (query) => {
     const response = await fetch(
@@ -18,6 +19,9 @@ const SearchResults = () => {
       API_REQUEST_OPTIONS
     );
     const results = await response.json();
+    
+    setIsSearching(false);
+
     let movies = results?.results.filter((result) => result.media_type === MOVIE);
     setMovies(movies);
     let tvShows = results?.results.filter((result) => result.media_type === TV);
@@ -25,7 +29,8 @@ const SearchResults = () => {
   };
 
   const doSearch = useMemo(() => {
-    return debounce(searchApi, 2000);
+    setIsSearching(true);
+    return debounce(searchApi, 1000);
   }, []);
 
   const content = [
@@ -51,7 +56,8 @@ const SearchResults = () => {
 
   return (
     <div className="h-screen w-full layout-padding flex flex-col justify-center">
-      {filteredContent.map((section) => {
+      {isSearching && <div className="text-white xs:text-sm m:text-xl text-center">{TRANSLATIONS.searchResults.searching}</div>}
+      {!isSearching && filteredContent.map((section) => {
         return <SampleList sectionData={section} key={section.id} />;
       })}
     </div>
