@@ -21,7 +21,7 @@ const ProfileDropdown = () => {
   };
 
   return (
-    <div className="xs:hidden m:block">
+    <div className="xs:hidden sm:block">
       {user && (
         <div ref={profileDropdownRef} className="relative">
           <button onClick={toggleProfileOptions} tabIndex="0" className="flex items-center">

@@ -92,11 +92,11 @@ const Header = () => {
           {(
           <>
           {/*Hamburger Icon*/}
-            <div ref={hbIconRef} onClick={openMenu} className={`m:hidden text-white text-xl ${isHamburgerIconVisible ? 'xs:block' : 'xs:hidden'}`}>
+            <div ref={hbIconRef} onClick={openMenu} className={`sm:hidden text-white text-xl ${isHamburgerIconVisible ? 'xs:block' : 'xs:hidden'}`}>
               <GiHamburgerMenu />
             </div>
           {/*close Icon*/}
-            <div onClick={closeMenu} className={`m:hidden text-white text-xl ${isCloseIconVisible ? 'xs:block' : 'xs:hidden'}`}>
+            <div onClick={closeMenu} className={`sm:hidden text-white text-xl ${isCloseIconVisible ? 'xs:block' : 'xs:hidden'}`}>
               <FaTimes  />
             </div>
           </>

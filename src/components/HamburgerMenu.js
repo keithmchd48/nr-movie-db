@@ -20,7 +20,7 @@ const HamburgerMenu = ({innerRef}) => {
   };
   
   return (
-    <div ref={innerRef} className={`${isHamburgerMenuOpen ? 'xs:flex' : 'xs:hidden'} xs:text-base fixed pt-[56px] m:hidden flex-col gap-1 bg-brand-black px-4 py-4 z-30`}>
+    <div ref={innerRef} className={`${isHamburgerMenuOpen ? 'xs:flex' : 'xs:hidden'} xs:text-base fixed pt-[56px] sm:hidden flex-col gap-1 bg-brand-black px-4 py-4 z-30`}>
       {
         user && (
         <div className="flex items-center">

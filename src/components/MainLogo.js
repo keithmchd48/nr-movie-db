@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 const MainLogo = () => {
   return (
     <NavLink to={PATHS.AUTH}>
-      <img alt="main_logo" src={MAIN_LOGO} className="xs:max-w-20 sm:max-w-52"></img>
+      <img alt="main_logo" src={MAIN_LOGO} className="xs:max-w-32 sm:max-w-52"></img>
     </NavLink>
   );
 };
