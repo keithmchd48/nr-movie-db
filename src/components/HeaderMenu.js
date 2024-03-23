@@ -1,9 +1,9 @@
-import { useSelector } from 'react-redux';
-import useRenderHeadermenu from '../hooks/useRenderHeadermenu';
+import { useSelector } from "react-redux";
+import useRenderHeadermenu from "../hooks/useRenderHeadermenu";
 
 const HeaderMenu = () => {
   const menuItems = useRenderHeadermenu();
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   return (
     <div className="xs:hidden sm:flex">

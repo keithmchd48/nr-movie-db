@@ -1,15 +1,15 @@
 import { GoSearch } from "react-icons/go";
-import SearchInput from './SearchInput';
-import useClickOutside from '../hooks/useClickOutside';
-import { useRef, useState } from 'react';
-import {UPDATE_SEARCH_QUERY} from '../utils/slices/searchSlice';
+import SearchInput from "./SearchInput";
+import useClickOutside from "../hooks/useClickOutside";
+import { useRef, useState } from "react";
+import { UPDATE_SEARCH_QUERY } from "../utils/slices/searchSlice";
 import { useDispatch } from "react-redux";
-import useTranslations from '../hooks/useTranslations';
+import useTranslations from "../hooks/useTranslations";
 
 const SearchComponent = () => {
   const dispatch = useDispatch();
   const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const searchInputRef = useRef(null);
   const searchIcon = useRef(null);
 
@@ -31,14 +31,19 @@ const SearchComponent = () => {
   };
 
   const clearQuery = () => {
-    setQuery('');
-    dispatch(UPDATE_SEARCH_QUERY(''));
+    setQuery("");
+    dispatch(UPDATE_SEARCH_QUERY(""));
   };
 
   return (
     <div>
       <div ref={searchIcon}>
-        <GoSearch onClick={toggleSearch} className={`text-white l:text-xl cursor-pointer ${isSearchInputVisible ? 'hidden' : 'block'}`} />
+        <GoSearch
+          onClick={toggleSearch}
+          className={`text-white l:text-xl cursor-pointer ${
+            isSearchInputVisible ? "hidden" : "block"
+          }`}
+        />
       </div>
       <div ref={searchInputRef}>
         <SearchInput
@@ -46,7 +51,8 @@ const SearchComponent = () => {
           value={query}
           onChange={updateQuery}
           onClear={clearQuery}
-          isVisible={isSearchInputVisible} />
+          isVisible={isSearchInputVisible}
+        />
       </div>
     </div>
   );

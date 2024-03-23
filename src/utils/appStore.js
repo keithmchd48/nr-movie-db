@@ -1,10 +1,10 @@
-import {configureStore} from '@reduxjs/toolkit';
-import userReducer from './slices/userSlice';
-import movieReducer from './slices/movieSlice';
-import tvShowReducer from './slices/tvshowSlice';
-import trailerReducer from './slices/trailerSlice';
-import searchReducer from './slices/searchSlice';
-import configReducer from './slices/configSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "./slices/userSlice";
+import movieReducer from "./slices/movieSlice";
+import tvShowReducer from "./slices/tvshowSlice";
+import trailerReducer from "./slices/trailerSlice";
+import searchReducer from "./slices/searchSlice";
+import configReducer from "./slices/configSlice";
 
 const appStore = configureStore({
   reducer: {
@@ -13,8 +13,8 @@ const appStore = configureStore({
     tvShows: tvShowReducer,
     trailer: trailerReducer,
     search: searchReducer,
-    config: configReducer
-  }
+    config: configReducer,
+  },
 });
 
 export default appStore;

@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 import { YOUTUBE_DOMAIN } from "../utils/assets";
 
-const YOUTUBE_SCRIPT_ID = 'youtube-iframe-api';
-const YOUTUBE_IFRAME_ID = 'youtube-trailer';
+const YOUTUBE_SCRIPT_ID = "youtube-iframe-api";
+const YOUTUBE_IFRAME_ID = "youtube-trailer";
 
-const YTComponent = ({trailer, muted}) => {
+const YTComponent = ({ trailer, muted }) => {
   let playerRef = useRef(null);
 
   let videoOptions = ``;
@@ -15,18 +15,18 @@ const YTComponent = ({trailer, muted}) => {
   const loadPlayerRef = () => {
     playerRef.current = new window.YT.Player(YOUTUBE_IFRAME_ID, {
       videoId: trailer?.key,
-      playerVars: { 'autoplay': 1, 'controls': 0 },
+      playerVars: { autoplay: 1, controls: 0 },
     });
   };
 
   useEffect(() => {
     let iframeScript = document.getElementById(YOUTUBE_SCRIPT_ID);
 
-    if(!iframeScript) {
-      iframeScript = document.createElement('script');
+    if (!iframeScript) {
+      iframeScript = document.createElement("script");
       iframeScript.id = YOUTUBE_SCRIPT_ID;
       iframeScript.src = `${YOUTUBE_DOMAIN}iframe_api`;
-      const firstScriptTag = document.getElementsByTagName('script')[0];
+      const firstScriptTag = document.getElementsByTagName("script")[0];
       firstScriptTag.parentNode.insertBefore(iframeScript, firstScriptTag);
     }
 
@@ -35,7 +35,7 @@ const YTComponent = ({trailer, muted}) => {
     };
 
     return () => {
-      if(iframeScript) {
+      if (iframeScript) {
         iframeScript.remove();
       }
       window.YT = null;

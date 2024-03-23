@@ -1,12 +1,12 @@
 const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
+const passwordRegex =
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 export const validateLoginForm = (email) => {
   const isEmailValid = emailRegex.test(email);
 
   if (!isEmailValid) {
-    return 'invalidEmail';
+    return "invalidEmail";
   }
 
   return null;
@@ -18,16 +18,16 @@ export const validateSignupForm = (name, email, password, confirmPassword) => {
   const isPasswordValid = passwordRegex.test(password);
 
   if (!name) {
-    return 'fullNameRequired';
+    return "fullNameRequired";
   }
   if (!isEmailValid) {
-    return 'invalidEmail';
+    return "invalidEmail";
   }
   if (!isPasswordValid) {
-    return 'invalidPassword';
+    return "invalidPassword";
   }
   if (password !== confirmPassword) {
-    return 'passwordMismatch';
+    return "passwordMismatch";
   }
 
   return null;

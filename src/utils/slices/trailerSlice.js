@@ -1,10 +1,10 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const trailerSlice = createSlice({
   name: "trailer",
   initialState: {
     trailer: null,
-    isMuted: true
+    isMuted: true,
   },
   reducers: {
     ADD_TRAILER(state, action) {
@@ -12,11 +12,11 @@ const trailerSlice = createSlice({
     },
     TOGGLE_MUTE(state) {
       state.isMuted = !state.isMuted;
-    }
-  }
+    },
+  },
 });
 
 // export actions
-export const {ADD_TRAILER, TOGGLE_MUTE} = trailerSlice.actions;
+export const { ADD_TRAILER, TOGGLE_MUTE } = trailerSlice.actions;
 
 export default trailerSlice.reducer;

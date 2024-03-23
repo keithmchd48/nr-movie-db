@@ -1,6 +1,6 @@
-import {SUPPORTED_LANGUAGES} from "../utils/translations/languages";
-import { useDispatch } from 'react-redux';
-import { SELECT_LANGUAGE } from '../utils/slices/configSlice';
+import { SUPPORTED_LANGUAGES } from "../utils/translations/languages";
+import { useDispatch } from "react-redux";
+import { SELECT_LANGUAGE } from "../utils/slices/configSlice";
 
 const LangSelect = () => {
   const dispatch = useDispatch();
@@ -10,8 +10,11 @@ const LangSelect = () => {
   };
 
   return (
-    <select className="max-w-11 bg-transparent xs:text-xs l:text-sm text-white outline-none" onChange={selectLanguage}>
-      {SUPPORTED_LANGUAGES.map(lang => {
+    <select
+      className="max-w-11 bg-transparent xs:text-xs l:text-sm text-white outline-none"
+      onChange={selectLanguage}
+    >
+      {SUPPORTED_LANGUAGES.map((lang) => {
         return (
           <option key={lang.identifier} value={lang.identifier}>
             {lang.label}

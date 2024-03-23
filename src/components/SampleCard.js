@@ -1,12 +1,24 @@
-import {POSTER_PATH_URL, TMDB_DOMAIN, BACKDROP_PLACEHOLDER} from '../utils/assets';
-import useReadableDate from '../hooks/useReadableDate';
+import {
+  POSTER_PATH_URL,
+  TMDB_DOMAIN,
+  BACKDROP_PLACEHOLDER,
+} from "../utils/assets";
+import useReadableDate from "../hooks/useReadableDate";
 
-const SampleCard = ({sample, sampleType}) => {
-  const {title, original_name, first_air_date, release_date, id, backdrop_path} = sample;
+const SampleCard = ({ sample, sampleType }) => {
+  const {
+    title,
+    original_name,
+    first_air_date,
+    release_date,
+    id,
+    backdrop_path,
+  } = sample;
   const readableDate = useReadableDate(release_date || first_air_date);
 
-  const backdropSrc = backdrop_path ? `${POSTER_PATH_URL}${backdrop_path}` : BACKDROP_PLACEHOLDER;
-
+  const backdropSrc = backdrop_path
+    ? `${POSTER_PATH_URL}${backdrop_path}`
+    : BACKDROP_PLACEHOLDER;
 
   const openTMDBLink = () => {
     window.open(`${TMDB_DOMAIN}${sampleType}/${id}`);
