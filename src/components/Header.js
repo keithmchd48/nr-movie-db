@@ -59,7 +59,6 @@ const Header = () => {
     window.addEventListener("scroll", addGradient);
 
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log("user auth changed", user);
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(ADD_USER({ uid, email, displayName, photoURL }));
