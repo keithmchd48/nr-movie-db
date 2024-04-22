@@ -49,3 +49,5 @@ export const API_REQUEST_OPTIONS = {
     Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`,
   },
 };
+
+export const APP_NAME = "Flixwatch";

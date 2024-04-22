@@ -56,8 +56,19 @@ export const LANG = {
     searchResults: {
       movies: 'Movies',
       tvShows: 'TV Shows',
-      searching: 'Searching...'
-    }
+      searching: 'Searching...',
+      error: {
+        message: "Something went wrong.",
+        cta: "Go back to home",
+      },
+    },
+    headTitles: {
+      login: "Login",
+      browse: "Home",
+      shows: "TV Shows",
+      movies: "Movies",
+      error: "Error",
+    },
   },
   dk: {
     identifier: 'dk',
@@ -115,7 +126,18 @@ export const LANG = {
       movies: 'Film',
       tvShows: 'TV Shows',
       searching: 'Søger...'
-    }
+    },
+    error: {
+      message: "Noget gik galt.",
+      cta: "Gå tilbage til hjemmet"
+    },
+    headTitles: {
+      login: "Log ind",
+      browse: "Hjem",
+      shows: "TV Shows",
+      movies: "Film",
+      error: "Fejl",
+    },
   },
   es: {
     identifier: 'es',
@@ -173,7 +195,18 @@ export const LANG = {
       movies: 'Películas',
       tvShows: 'Series de televisión',
       searching: 'Buscando...'
-    }
+    },
+    error: {
+      message: "Algo salió mal.",
+      cta: "Volver al inicio"
+    },
+    headTitles: {
+      login: "Iniciar sesión",
+      browse: "Inicio",
+      shows: "Series",
+      movies: "Películas",
+      error: "Error",
+    },
   }
 };
 export const SUPPORTED_LANGUAGES = [

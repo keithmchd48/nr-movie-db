@@ -1,5 +1,5 @@
 import useTranslations from "../hooks/useTranslations";
-import { MY_BIO_LINK } from "../utils/assets";
+import { MY_BIO_LINK, APP_NAME } from "../utils/assets";
 
 const Footer = () => {
   const TRANSLATIONS = useTranslations();
@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <footer className="xs:text-xs m:text-sm bg-brand-black text-white font-light text-center p-4">
-      <p>&copy; {currentYear} Flixwatch</p>
+      <p>&copy; {currentYear} {APP_NAME}</p>
       <p className="mt-2">
         {TRANSLATIONS.footer.madeBy}
         <a
