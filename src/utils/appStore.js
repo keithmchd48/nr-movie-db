@@ -14,6 +14,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
+  blacklist: ["user", "movies", "tvShows", "trailer", "search"],
 };
 
 const reducers = combineReducers({
