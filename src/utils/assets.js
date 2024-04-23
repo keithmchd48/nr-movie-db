@@ -19,6 +19,7 @@ export const MEDIA_TYPES = {
 };
 export const PATHS = {
   AUTH: "/",
+  LOGIN: "/login",
   BROWSE: "/browse",
   SHOWS: "/shows",
   MOVIES: "/movies",

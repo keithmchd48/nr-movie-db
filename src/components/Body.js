@@ -7,6 +7,8 @@ import { PATHS } from "../utils/assets";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
+    { path: "*", element: <Browse />},
+    { path: PATHS.LOGIN, element: <AuthPage /> },
     { path: PATHS.AUTH, element: <AuthPage /> },
     { path: PATHS.BROWSE, element: <Browse /> },
     { path: PATHS.SHOWS, element: <TVShows /> },

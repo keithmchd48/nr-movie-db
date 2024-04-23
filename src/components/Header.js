@@ -62,7 +62,8 @@ const Header = () => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         dispatch(ADD_USER({ uid, email, displayName, photoURL }));
-        if (location.pathname !== PATHS.AUTH) {
+        const allowedPaths = Object.values(PATHS).filter(path => path !== PATHS.AUTH && path !== PATHS.LOGIN);
+        if (allowedPaths.includes(location.pathname)) {
           navigate(location.pathname);
         } else {
           navigate(PATHS.BROWSE);
@@ -70,7 +71,7 @@ const Header = () => {
       } else {
         dispatch(UPDATE_SEARCH_QUERY(""));
         dispatch(LOGOUT_USER());
-        navigate(PATHS.AUTH);
+        navigate(PATHS.LOGIN);
       }
     });
 

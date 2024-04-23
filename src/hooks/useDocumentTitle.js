@@ -12,6 +12,7 @@ const useDocumentTitle = () => {
 
   useEffect(() => {
     const HEAD_TITLES = {
+      "/": `${APP_NAME} | ${TRANSLATIONS.headTitles.login}`,
       '/login': `${APP_NAME} | ${TRANSLATIONS.headTitles.login}`,
       '/browse': `${APP_NAME} | ${TRANSLATIONS.headTitles.browse}`,
       '/shows': `${APP_NAME} | ${TRANSLATIONS.headTitles.shows}`,
