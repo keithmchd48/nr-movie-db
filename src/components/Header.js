@@ -19,8 +19,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
 import MainLogo from "./MainLogo";
 import useClickOutside from "../hooks/useClickOutside";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 const Header = () => {
+  useDocumentTitle();
   const user = useSelector((store) => store.user);
   const hamburgerMenuOpen = useSelector(
     (store) => store.config.hamburgerMenuOpen
