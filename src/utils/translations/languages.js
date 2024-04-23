@@ -69,6 +69,7 @@ export const LANG = {
       movies: "Movies",
       error: "Error",
     },
+    loadingText: 'Loading...',
   },
   dk: {
     identifier: 'dk',
@@ -138,6 +139,7 @@ export const LANG = {
       movies: "Film",
       error: "Fejl",
     },
+    loadingText: 'Indlæser...',
   },
   es: {
     identifier: 'es',
@@ -207,6 +209,7 @@ export const LANG = {
       movies: "Películas",
       error: "Error",
     },
+    loadingText: 'Cargando...',
   }
 };
 export const SUPPORTED_LANGUAGES = [

@@ -14,6 +14,7 @@ npx create-react-app nr-movie-db
   - Movie and TV Shows DM from [The Movie Database (TMDB)](https://www.themoviedb.org/)
   - Background trailer video is implemented via [YouTube Player API Reference for iframe Embeds](https://developers.google.com/youtube/iframe_api_reference)
   - Styled using [TailwindCSS](https://tailwindcss.com/)
+  - [Icons](https://react-icons.github.io/react-icons/) library
   - App is available in the following languages:
     - English (EN)
     - Dansk (DK)
