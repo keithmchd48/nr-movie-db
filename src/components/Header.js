@@ -1,25 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, useRef } from "react";
-import { PATHS } from "../utils/assets";
+import { PATHS } from "utils/assets";
 import { useNavigate } from "react-router-dom";
-import auth from "../utils/firebase";
+import auth from "utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { LOGOUT_USER, ADD_USER } from "../utils/slices/userSlice";
-import { UPDATE_SEARCH_QUERY } from "../utils/slices/searchSlice";
-import { TOGGLE_HAMBURGER_MENU } from "../utils/slices/configSlice";
-import ProfileDropdown from "./ProfileDropdown";
-import SearchComponent from "./SearchComponent";
+import { LOGOUT_USER, ADD_USER } from "utils/slices/userSlice";
+import { UPDATE_SEARCH_QUERY } from "utils/slices/searchSlice";
+import { TOGGLE_HAMBURGER_MENU } from "utils/slices/configSlice";
+import ProfileDropdown from "components/ProfileDropdown";
+import SearchComponent from "components/SearchComponent";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-import LangSelect from "./LangSelect";
-import HeaderMenu from "./HeaderMenu";
-import HamburgerMenu from "./HamburgerMenu";
+import LangSelect from "components/LangSelect";
+import HeaderMenu from "components/HeaderMenu";
+import HamburgerMenu from "components/HamburgerMenu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
-import MainLogo from "./MainLogo";
-import useClickOutside from "../hooks/useClickOutside";
-import useDocumentTitle from "../hooks/useDocumentTitle";
+import MainLogo from "components/MainLogo";
+import useClickOutside from "hooks/useClickOutside";
+import useDocumentTitle from "hooks/useDocumentTitle";
 
 const Header = () => {
   useDocumentTitle();

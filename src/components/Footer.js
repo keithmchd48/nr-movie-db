@@ -1,5 +1,5 @@
-import useTranslations from "../hooks/useTranslations";
-import { MY_BIO_LINK, APP_NAME } from "../utils/assets";
+import useTranslations from "hooks/useTranslations";
+import { MY_BIO_LINK, APP_NAME } from "utils/assets";
 
 const Footer = () => {
   const TRANSLATIONS = useTranslations();
