@@ -1,8 +1,8 @@
-import { AVATAR } from "../utils/assets";
-import ProfileOptions from "./ProfileOptions";
+import { AVATAR } from "utils/assets";
+import ProfileOptions from "components/ProfileOptions";
 import { useSelector } from "react-redux";
 import { useRef, useState } from "react";
-import useClickOutside from "../hooks/useClickOutside";
+import useClickOutside from "hooks/useClickOutside";
 
 const ProfileDropdown = () => {
   const user = useSelector((store) => store.user);

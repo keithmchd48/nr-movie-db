@@ -1,4 +1,4 @@
-import { LANG } from "../utils/translations/languages";
+import { LANG } from "utils/translations/languages";
 import { useSelector } from "react-redux";
 
 const useTranslations = () => {

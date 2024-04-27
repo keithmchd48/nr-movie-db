@@ -1,9 +1,9 @@
-import useRenderHeadermenu from "../hooks/useRenderHeadermenu";
+import useRenderHeadermenu from "hooks/useRenderHeadermenu";
 import { useSelector } from "react-redux";
-import { AVATAR } from "../utils/assets";
-import auth from "../utils/firebase";
+import { AVATAR } from "utils/assets";
+import auth from "utils/firebase";
 import { signOut } from "firebase/auth";
-import useTranslations from "../hooks/useTranslations";
+import useTranslations from "hooks/useTranslations";
 
 const HamburgerMenu = ({ innerRef }) => {
   const menuItems = useRenderHeadermenu();

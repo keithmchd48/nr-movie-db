@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { validateLoginForm, validateSignupForm } from "../utils/validations";
-import auth from "../utils/firebase";
+import { validateLoginForm, validateSignupForm } from "utils/validations";
+import auth from "utils/firebase";
 import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
@@ -8,9 +8,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { ADD_USER } from "../utils/slices/userSlice";
-import { AVATAR, PATHS } from "../utils/assets";
-import useTranslations from "../hooks/useTranslations";
+import { ADD_USER } from "utils/slices/userSlice";
+import { AVATAR, PATHS } from "utils/assets";
+import useTranslations from "hooks/useTranslations";
 
 const LOGIN = "login";
 const SIGNUP = "signup";

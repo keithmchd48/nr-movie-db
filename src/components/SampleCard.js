@@ -2,8 +2,8 @@ import {
   POSTER_PATH_URL,
   TMDB_DOMAIN,
   BACKDROP_PLACEHOLDER,
-} from "../utils/assets";
-import useReadableDate from "../hooks/useReadableDate";
+} from "utils/assets";
+import useReadableDate from "hooks/useReadableDate";
 
 const SampleCard = ({ sample, sampleType }) => {
   const {

@@ -1,8 +1,8 @@
 import { VscAccount } from "react-icons/vsc";
-import auth from "../utils/firebase";
+import auth from "utils/firebase";
 import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
-import useTranslations from "../hooks/useTranslations";
+import useTranslations from "hooks/useTranslations";
 
 const ProfileOptions = ({ isOpen }) => {
   const user = useSelector((store) => store.user);

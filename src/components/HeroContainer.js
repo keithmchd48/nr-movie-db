@@ -1,6 +1,6 @@
-import VideoTitle from "./VideoTitle";
-import VideoMeta from "./VideoMeta";
-import YTComponent from "./YTComponent";
+import VideoTitle from "components/VideoTitle";
+import VideoMeta from "components/VideoMeta";
+import YTComponent from "components/YTComponent";
 import { useSelector } from "react-redux";
 
 const HeroContainer = ({ sample, tmdbLink, fetchTrailer }) => {

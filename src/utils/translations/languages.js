@@ -1,4 +1,4 @@
-import {MONTHS} from './months';
+import {MONTHS} from 'utils/translations/months';
 
 export const LANG = {
   en: {

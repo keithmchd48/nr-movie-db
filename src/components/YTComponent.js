@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { YOUTUBE_DOMAIN } from "../utils/assets";
+import { YOUTUBE_DOMAIN } from "utils/assets";
 
 const YOUTUBE_SCRIPT_ID = "youtube-iframe-api";
 const YOUTUBE_IFRAME_ID = "youtube-trailer";

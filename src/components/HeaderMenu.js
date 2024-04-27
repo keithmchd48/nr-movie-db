@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import useRenderHeadermenu from "../hooks/useRenderHeadermenu";
+import useRenderHeadermenu from "hooks/useRenderHeadermenu";
 
 const HeaderMenu = () => {
   const menuItems = useRenderHeadermenu();

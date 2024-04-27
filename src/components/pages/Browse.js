@@ -1,13 +1,13 @@
-import useNowPlayingMovies from "../../hooks/movies/useNowPlayingMovies";
-import useTopRatedMovies from "../../hooks/movies/useTopRatedMovies";
-import useAiringTodayShows from "../../hooks/tvshows/useAiringTodayShows";
-import HeroContainer from "../HeroContainer";
-import SecondaryContainer from "../SecondaryContainer";
+import useNowPlayingMovies from "hooks/movies/useNowPlayingMovies";
+import useTopRatedMovies from "hooks/movies/useTopRatedMovies";
+import useAiringTodayShows from "hooks/tvshows/useAiringTodayShows";
+import HeroContainer from "components/HeroContainer";
+import SecondaryContainer from "components/SecondaryContainer";
 import { useSelector } from "react-redux";
-import useMovieTrailer from "../../hooks/movies/useMovieTrailer";
-import MainLayout from "../layouts/MainLayout";
-import useTranslations from "../../hooks/useTranslations";
-import { TMDB_DOMAIN_MOVIE, MEDIA_TYPES } from "../../utils/assets";
+import useMovieTrailer from "hooks/movies/useMovieTrailer";
+import MainLayout from "components/layouts/MainLayout";
+import useTranslations from "hooks/useTranslations";
+import { TMDB_DOMAIN_MOVIE, MEDIA_TYPES } from "utils/assets";
 
 const Browse = () => {
   useNowPlayingMovies();

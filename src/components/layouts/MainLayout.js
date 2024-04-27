@@ -1,6 +1,6 @@
-import Header from "../Header";
-import Footer from "../Footer";
-import SearchResults from "../pages/SearchResults";
+import Header from "components/Header";
+import Footer from "components/Footer";
+import SearchResults from "components/pages/SearchResults";
 import { useSelector } from "react-redux";
 
 const MainLayout = ({ children }) => {
