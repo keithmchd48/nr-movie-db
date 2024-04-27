@@ -18,7 +18,7 @@ import HamburgerMenu from "components/hamburger/HamburgerMenu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
 import MainLogo from "components/units/MainLogo";
-import useClickOutside from "hooks/useClickOutside";
+import useClickOutside from "hooks/utilities/useClickOutside";
 import useDocumentTitle from "hooks/useDocumentTitle";
 
 const Header = () => {

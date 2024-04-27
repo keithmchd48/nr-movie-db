@@ -1,4 +1,4 @@
-import useEventListener from "hooks/useEventListener";
+import useEventListener from "hooks/utilities/useEventListener";
 
 export default function useClickOutside(ref, ignoreRef, callback) {
   useEventListener(

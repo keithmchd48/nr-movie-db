@@ -3,7 +3,7 @@ import {
   TMDB_DOMAIN,
   BACKDROP_PLACEHOLDER,
 } from "utils/assets";
-import useReadableDate from "hooks/useReadableDate";
+import useReadableDate from "hooks/utilities/useReadableDate";
 
 const SampleCard = ({ sample, sampleType }) => {
   const {
