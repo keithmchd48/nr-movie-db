@@ -1,10 +1,10 @@
 import { GoSearch } from "react-icons/go";
-import SearchInput from "./SearchInput";
-import useClickOutside from "../hooks/useClickOutside";
+import SearchInput from "components/SearchInput";
+import useClickOutside from "hooks/useClickOutside";
 import { useRef, useState } from "react";
-import { UPDATE_SEARCH_QUERY } from "../utils/slices/searchSlice";
+import { UPDATE_SEARCH_QUERY } from "utils/slices/searchSlice";
 import { useDispatch } from "react-redux";
-import useTranslations from "../hooks/useTranslations";
+import useTranslations from "hooks/useTranslations";
 
 const SearchComponent = () => {
   const dispatch = useDispatch();

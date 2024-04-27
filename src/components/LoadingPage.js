@@ -1,4 +1,4 @@
-import useTranslations from "../hooks/useTranslations";
+import useTranslations from "hooks/useTranslations";
 
 const LoadingPage = () => {
   const TRANSLATIONS = useTranslations();

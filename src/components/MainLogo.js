@@ -1,4 +1,4 @@
-import { PATHS, MAIN_LOGO } from "../utils/assets";
+import { PATHS, MAIN_LOGO } from "utils/assets";
 import { NavLink } from "react-router-dom";
 
 const MainLogo = () => {

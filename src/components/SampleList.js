@@ -1,4 +1,4 @@
-import SampleCard from "./SampleCard";
+import SampleCard from "components/SampleCard";
 
 const SampleList = ({ sectionData }) => {
   const { title, samples, sampleType } = sectionData;

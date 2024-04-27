@@ -1,6 +1,6 @@
-import { HEADER_MENU } from "../utils/assets";
+import { HEADER_MENU } from "utils/assets";
 import { NavLink } from "react-router-dom";
-import useTranslations from "../hooks/useTranslations";
+import useTranslations from "hooks/useTranslations";
 
 const useRenderHeadermenu = () => {
   const TRANSLATIONS = useTranslations();

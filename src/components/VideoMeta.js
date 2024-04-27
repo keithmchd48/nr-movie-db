@@ -1,6 +1,6 @@
 import { VscUnmute } from "react-icons/vsc";
 import { VscMute } from "react-icons/vsc";
-import { TOGGLE_MUTE } from "../utils/slices/trailerSlice";
+import { TOGGLE_MUTE } from "utils/slices/trailerSlice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 

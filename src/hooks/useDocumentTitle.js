@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import { APP_NAME } from '../utils/assets';
+import { APP_NAME } from 'utils/assets';
 import { useLocation } from "react-router-dom";
-import useTranslations from "../hooks/useTranslations";
+import useTranslations from "hooks/useTranslations";
 import { useSelector } from "react-redux";
 
 const useDocumentTitle = () => {
