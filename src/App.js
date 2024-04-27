@@ -1,6 +1,6 @@
 import Body from "components/routing/Body";
 import LoadingPage from "components/units/LoadingPage";
-import appStore from "utils/appStore";
+import appStore from "store/appStore";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";

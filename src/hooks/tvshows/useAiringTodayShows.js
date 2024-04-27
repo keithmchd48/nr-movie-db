@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {API_REQUEST_OPTIONS, TMDB_API_DOMAIN} from 'utils/assets';
 import {useDispatch} from 'react-redux';
-import {ADD_AIRING_TODAY_SHOWS} from 'utils/slices/tvshowSlice';
+import {ADD_AIRING_TODAY_SHOWS} from 'store/slices/tvshowSlice';
 import {useEffect} from 'react';
 
 const useAiringTodayShows = () => {

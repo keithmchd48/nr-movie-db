@@ -1,6 +1,6 @@
 import { SUPPORTED_LANGUAGES } from "utils/translations/languages";
 import { useDispatch, useSelector } from "react-redux";
-import { SELECT_LANGUAGE } from "utils/slices/configSlice";
+import { SELECT_LANGUAGE } from "store/slices/configSlice";
 
 const LangSelect = () => {
   const dispatch = useDispatch();

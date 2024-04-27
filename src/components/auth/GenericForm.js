@@ -8,7 +8,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { ADD_USER } from "utils/slices/userSlice";
+import { ADD_USER } from "store/slices/userSlice";
 import { AVATAR, PATHS } from "utils/assets";
 import useTranslations from "hooks/useTranslations";
 
