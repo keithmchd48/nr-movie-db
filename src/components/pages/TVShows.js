@@ -1,13 +1,13 @@
-import useAiringTodayShows from "../../hooks/tvshows/useAiringTodayShows";
-import useOnTheAirShows from "../../hooks/tvshows/useOnAirShows";
-import useTopRatedShows from "../../hooks/tvshows/useTopRatedShows";
-import HeroContainer from "../HeroContainer";
-import SecondaryContainer from "../SecondaryContainer";
+import useAiringTodayShows from "hooks/tvshows/useAiringTodayShows";
+import useOnTheAirShows from "hooks/tvshows/useOnAirShows";
+import useTopRatedShows from "hooks/tvshows/useTopRatedShows";
+import HeroContainer from "components/HeroContainer";
+import SecondaryContainer from "components/SecondaryContainer";
 import { useSelector } from "react-redux";
-import useTvshowTrailer from "../../hooks/tvshows/useTvshowTrailer";
-import MainLayout from "../layouts/MainLayout";
-import useTranslations from "../../hooks/useTranslations";
-import { TMDB_DOMAIN_SHOW, MEDIA_TYPES } from "../../utils/assets";
+import useTvshowTrailer from "hooks/tvshows/useTvshowTrailer";
+import MainLayout from "components/layouts/MainLayout";
+import useTranslations from "hooks/useTranslations";
+import { TMDB_DOMAIN_SHOW, MEDIA_TYPES } from "utils/assets";
 
 const TVShows = () => {
   useAiringTodayShows();

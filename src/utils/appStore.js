@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./slices/userSlice";
-import movieReducer from "./slices/movieSlice";
-import tvShowReducer from "./slices/tvshowSlice";
-import trailerReducer from "./slices/trailerSlice";
-import searchReducer from "./slices/searchSlice";
-import configReducer from "./slices/configSlice";
+import userReducer from "utils/slices/userSlice";
+import movieReducer from "utils/slices/movieSlice";
+import tvShowReducer from "utils/slices/tvshowSlice";
+import trailerReducer from "utils/slices/trailerSlice";
+import searchReducer from "utils/slices/searchSlice";
+import configReducer from "utils/slices/configSlice";
 
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";

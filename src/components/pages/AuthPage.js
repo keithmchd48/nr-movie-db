@@ -1,7 +1,7 @@
-import Header from "../Header";
-import { BG_IMG_URL } from "../../utils/assets";
+import Header from "components/Header";
+import { BG_IMG_URL } from "utils/assets";
 
-import GenericForm from "../GenericForm";
+import GenericForm from "components/GenericForm";
 
 const Auth = () => {
   return (

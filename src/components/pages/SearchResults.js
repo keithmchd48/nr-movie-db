@@ -2,12 +2,12 @@ import {
   API_REQUEST_OPTIONS,
   TMDB_API_DOMAIN,
   MEDIA_TYPES,
-} from "../../utils/assets";
-import useTranslations from "../../hooks/useTranslations";
+} from "utils/assets";
+import useTranslations from "hooks/useTranslations";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
-import SampleList from "../SampleList";
+import SampleList from "components/SampleList";
 
 const SearchResults = () => {
   const searchQuery = useSelector((state) => state.search.searchQuery);
