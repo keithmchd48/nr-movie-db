@@ -1,8 +1,8 @@
 import useAiringTodayShows from "hooks/tvshows/useAiringTodayShows";
 import useOnTheAirShows from "hooks/tvshows/useOnAirShows";
 import useTopRatedShows from "hooks/tvshows/useTopRatedShows";
-import HeroContainer from "components/HeroContainer";
-import SecondaryContainer from "components/SecondaryContainer";
+import HeroContainer from "components/containers/HeroContainer";
+import SecondaryContainer from "components/containers/SecondaryContainer";
 import { useSelector } from "react-redux";
 import useTvshowTrailer from "hooks/tvshows/useTvshowTrailer";
 import MainLayout from "components/layouts/MainLayout";

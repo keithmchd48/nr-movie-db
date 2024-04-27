@@ -2,7 +2,7 @@ import { FaPlay } from "react-icons/fa";
 import { LuInfo } from "react-icons/lu";
 import useTranslations from "hooks/useTranslations";
 import { YOUTUBE_DOMAIN } from "utils/assets";
-import PrimaryButton from "components/PrimaryButton";
+import PrimaryButton from "components/units/PrimaryButton";
 
 const VideoTitle = ({ title, overview, videoKey, tmdbLink }) => {
   const TRANSLATIONS = useTranslations();

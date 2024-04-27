@@ -1,5 +1,5 @@
 import { AVATAR } from "utils/assets";
-import ProfileOptions from "components/ProfileOptions";
+import ProfileOptions from "components/profile/ProfileOptions";
 import { useSelector } from "react-redux";
 import { useRef, useState } from "react";
 import useClickOutside from "hooks/useClickOutside";

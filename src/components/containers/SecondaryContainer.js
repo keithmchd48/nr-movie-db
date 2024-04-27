@@ -1,4 +1,4 @@
-import SampleList from "components/SampleList";
+import SampleList from "components/sample/SampleList";
 
 const SecondaryContainer = ({ content }) => {
   return (

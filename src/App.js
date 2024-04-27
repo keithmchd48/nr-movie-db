@@ -1,5 +1,5 @@
-import Body from "components/Body";
-import LoadingPage from "components/LoadingPage";
+import Body from "components/routing/Body";
+import LoadingPage from "components/units/LoadingPage";
 import appStore from "utils/appStore";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";

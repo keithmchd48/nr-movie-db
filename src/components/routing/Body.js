@@ -1,7 +1,7 @@
-import AuthPage from "components/pages/AuthPage";
-import Browse from "components/pages/Browse";
-import TVShows from "components/pages/TVShows";
-import Movies from "components/pages/Movies";
+import AuthPage from "pages/AuthPage";
+import Browse from "pages/Browse";
+import TVShows from "pages/TVShows";
+import Movies from "pages/Movies";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PATHS } from "utils/assets";
 

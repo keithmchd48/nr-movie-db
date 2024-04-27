@@ -7,7 +7,7 @@ import useTranslations from "hooks/useTranslations";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
-import SampleList from "components/SampleList";
+import SampleList from "components/sample/SampleList";
 
 const SearchResults = () => {
   const searchQuery = useSelector((state) => state.search.searchQuery);

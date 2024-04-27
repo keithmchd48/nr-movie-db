@@ -1,5 +1,5 @@
 import { GoSearch } from "react-icons/go";
-import SearchInput from "components/SearchInput";
+import SearchInput from "components/search/SearchInput";
 import useClickOutside from "hooks/useClickOutside";
 import { useRef, useState } from "react";
 import { UPDATE_SEARCH_QUERY } from "utils/slices/searchSlice";

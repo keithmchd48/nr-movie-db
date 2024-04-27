@@ -1,8 +1,8 @@
 import useNowPlayingMovies from "hooks/movies/useNowPlayingMovies";
 import useTopRatedMovies from "hooks/movies/useTopRatedMovies";
 import useAiringTodayShows from "hooks/tvshows/useAiringTodayShows";
-import HeroContainer from "components/HeroContainer";
-import SecondaryContainer from "components/SecondaryContainer";
+import HeroContainer from "components/containers/HeroContainer";
+import SecondaryContainer from "components/containers/SecondaryContainer";
 import { useSelector } from "react-redux";
 import useMovieTrailer from "hooks/movies/useMovieTrailer";
 import MainLayout from "components/layouts/MainLayout";
