@@ -32,7 +32,7 @@ const ProfileOptions = ({ isOpen }: {isOpen: boolean}) => {
           onClick={handleLogout}
           className="block w-full hover:underline align-middle text-center"
         >
-          {TRANSLATIONS.headerMenu.profileDropdown.signOut}
+          {TRANSLATIONS.profileDropdown.signOut}
         </button>
       </div>
     </div>

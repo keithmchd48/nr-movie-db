@@ -46,9 +46,9 @@ export type LanguageType = {
     shows: string;
     movies: string;
     searchPlaceholder: string;
-    profileDropdown: {
-      signOut: string;
-    };
+  };
+  profileDropdown: {
+    signOut: string;
   };
   play: string;
   moreInfo: string;

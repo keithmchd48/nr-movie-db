@@ -46,7 +46,7 @@ const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<any> }) => {
         onClick={handleLogout}
         className="w-full py-2 text-white text-sm text-start hover:underline border-b-[0.5px]"
       >
-        {TRANSLATIONS.headerMenu.profileDropdown.signOut}
+        {TRANSLATIONS.profileDropdown.signOut}
       </button>
       <ul className="flex flex-col gap-2 font-light text-gray-300">
         {menuItems}

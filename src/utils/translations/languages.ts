@@ -29,9 +29,9 @@ export const LANG: LanguageInterface = {
       shows: 'TV Shows',
       movies: 'Movies',
       searchPlaceholder: 'Titles, people, genres',
-      profileDropdown: {
-        signOut: 'Sign out',
-      }
+    },
+    profileDropdown: {
+      signOut: 'Sign out',
     },
     play: 'Play',
     moreInfo: 'More Info',
@@ -99,9 +99,9 @@ export const LANG: LanguageInterface = {
       shows: 'TV Shows',
       movies: 'Film',
       searchPlaceholder: 'Titler, personer, genrer',
-      profileDropdown: {
-        signOut: 'Log ud',
-      }
+    },
+    profileDropdown: {
+      signOut: 'Log ud',
     },
     play: 'Afspil',
     moreInfo: 'Mere info',
@@ -169,9 +169,9 @@ export const LANG: LanguageInterface = {
       shows: 'Series',
       movies: 'Películas',
       searchPlaceholder: 'Títulos, personas, géneros',
-      profileDropdown: {
-        signOut: 'Cerrar sesión',
-      }
+    },
+    profileDropdown: {
+      signOut: 'Cerrar sesión',
     },
     play: 'Reproducir',
     moreInfo: 'Más información',
