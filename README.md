@@ -48,7 +48,13 @@ npm i -D @testing-library/react
 npm i -D jsdom
 
 # setup vitest.config.ts file to set the environemnt
-test: { environment: "jsdom" }
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    environment: "jsdom"
+  }
+});
 
 # jest-dom - gives us methods to make assertions and other matchers
 npm i -D @testing-library/jest-dom
