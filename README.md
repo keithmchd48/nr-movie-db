@@ -34,5 +34,39 @@ npm start
 
 # Build the application for production
 npm run build
-
 ```
+
+## Testing
+```bash
+# Testing framework
+npm i -D vitest
+
+# React testing library - to render our react components and to interact with them
+npm i -D @testing-library/react
+
+# JSDom - to run tests in a browser env instead of a node env
+npm i -D jsdom
+
+# setup vitest.config.ts file to set the environemnt
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    environment: "jsdom"
+  }
+});
+
+# jest-dom - gives us methods to make assertions and other matchers
+npm i -D @testing-library/jest-dom
+
+# for paths in vitest.config.ts
+npm i -D @types/node
+
+# for vitest --ui command
+npm i -D @vitest/ui
+
+# for firing user events - simulates the browser's dispatchEvent
+npm i -D @testing-library/user-event
+```
+
+Find all matchers [here](https://github.com/testing-library/jest-dom)
