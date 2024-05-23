@@ -58,4 +58,15 @@ export default defineConfig({
 
 # jest-dom - gives us methods to make assertions and other matchers
 npm i -D @testing-library/jest-dom
+
+# for paths in vitest.config.ts
+npm i -D @types/node
+
+# for vitest --ui command
+npm i -D @vitest/ui
+
+# for firing user events - simulates the browser's dispatchEvent
+npm i -D @testing-library/user-event
 ```
+
+Find all matchers [here](https://github.com/testing-library/jest-dom)
