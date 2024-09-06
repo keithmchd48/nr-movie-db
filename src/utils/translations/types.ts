@@ -90,7 +90,7 @@ export type LanguageType = {
   loadingText: string;
 };
 
-export interface LanguageInterface {
+export type TLanguages = {
   en: LanguageType;
   dk: LanguageType;
   es: LanguageType;

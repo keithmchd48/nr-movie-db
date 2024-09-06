@@ -1,7 +1,7 @@
-import { type LanguageInterface, type SupportedLanguageType } from "utils/translations/types";
+import { type TLanguages, type SupportedLanguageType } from "utils/translations/types";
 import {MONTHS} from 'utils/translations/months';
 
-export const LANG: LanguageInterface = {
+export const LANG: TLanguages = {
   en: {
     identifier: 'en',
     label: 'EN',
