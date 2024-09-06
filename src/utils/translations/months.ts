@@ -1,6 +1,6 @@
-import {type MonthInterface} from 'utils/translations/types'
+import {type TMonths} from 'utils/translations/types'
 
-export const MONTHS: MonthInterface = {
+export const MONTHS: TMonths = {
   en: {
     jan: 'Jan',
     feb: 'Feb',
