@@ -15,7 +15,7 @@ import { type TLanguage } from "utils/translations/types";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
 
-enum FormType {
+enum EnumForm {
   LOGIN = "login",
   SIGNUP = "signup",
 };
@@ -23,7 +23,7 @@ enum FormType {
 const GenericForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [formType, setFormType] = useState<string>(FormType.LOGIN);
+  const [formType, setFormType] = useState<string>(EnumForm.LOGIN);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const TRANSLATIONS: TLanguage = useTranslations();
@@ -31,9 +31,9 @@ const GenericForm = () => {
   const TRANSLATIONS_VALIDATIONS: TLanguage["validations"] = TRANSLATIONS.validations;
 
   const formTitle: string =
-    formType === FormType.LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;
-  const toggleForm = () => {
-    setFormType(formType === FormType.LOGIN ? FormType.SIGNUP : FormType.LOGIN);
+    formType === EnumForm.LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;
+  const toggleForm: () => void = () => {
+    setFormType(formType === EnumForm.LOGIN ? EnumForm.SIGNUP : EnumForm.LOGIN);
     setErrorMessage(null);
   };
 
@@ -44,7 +44,7 @@ const GenericForm = () => {
 
   const handleOnClick: React.MouseEventHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (formType === FormType.LOGIN) {
+    if (formType === EnumForm.LOGIN) {
       let message: string | null = validateLoginForm(email.current.value);
       setErrorMessage(null);
       if (message) {
@@ -124,7 +124,7 @@ const GenericForm = () => {
     <div className="max-w-md my-0 mx-auto py-12 sm:px-16 bg-opacity-80 bg-brand-black rounded">
       <h1 className="text-white text-4xl mb-7 font-bold">{formTitle}</h1>
       <div onSubmit={(e) => e.preventDefault()}>
-        {formType === FormType.SIGNUP && (
+        {formType === EnumForm.SIGNUP && (
           <input
             ref={name}
             type="text"
@@ -144,7 +144,7 @@ const GenericForm = () => {
           placeholder={TRANSLATIONS_AUTH.passwordPlaceholder}
           className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
         />
-        {formType === FormType.SIGNUP && (
+        {formType === EnumForm.SIGNUP && (
           <input
             ref={confirmPassword}
             type="password"
@@ -165,7 +165,7 @@ const GenericForm = () => {
       </div>
 
       {/* form footer */}
-      {formType === FormType.LOGIN ? (
+      {formType === EnumForm.LOGIN ? (
         <p className="text-gray-300 mt-40 font-normal">
           {TRANSLATIONS_AUTH.newToApp}{" "}
           <button

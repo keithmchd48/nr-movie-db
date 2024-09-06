@@ -5,10 +5,10 @@ import { useSelector } from "react-redux";
 import useTranslations from "hooks/useTranslations";
 import { RootState } from "store/appStore";
 import { type TLanguage } from "utils/translations/types";
-import { UserInterface } from "store/slices/userSlice";
+import { TUser } from "store/slices/userSlice";
 
 const ProfileOptions = ({ isOpen }: {isOpen: boolean}) => {
-  const user: UserInterface | null = useSelector((store: RootState) => store.user);
+  const user: TUser | null = useSelector((store: RootState) => store.user);
   const TRANSLATIONS: TLanguage = useTranslations();
 
   const handleLogout = () => {

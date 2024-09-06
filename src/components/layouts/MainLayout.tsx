@@ -6,7 +6,7 @@ import { RootState } from "store/appStore";
 import React from 'react'
 
 const MainLayout = ({ children }: {children: React.ReactNode}) => {
-  const searchQuery = useSelector((store: RootState) => store.search.searchQuery);
+  const searchQuery: string = useSelector((store: RootState) => store.search.searchQuery);
 
   return (
     <>
