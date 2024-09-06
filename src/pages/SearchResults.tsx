@@ -1,7 +1,7 @@
 import {
   API_REQUEST_OPTIONS,
   TMDB_API_DOMAIN,
-  MediaType,
+  EnumMedia,
 } from "utils/assets";
 import useTranslations from "hooks/useTranslations";
 import { useEffect, useMemo, useState } from "react";
@@ -9,14 +9,14 @@ import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
 import SampleList from "components/sample/SampleList";
 import { RootState } from "store/appStore";
-import { CommonMediaInterface, ContentIteratorInterface } from "hooks/types";
-import { type LanguageType } from "utils/translations/types";
+import { TCommonMedia, TContentIterator } from "hooks/types";
+import { type TLanguage } from "utils/translations/types";
 
 const SearchResults = () => {
   const searchQuery = useSelector((state: RootState) => state.search.searchQuery);
-  const TRANSLATIONS: LanguageType = useTranslations();
-  const [movies, setMovies] = useState<CommonMediaInterface[]>([]);
-  const [tvShows, setTvShows] = useState<CommonMediaInterface[]>([]);
+  const TRANSLATIONS: TLanguage = useTranslations();
+  const [movies, setMovies] = useState<TCommonMedia[]>([]);
+  const [tvShows, setTvShows] = useState<TCommonMedia[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 
   const searchApi = async (query: string) => {
@@ -28,11 +28,11 @@ const SearchResults = () => {
 
     setIsSearching(false);
 
-    let moviesFromSearch: CommonMediaInterface[] = results?.results.filter(
-      (result: CommonMediaInterface) => result.media_type === MediaType.MOVIE
+    let moviesFromSearch: TCommonMedia[] = results?.results.filter(
+      (result: TCommonMedia) => result.media_type === EnumMedia.MOVIE
     );
     setMovies(moviesFromSearch);
-    let tvShows: CommonMediaInterface[] = results?.results.filter((result: CommonMediaInterface) => result.media_type === MediaType.TV);
+    let tvShows: TCommonMedia[] = results?.results.filter((result: TCommonMedia) => result.media_type === EnumMedia.TV);
     setTvShows(tvShows);
   };
 
@@ -42,18 +42,18 @@ const SearchResults = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const content: ContentIteratorInterface[] = [
+  const content: TContentIterator[] = [
     {
       id: "search-movies",
       title: TRANSLATIONS.searchResults.movies,
       samples: movies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
     {
       id: "search-tvshows",
       title: TRANSLATIONS.searchResults.tvShows,
       samples: tvShows,
-      sampleType: MediaType.TV,
+      sampleType: EnumMedia.TV,
     },
   ];
 

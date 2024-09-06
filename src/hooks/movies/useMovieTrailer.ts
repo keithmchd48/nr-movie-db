@@ -3,7 +3,7 @@ import { API_REQUEST_OPTIONS, TMDB_API_DOMAIN } from "utils/assets";
 import { useEffect } from "react";
 import { ADD_TRAILER } from "store/slices/trailerSlice";
 import { useDispatch } from "react-redux";
-import { TrailerInterface } from "hooks/types";
+import { TTrailer } from "hooks/types";
 
 const useMovieTrailer = (movieId: number): void => {
   const dispatch = useDispatch();
@@ -14,8 +14,8 @@ const useMovieTrailer = (movieId: number): void => {
       API_REQUEST_OPTIONS
     );
     const videos = await response.json();
-    const videoTrailer: TrailerInterface =
-      videos.results.find((video: TrailerInterface) => video.type === "Trailer") ||
+    const videoTrailer: TTrailer =
+      videos.results.find((video: TTrailer) => video.type === "Trailer") ||
       videos.results[0];
 
     dispatch(ADD_TRAILER(videoTrailer));

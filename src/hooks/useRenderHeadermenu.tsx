@@ -1,21 +1,21 @@
 import { HEADER_MENU } from "utils/assets";
 import { NavLink } from "react-router-dom";
 import useTranslations from "hooks/useTranslations";
-import { type LanguageType } from "utils/translations/types";
-import { MenuRouteInterface } from "utils/assets";
+import { type TLanguage } from "utils/translations/types";
+import { TMenuRoute, THeaderMenu } from "utils/assets";
 
 const useRenderHeadermenu = () => {
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
-  const activeClassNames = ({ isActive }: {isActive: boolean}) => {
+  const activeClassNames = ({ isActive }: {isActive: boolean}): string => {
     return isActive ? "text-white font-normal" : "";
   };
 
-  const headerMenuTranslation: LanguageType["headerMenu"] = TRANSLATIONS.headerMenu;
+  const headerMenuTranslation: TLanguage["headerMenu"] = TRANSLATIONS.headerMenu;
 
-  const headerMenuArray = HEADER_MENU.map((route: MenuRouteInterface) => ({
+  const headerMenuArray: THeaderMenu[] = HEADER_MENU.map((route: TMenuRoute) => ({
     ...route,
-    routeName: headerMenuTranslation[route.title as keyof LanguageType["headerMenu"]]
+    routeName: headerMenuTranslation[route.title as keyof TLanguage["headerMenu"]]
   }));
 
   return headerMenuArray.map((route, index: number) => {

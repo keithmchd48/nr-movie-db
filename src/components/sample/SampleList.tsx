@@ -1,9 +1,9 @@
 import SampleCard from "components/sample/SampleCard";
-import { CommonMediaInterface, ContentIteratorInterface } from "hooks/types";
+import { TPartialCommonMedia, TContentIterator } from "hooks/types";
 
-const SampleList = ({ sectionData }: {sectionData: ContentIteratorInterface}) => {
+const SampleList = ({ sectionData }: {sectionData: TContentIterator}) => {
   const title: string = sectionData.title;
-  const samples: CommonMediaInterface[] = sectionData.samples;
+  const samples: TPartialCommonMedia[] = sectionData.samples;
   const sampleType: string = sectionData.sampleType;
 
   return (
@@ -12,7 +12,7 @@ const SampleList = ({ sectionData }: {sectionData: ContentIteratorInterface}) =>
       <div className="flex overflow-x-scroll no-scrollbar">
         <div className="flex gap-3 w-100">
           {samples &&
-            samples.map((sample: CommonMediaInterface) => {
+            samples.map((sample: TPartialCommonMedia) => {
               return (
                 <SampleCard
                   sampleType={sampleType}

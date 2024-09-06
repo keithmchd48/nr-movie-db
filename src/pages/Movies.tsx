@@ -7,42 +7,42 @@ import { useSelector } from "react-redux";
 import useMovieTrailer from "hooks/movies/useMovieTrailer";
 import MainLayout from "components/layouts/MainLayout";
 import useTranslations from "hooks/useTranslations";
-import { TMDB_DOMAIN_MOVIE, MediaType } from "utils/assets";
-import { type LanguageType } from "utils/translations/types";
+import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
+import { type TLanguage } from "utils/translations/types";
 import { RootState } from "store/appStore";
-import { MovieInterface, CommonMediaInterface, ContentIteratorInterface } from "hooks/types";
+import { TMovie, TPartialCommonMedia, TContentIterator } from "hooks/types";
 
 const Movies = () => {
   useTopRatedMovies();
   useNowPlayingMovies();
   useUpcomingMovies();
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
 
-  const movies: MovieInterface = useSelector((store: RootState) => store.movies);
+  const movies: TMovie = useSelector((store: RootState) => store.movies);
 
-  let content: ContentIteratorInterface[] = [
+  let content: TContentIterator[] = [
     {
       id: "movies-now-playing",
       title: TRANSLATIONS.movies.nowPlaying,
       samples: movies?.nowPlayingMovies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
     {
       id: "movies-upcoming",
       title: TRANSLATIONS.movies.upcoming,
       samples: movies?.upcomingMovies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
     {
       id: "movies-top-rated",
       title: TRANSLATIONS.movies.topRated,
       samples: movies?.topRatedMovies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
   ];
 
-  const movie: CommonMediaInterface | null = movies?.nowPlayingMovies?.[0] || null;
+  const movie: TPartialCommonMedia | null = movies?.nowPlayingMovies?.[0] || null;
   if (!movie) return;
 
   const tmdbLink: string = `${TMDB_DOMAIN_MOVIE}${movie.id}`;

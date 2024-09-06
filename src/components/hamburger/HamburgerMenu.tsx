@@ -4,20 +4,21 @@ import { AVATAR } from "utils/assets";
 import auth from "utils/firebase";
 import { signOut } from "firebase/auth";
 import useTranslations from "hooks/useTranslations";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 import { RootState } from "store/appStore";
+import { TUser } from "store/slices/userSlice";
 
 const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<any> }) => {
   const menuItems = useRenderHeadermenu();
-  const hamburgerMenuOpen = useSelector(
+  const hamburgerMenuOpen: boolean = useSelector(
     (store: RootState) => store.config.hamburgerMenuOpen
   );
-  const user = useSelector((store: RootState) => store.user);
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const user: TUser | null = useSelector((store: RootState) => store.user);
+  const TRANSLATIONS: TLanguage = useTranslations();
 
   const isHamburgerMenuOpen = user && hamburgerMenuOpen;
 
-  const handleLogout = () => {
+  const handleLogout: () => void = () => {
     signOut(auth).catch((error) => {
       console.log(error.message);
     });

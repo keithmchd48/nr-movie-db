@@ -1,4 +1,4 @@
-export type MonthType = {
+export type TMonth = {
   jan: string;
   feb: string;
   mar: string;
@@ -13,13 +13,13 @@ export type MonthType = {
   dec: string;
 };
 
-export interface MonthInterface {
-  en: MonthType;
-  dk: MonthType;
-  es: MonthType;
+export type TMonths = {
+  en: TMonth;
+  dk: TMonth;
+  es: TMonth;
 };
 
-export type LanguageType = {
+export type TLanguage = {
   identifier: string;
   label: string;
   validations: {
@@ -70,7 +70,7 @@ export type LanguageType = {
   footer: {
     madeBy: string;
   };
-  months: MonthType;
+  months: TMonth;
   searchResults: {
     movies: string;
     tvShows: string;
@@ -90,13 +90,13 @@ export type LanguageType = {
   loadingText: string;
 };
 
-export interface LanguageInterface {
-  en: LanguageType;
-  dk: LanguageType;
-  es: LanguageType;
+export type TLanguages = {
+  en: TLanguage;
+  dk: TLanguage;
+  es: TLanguage;
 };
 
-export type SupportedLanguageType = {
+export type TSupportedLanguage = {
   identifier: string;
   label: string;
 };

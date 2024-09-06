@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import auth from "utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { LOGOUT_USER, ADD_USER } from "store/slices/userSlice";
+import { LOGOUT_USER, ADD_USER, TUser } from "store/slices/userSlice";
 import { UPDATE_SEARCH_QUERY } from "store/slices/searchSlice";
 import { TOGGLE_HAMBURGER_MENU } from "store/slices/configSlice";
 import ProfileDropdown from "components/profile/ProfileDropdown";
@@ -24,8 +24,8 @@ import { RootState } from "store/appStore";
 
 const Header = () => {
   useDocumentTitle();
-  const user = useSelector((store: RootState) => store.user);
-  const hamburgerMenuOpen = useSelector(
+  const user: TUser | null = useSelector((store: RootState) => store.user);
+  const hamburgerMenuOpen: boolean = useSelector(
     (store: RootState) => store.config.hamburgerMenuOpen
   );
 
@@ -42,15 +42,15 @@ const Header = () => {
     }
   });
 
-  const addGradient = () => {
+  const addGradient: () => void = () => {
     setScroll(window.scrollY > 20);
   };
 
-  const openMenu = () => {
+  const openMenu: () => void = () => {
     dispatch(TOGGLE_HAMBURGER_MENU(true));
   };
 
-  const closeMenu = () => {
+  const closeMenu: () => void = () => {
     dispatch(TOGGLE_HAMBURGER_MENU(false));
   };
 

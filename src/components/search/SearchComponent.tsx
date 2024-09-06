@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { UPDATE_SEARCH_QUERY } from "store/slices/searchSlice";
 import { useDispatch } from "react-redux";
 import useTranslations from "hooks/useTranslations";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 
 const SearchComponent = () => {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const SearchComponent = () => {
   const searchInputRef = useRef(null);
   const searchIcon = useRef(null);
 
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
   useClickOutside(searchInputRef, searchIcon, () => {
     if (isSearchInputVisible && !query) {

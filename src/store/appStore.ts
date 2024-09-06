@@ -10,7 +10,12 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import { combineReducers } from "@reduxjs/toolkit";
 
-const persistConfig = {
+const persistConfig: {
+  key: string;
+  version: number;
+  storage: any;
+  blacklist: string[];
+} = {
   key: "root",
   version: 1,
   storage,

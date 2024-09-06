@@ -7,43 +7,43 @@ import { useSelector } from "react-redux";
 import useMovieTrailer from "hooks/movies/useMovieTrailer";
 import MainLayout from "components/layouts/MainLayout";
 import useTranslations from "hooks/useTranslations";
-import { TMDB_DOMAIN_MOVIE, MediaType } from "utils/assets";
+import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
 import { RootState } from "store/appStore";
-import { type LanguageType } from "utils/translations/types";
-import { MovieInterface, TVInterface, CommonMediaInterface, ContentIteratorInterface } from "hooks/types";
+import { type TLanguage } from "utils/translations/types";
+import { TMovie, TTvShow, TPartialCommonMedia, TContentIterator } from "hooks/types";
 
 const Browse = () => {
   useNowPlayingMovies();
   useAiringTodayShows();
   useTopRatedMovies();
 
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
-  const movies: MovieInterface = useSelector((store: RootState) => store.movies);
-  const tvShows: TVInterface = useSelector((store: RootState) => store.tvShows);
+  const movies: TMovie = useSelector((store: RootState) => store.movies);
+  const tvShows: TTvShow = useSelector((store: RootState) => store.tvShows);
 
-  let content: ContentIteratorInterface[] = [
+  let content: TContentIterator[] = [
     {
       id: "browse-now-playing",
       title: TRANSLATIONS.browse.nowPlaying,
       samples: movies?.nowPlayingMovies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
     {
       id: "browse-airing-today",
       title: TRANSLATIONS.browse.tvShows,
       samples: tvShows?.airingToday,
-      sampleType: MediaType.TV,
+      sampleType: EnumMedia.TV,
     },
     {
       id: "browse-top-rated",
       title: TRANSLATIONS.browse.topRatedMovies,
       samples: movies?.topRatedMovies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
   ];
 
-  const movie: CommonMediaInterface | null = movies?.nowPlayingMovies?.[0] || null;
+  const movie: TPartialCommonMedia | null = movies?.nowPlayingMovies?.[0] || null;
   if (!movie) return;
 
   const tmdbLink: string = `${TMDB_DOMAIN_MOVIE}${movie.id}`;

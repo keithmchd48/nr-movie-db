@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { YOUTUBE_DOMAIN } from "utils/assets";
-import { TrailerInterface } from "hooks/types";
+import { TTrailer } from "hooks/types";
 
 declare global {
   interface Window {
@@ -12,7 +12,7 @@ declare global {
 const YOUTUBE_SCRIPT_ID: string = "youtube-iframe-api";
 const YOUTUBE_IFRAME_ID: string = "youtube-trailer";
 
-const YTComponent = ({ trailer, muted } : {trailer: TrailerInterface | null, muted: boolean}) => {
+const YTComponent = ({ trailer, muted } : {trailer: TTrailer | null, muted: boolean}) => {
   let playerRef: React.RefObject<HTMLElement> = useRef(null);
 
   let videoOptions: string = ``;

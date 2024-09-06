@@ -1,4 +1,4 @@
-export interface CommonMediaInterface {
+export type TCommonMedia = {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -10,18 +10,20 @@ export interface CommonMediaInterface {
   vote_average: number;
   vote_count: number;
   // Keys not present in all three interfaces
-  first_air_date?: string;
-  release_date?: string;
-  title?: string;
-  video?: boolean;
-  media_type?: string;
-  name?: string;
-  origin_country?: string[];
-  original_name?: string;
-  original_title?: string;
+  first_air_date: string;
+  release_date: string;
+  title: string;
+  video: boolean;
+  media_type: string;
+  name: string;
+  origin_country: string[];
+  original_name: string;
+  original_title: string;
 };
 
-export interface TrailerInterface {
+export type TPartialCommonMedia = Partial<TCommonMedia>;
+
+export type TTrailer = {
   id: string;
   key: string;
   name: string;
@@ -32,21 +34,21 @@ export interface TrailerInterface {
   type: string;
 };
 
-export interface MovieInterface {
-  nowPlayingMovies: CommonMediaInterface[];
-  topRatedMovies: CommonMediaInterface[];
-  upcomingMovies: CommonMediaInterface[];
+export type TMovie = {
+  nowPlayingMovies: TPartialCommonMedia[];
+  topRatedMovies: TPartialCommonMedia[];
+  upcomingMovies: TPartialCommonMedia[];
 };
 
-export interface TVInterface {
-  airingToday: CommonMediaInterface[];
-  onAirShows: CommonMediaInterface[];
-  topRatedShows: CommonMediaInterface[];
+export type TTvShow = {
+  airingToday: TPartialCommonMedia[];
+  onAirShows: TPartialCommonMedia[];
+  topRatedShows: TPartialCommonMedia[];
 };
 
-export interface ContentIteratorInterface {
+export type TContentIterator = {
   id: string,
   title: string;
-  samples: CommonMediaInterface[];
+  samples: TPartialCommonMedia[];
   sampleType: string;
 };

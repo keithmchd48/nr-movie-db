@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import useRenderHeadermenu from "hooks/useRenderHeadermenu";
 import { RootState } from "store/appStore";
-import { UserInterface } from "store/slices/userSlice";
+import { TUser } from "store/slices/userSlice";
 
 const HeaderMenu = () => {
   const menuItems = useRenderHeadermenu();
-  const user: UserInterface | null = useSelector((store: RootState) => store.user);
+  const user: TUser | null = useSelector((store: RootState) => store.user);
 
   return (
     <div className="xs:hidden sm:flex">

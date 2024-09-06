@@ -3,10 +3,10 @@ import LoadingPage from "components/units/LoadingPage";
 import appStore from "store/appStore";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import { persistStore } from "redux-persist";
+import { Persistor, persistStore } from "redux-persist";
 
 function App() {
-  const persistor = persistStore(appStore);
+  const persistor: Persistor = persistStore(appStore);
   return (
     <Provider store={appStore}>
       <PersistGate loading={<LoadingPage/>} persistor={persistor}>

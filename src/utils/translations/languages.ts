@@ -1,7 +1,7 @@
-import { type LanguageInterface, type SupportedLanguageType } from "utils/translations/types";
+import { type TLanguages, type TSupportedLanguage } from "utils/translations/types";
 import {MONTHS} from 'utils/translations/months';
 
-export const LANG: LanguageInterface = {
+export const LANG: TLanguages = {
   en: {
     identifier: 'en',
     label: 'EN',
@@ -213,7 +213,7 @@ export const LANG: LanguageInterface = {
     loadingText: 'Cargando...',
   }
 };
-export const SUPPORTED_LANGUAGES: SupportedLanguageType[] = [
+export const SUPPORTED_LANGUAGES: TSupportedLanguage[] = [
   {identifier: LANG['en'].identifier, label: LANG['en'].label},
   {identifier: LANG['dk'].identifier, label: LANG['dk'].label},
   {identifier: LANG['es'].identifier, label: LANG['es'].label}

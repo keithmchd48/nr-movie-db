@@ -1,13 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export interface UserInterface {
+export type TUser = {
   uid: string;
   email: string;
   displayName: string;
   photoURL: string;
 };
 
-type SliceState = UserInterface | null;
+type SliceState = TUser | null;
 
 const userSlice = createSlice({
   name: "user",
