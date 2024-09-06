@@ -8,7 +8,7 @@ const useTopRatedShows = () => {
   const dispatch = useDispatch();
 
   const getTopRatedShows = async () => {
-    const response = await fetch(`${TMDB_API_DOMAIN}/tv/top_rated?page=1`, API_REQUEST_OPTIONS)
+    const response: Response = await fetch(`${TMDB_API_DOMAIN}/tv/top_rated?page=1`, API_REQUEST_OPTIONS)
     const data = await response.json();
     dispatch(ADD_TOP_RATED_SHOWS(data.results));
   };

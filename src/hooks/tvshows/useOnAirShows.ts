@@ -8,7 +8,7 @@ const useOnAirShows = () => {
   const dispatch = useDispatch();
 
   const getOnAirShows = async (): Promise<void> => {
-    const response = await fetch(`${TMDB_API_DOMAIN}/tv/on_the_air?page=1`, API_REQUEST_OPTIONS)
+    const response: Response = await fetch(`${TMDB_API_DOMAIN}/tv/on_the_air?page=1`, API_REQUEST_OPTIONS)
     const data = await response.json();
     dispatch(ADD_ON_AIR_SHOWS(data.results));
   };

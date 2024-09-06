@@ -7,8 +7,8 @@ import {useEffect} from 'react';
 const useAiringTodayShows = () => {
   const dispatch = useDispatch();
 
-  const getNowAiringShows = async () => {
-    const response = await fetch(`${TMDB_API_DOMAIN}/tv/airing_today?page=1`, API_REQUEST_OPTIONS)
+  const getNowAiringShows: () => void = async () => {
+    const response: Response = await fetch(`${TMDB_API_DOMAIN}/tv/airing_today?page=1`, API_REQUEST_OPTIONS)
     const data = await response.json();
     dispatch(ADD_AIRING_TODAY_SHOWS(data.results));
   };

@@ -9,7 +9,7 @@ const useTvshowTrailer = (tvshowId: number) => {
   const dispatch = useDispatch();
 
   const getTvshowVideos = async (): Promise<void> => {
-    const response = await fetch(
+    const response: Response = await fetch(
       `${TMDB_API_DOMAIN}/tv/${tvshowId}/videos?`,
       API_REQUEST_OPTIONS
     );
