@@ -3,7 +3,7 @@ import VideoMeta from "components/video/VideoMeta";
 import YTComponent from "components/video/YTComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "store/appStore";
-import { TPartialCommonMedia, TrailerInterface } from "hooks/types";
+import { TPartialCommonMedia, TTrailer } from "hooks/types";
 
 const HeroContainer = ({ sample, tmdbLink, fetchTrailer }: {
   sample: TPartialCommonMedia | null;
@@ -22,7 +22,7 @@ const HeroContainer = ({ sample, tmdbLink, fetchTrailer }: {
   const isMuted: boolean = useSelector((store: RootState) => store.trailer.isMuted);
 
   fetchTrailer(id);
-  let trailer: TrailerInterface | null = useSelector((store: RootState) => store.trailer.trailer);
+  let trailer: TTrailer | null = useSelector((store: RootState) => store.trailer.trailer);
   return (
     <div className="w-screen">
       {trailer &&

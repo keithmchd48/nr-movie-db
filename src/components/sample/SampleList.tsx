@@ -1,7 +1,7 @@
 import SampleCard from "components/sample/SampleCard";
-import { TPartialCommonMedia, ContentIteratorInterface } from "hooks/types";
+import { TPartialCommonMedia, TContentIterator } from "hooks/types";
 
-const SampleList = ({ sectionData }: {sectionData: ContentIteratorInterface}) => {
+const SampleList = ({ sectionData }: {sectionData: TContentIterator}) => {
   const title: string = sectionData.title;
   const samples: TPartialCommonMedia[] = sectionData.samples;
   const sampleType: string = sectionData.sampleType;

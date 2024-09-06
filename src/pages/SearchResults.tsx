@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
 import SampleList from "components/sample/SampleList";
 import { RootState } from "store/appStore";
-import { TCommonMedia, ContentIteratorInterface } from "hooks/types";
+import { TCommonMedia, TContentIterator } from "hooks/types";
 import { type LanguageType } from "utils/translations/types";
 
 const SearchResults = () => {
@@ -42,7 +42,7 @@ const SearchResults = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const content: ContentIteratorInterface[] = [
+  const content: TContentIterator[] = [
     {
       id: "search-movies",
       title: TRANSLATIONS.searchResults.movies,

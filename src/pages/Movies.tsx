@@ -10,7 +10,7 @@ import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
 import { type LanguageType } from "utils/translations/types";
 import { RootState } from "store/appStore";
-import { TMovie, TPartialCommonMedia, ContentIteratorInterface } from "hooks/types";
+import { TMovie, TPartialCommonMedia, TContentIterator } from "hooks/types";
 
 const Movies = () => {
   useTopRatedMovies();
@@ -21,7 +21,7 @@ const Movies = () => {
 
   const movies: TMovie = useSelector((store: RootState) => store.movies);
 
-  let content: ContentIteratorInterface[] = [
+  let content: TContentIterator[] = [
     {
       id: "movies-now-playing",
       title: TRANSLATIONS.movies.nowPlaying,

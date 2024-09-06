@@ -10,7 +10,7 @@ import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
 import { RootState } from "store/appStore";
 import { type LanguageType } from "utils/translations/types";
-import { TMovie, TVInterface, TPartialCommonMedia, ContentIteratorInterface } from "hooks/types";
+import { TMovie, TTvShow, TPartialCommonMedia, TContentIterator } from "hooks/types";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -20,9 +20,9 @@ const Browse = () => {
   const TRANSLATIONS: LanguageType = useTranslations();
 
   const movies: TMovie = useSelector((store: RootState) => store.movies);
-  const tvShows: TVInterface = useSelector((store: RootState) => store.tvShows);
+  const tvShows: TTvShow = useSelector((store: RootState) => store.tvShows);
 
-  let content: ContentIteratorInterface[] = [
+  let content: TContentIterator[] = [
     {
       id: "browse-now-playing",
       title: TRANSLATIONS.browse.nowPlaying,

@@ -10,7 +10,7 @@ import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_SHOW, EnumMedia } from "utils/assets";
 import { RootState } from "store/appStore";
 import { type LanguageType } from "utils/translations/types";
-import { TVInterface, TPartialCommonMedia, ContentIteratorInterface } from "hooks/types";
+import { TTvShow, TPartialCommonMedia, TContentIterator } from "hooks/types";
 
 const TVShows = () => {
   useAiringTodayShows();
@@ -18,9 +18,9 @@ const TVShows = () => {
   useTopRatedShows();
   const TRANSLATIONS: LanguageType = useTranslations();
 
-  const tvShows: TVInterface = useSelector((store: RootState) => store.tvShows);
+  const tvShows: TTvShow = useSelector((store: RootState) => store.tvShows);
 
-  let content: ContentIteratorInterface[] = [
+  let content: TContentIterator[] = [
     {
       id: "tvshows-airing-today",
       title: TRANSLATIONS.shows.airingToday,

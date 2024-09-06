@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TrailerInterface } from "hooks/types";
+import { TTrailer } from "hooks/types";
 
-type SliceState = TrailerInterface | null;
+type SliceState = TTrailer | null;
 
 const trailerSlice = createSlice({
   name: "trailer",
