@@ -1,7 +1,7 @@
 import {
   API_REQUEST_OPTIONS,
   TMDB_API_DOMAIN,
-  MediaType,
+  EnumMedia,
 } from "utils/assets";
 import useTranslations from "hooks/useTranslations";
 import { useEffect, useMemo, useState } from "react";
@@ -29,10 +29,10 @@ const SearchResults = () => {
     setIsSearching(false);
 
     let moviesFromSearch: CommonMediaInterface[] = results?.results.filter(
-      (result: CommonMediaInterface) => result.media_type === MediaType.MOVIE
+      (result: CommonMediaInterface) => result.media_type === EnumMedia.MOVIE
     );
     setMovies(moviesFromSearch);
-    let tvShows: CommonMediaInterface[] = results?.results.filter((result: CommonMediaInterface) => result.media_type === MediaType.TV);
+    let tvShows: CommonMediaInterface[] = results?.results.filter((result: CommonMediaInterface) => result.media_type === EnumMedia.TV);
     setTvShows(tvShows);
   };
 
@@ -47,13 +47,13 @@ const SearchResults = () => {
       id: "search-movies",
       title: TRANSLATIONS.searchResults.movies,
       samples: movies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
     {
       id: "search-tvshows",
       title: TRANSLATIONS.searchResults.tvShows,
       samples: tvShows,
-      sampleType: MediaType.TV,
+      sampleType: EnumMedia.TV,
     },
   ];
 

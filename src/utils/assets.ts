@@ -13,13 +13,13 @@ export const TMDB_DOMAIN_SHOW: string = `${TMDB_DOMAIN}tv/`;
 export const TMDB_API_DOMAIN: string = "https://api.themoviedb.org/3";
 export const YOUTUBE_DOMAIN: string = "https://www.youtube.com/";
 export const MY_BIO_LINK: string = "https://bio.to/keith-dev";
-export const enum MediaType {
+export const enum EnumMedia {
   MOVIE = "movie",
   TV=  "tv",
 };
 
 
-interface AppPathsInterface {
+type TAppRoutes = {
   AUTH: string;
   LOGIN: string;
   BROWSE: string;
@@ -27,7 +27,7 @@ interface AppPathsInterface {
   MOVIES: string;
   ERROR: string;
 };
-export const PATHS: AppPathsInterface = {
+export const PATHS: TAppRoutes = {
   AUTH: "/",
   LOGIN: "/login",
   BROWSE: "/browse",
@@ -36,12 +36,12 @@ export const PATHS: AppPathsInterface = {
   ERROR: "/error",
 };
 
-export interface MenuRouteInterface {
+export type TMenuRoute = {
   name: string;
   title: string;
   path: string;
 }
-export const HEADER_MENU: MenuRouteInterface[] = [
+export const HEADER_MENU: TMenuRoute[] = [
   {
     name: "home",
     title: "home",
@@ -59,7 +59,15 @@ export const HEADER_MENU: MenuRouteInterface[] = [
   },
 ];
 
-export const API_REQUEST_OPTIONS = {
+type TApiHeaders = {
+  method: string,
+  headers: {
+    accept: string,
+    Authorization: string,
+  },
+}
+
+export const API_REQUEST_OPTIONS: TApiHeaders = {
   method: "GET",
   headers: {
     accept: "application/json",

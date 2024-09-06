@@ -2,7 +2,7 @@ import { HEADER_MENU } from "utils/assets";
 import { NavLink } from "react-router-dom";
 import useTranslations from "hooks/useTranslations";
 import { type LanguageType } from "utils/translations/types";
-import { MenuRouteInterface } from "utils/assets";
+import { TMenuRoute } from "utils/assets";
 
 const useRenderHeadermenu = () => {
   const TRANSLATIONS: LanguageType = useTranslations();
@@ -13,7 +13,7 @@ const useRenderHeadermenu = () => {
 
   const headerMenuTranslation: LanguageType["headerMenu"] = TRANSLATIONS.headerMenu;
 
-  const headerMenuArray = HEADER_MENU.map((route: MenuRouteInterface) => ({
+  const headerMenuArray = HEADER_MENU.map((route: TMenuRoute) => ({
     ...route,
     routeName: headerMenuTranslation[route.title as keyof LanguageType["headerMenu"]]
   }));

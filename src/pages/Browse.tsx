@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import useMovieTrailer from "hooks/movies/useMovieTrailer";
 import MainLayout from "components/layouts/MainLayout";
 import useTranslations from "hooks/useTranslations";
-import { TMDB_DOMAIN_MOVIE, MediaType } from "utils/assets";
+import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
 import { RootState } from "store/appStore";
 import { type LanguageType } from "utils/translations/types";
 import { MovieInterface, TVInterface, CommonMediaInterface, ContentIteratorInterface } from "hooks/types";
@@ -27,19 +27,19 @@ const Browse = () => {
       id: "browse-now-playing",
       title: TRANSLATIONS.browse.nowPlaying,
       samples: movies?.nowPlayingMovies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
     {
       id: "browse-airing-today",
       title: TRANSLATIONS.browse.tvShows,
       samples: tvShows?.airingToday,
-      sampleType: MediaType.TV,
+      sampleType: EnumMedia.TV,
     },
     {
       id: "browse-top-rated",
       title: TRANSLATIONS.browse.topRatedMovies,
       samples: movies?.topRatedMovies,
-      sampleType: MediaType.MOVIE,
+      sampleType: EnumMedia.MOVIE,
     },
   ];
 
