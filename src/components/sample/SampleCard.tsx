@@ -4,9 +4,9 @@ import {
   BACKDROP_PLACEHOLDER,
 } from "utils/assets";
 import useReadableDate from "hooks/utilities/useReadableDate";
-import { CommonMediaInterface } from "hooks/types";
+import { TPartialCommonMedia } from "hooks/types";
 
-const SampleCard = ({ sample, sampleType }: {sample: CommonMediaInterface, sampleType: string}) => {
+const SampleCard = ({ sample, sampleType }: {sample: TPartialCommonMedia, sampleType: string}) => {
   const title: string = sample?.title || "";
   const original_name: string = sample?.original_name || "";
   const first_air_date: string = sample?.first_air_date || "";

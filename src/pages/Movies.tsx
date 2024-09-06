@@ -10,7 +10,7 @@ import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
 import { type LanguageType } from "utils/translations/types";
 import { RootState } from "store/appStore";
-import { MovieInterface, CommonMediaInterface, ContentIteratorInterface } from "hooks/types";
+import { TMovie, TPartialCommonMedia, ContentIteratorInterface } from "hooks/types";
 
 const Movies = () => {
   useTopRatedMovies();
@@ -19,7 +19,7 @@ const Movies = () => {
   const TRANSLATIONS: LanguageType = useTranslations();
 
 
-  const movies: MovieInterface = useSelector((store: RootState) => store.movies);
+  const movies: TMovie = useSelector((store: RootState) => store.movies);
 
   let content: ContentIteratorInterface[] = [
     {
@@ -42,7 +42,7 @@ const Movies = () => {
     },
   ];
 
-  const movie: CommonMediaInterface | null = movies?.nowPlayingMovies?.[0] || null;
+  const movie: TPartialCommonMedia | null = movies?.nowPlayingMovies?.[0] || null;
   if (!movie) return;
 
   const tmdbLink: string = `${TMDB_DOMAIN_MOVIE}${movie.id}`;

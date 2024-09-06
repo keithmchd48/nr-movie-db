@@ -3,10 +3,10 @@ import VideoMeta from "components/video/VideoMeta";
 import YTComponent from "components/video/YTComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "store/appStore";
-import { CommonMediaInterface, TrailerInterface } from "hooks/types";
+import { TPartialCommonMedia, TrailerInterface } from "hooks/types";
 
 const HeroContainer = ({ sample, tmdbLink, fetchTrailer }: {
-  sample: CommonMediaInterface | null;
+  sample: TPartialCommonMedia | null;
   tmdbLink: string;
   fetchTrailer: (id: number) => void;
 

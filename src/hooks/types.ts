@@ -1,4 +1,4 @@
-export interface CommonMediaInterface {
+export type TCommonMedia = {
   adult: boolean;
   backdrop_path: string;
   genre_ids: number[];
@@ -21,6 +21,8 @@ export interface CommonMediaInterface {
   original_title?: string;
 };
 
+export type TPartialCommonMedia = Partial<TCommonMedia>;
+
 export interface TrailerInterface {
   id: string;
   key: string;
@@ -32,21 +34,21 @@ export interface TrailerInterface {
   type: string;
 };
 
-export interface MovieInterface {
-  nowPlayingMovies: CommonMediaInterface[];
-  topRatedMovies: CommonMediaInterface[];
-  upcomingMovies: CommonMediaInterface[];
+export type TMovie = {
+  nowPlayingMovies: TPartialCommonMedia[];
+  topRatedMovies: TPartialCommonMedia[];
+  upcomingMovies: TPartialCommonMedia[];
 };
 
 export interface TVInterface {
-  airingToday: CommonMediaInterface[];
-  onAirShows: CommonMediaInterface[];
-  topRatedShows: CommonMediaInterface[];
+  airingToday: TPartialCommonMedia[];
+  onAirShows: TPartialCommonMedia[];
+  topRatedShows: TPartialCommonMedia[];
 };
 
 export interface ContentIteratorInterface {
   id: string,
   title: string;
-  samples: CommonMediaInterface[];
+  samples: TPartialCommonMedia[];
   sampleType: string;
 };

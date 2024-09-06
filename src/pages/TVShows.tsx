@@ -10,7 +10,7 @@ import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_SHOW, EnumMedia } from "utils/assets";
 import { RootState } from "store/appStore";
 import { type LanguageType } from "utils/translations/types";
-import { TVInterface, CommonMediaInterface, ContentIteratorInterface } from "hooks/types";
+import { TVInterface, TPartialCommonMedia, ContentIteratorInterface } from "hooks/types";
 
 const TVShows = () => {
   useAiringTodayShows();
@@ -41,7 +41,7 @@ const TVShows = () => {
     },
   ];
 
-  const show: CommonMediaInterface | null = tvShows?.topRatedShows?.[0] || null;
+  const show: TPartialCommonMedia | null = tvShows?.topRatedShows?.[0] || null;
   if (!show) return;
 
   const tmdbLink: string = `${TMDB_DOMAIN_SHOW}${show.id}`;
