@@ -8,7 +8,7 @@ import useMovieTrailer from "hooks/movies/useMovieTrailer";
 import MainLayout from "components/layouts/MainLayout";
 import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 import { RootState } from "store/appStore";
 import { TMovie, TPartialCommonMedia, TContentIterator } from "hooks/types";
 
@@ -16,7 +16,7 @@ const Movies = () => {
   useTopRatedMovies();
   useNowPlayingMovies();
   useUpcomingMovies();
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
 
   const movies: TMovie = useSelector((store: RootState) => store.movies);

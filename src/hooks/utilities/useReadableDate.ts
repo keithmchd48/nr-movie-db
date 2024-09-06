@@ -1,8 +1,8 @@
 import useTranslations from "hooks/useTranslations";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 
 function useReadableDate(inputDate: string) {
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
   const MONTH_TRANSLATIONS = TRANSLATIONS.months;
 
   function formatDate(inputDate: string) {

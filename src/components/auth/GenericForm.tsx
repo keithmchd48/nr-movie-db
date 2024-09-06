@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { ADD_USER, LOGOUT_USER } from "store/slices/userSlice";
 import { AVATAR, PATHS } from "utils/assets";
 import useTranslations from "hooks/useTranslations";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
 
@@ -26,9 +26,9 @@ const GenericForm = () => {
   const [formType, setFormType] = useState<string>(FormType.LOGIN);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const TRANSLATIONS: LanguageType = useTranslations();
-  const TRANSLATIONS_AUTH: LanguageType["auth"] = TRANSLATIONS.auth;
-  const TRANSLATIONS_VALIDATIONS: LanguageType["validations"] = TRANSLATIONS.validations;
+  const TRANSLATIONS: TLanguage = useTranslations();
+  const TRANSLATIONS_AUTH: TLanguage["auth"] = TRANSLATIONS.auth;
+  const TRANSLATIONS_VALIDATIONS: TLanguage["validations"] = TRANSLATIONS.validations;
 
   const formTitle: string =
     formType === FormType.LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;

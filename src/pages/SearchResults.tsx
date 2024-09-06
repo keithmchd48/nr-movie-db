@@ -10,11 +10,11 @@ import debounce from "lodash.debounce";
 import SampleList from "components/sample/SampleList";
 import { RootState } from "store/appStore";
 import { TCommonMedia, TContentIterator } from "hooks/types";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 
 const SearchResults = () => {
   const searchQuery = useSelector((state: RootState) => state.search.searchQuery);
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
   const [movies, setMovies] = useState<TCommonMedia[]>([]);
   const [tvShows, setTvShows] = useState<TCommonMedia[]>([]);
   const [isSearching, setIsSearching] = useState(false);

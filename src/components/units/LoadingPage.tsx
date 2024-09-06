@@ -1,8 +1,8 @@
 import useTranslations from "hooks/useTranslations";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 
 const LoadingPage = () => {
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
   return (
     <div className="flex items-center justify-center h-screen bg-brand-black text-white text-2xl">

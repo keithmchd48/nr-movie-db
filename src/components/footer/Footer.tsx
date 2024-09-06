@@ -1,9 +1,9 @@
 import useTranslations from "hooks/useTranslations";
 import { MY_BIO_LINK, APP_NAME } from "utils/assets";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 
 const Footer = () => {
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
   const currentYear: number = new Date().getFullYear();
 
   return (

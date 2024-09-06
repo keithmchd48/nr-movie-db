@@ -9,14 +9,14 @@ import MainLayout from "components/layouts/MainLayout";
 import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_SHOW, EnumMedia } from "utils/assets";
 import { RootState } from "store/appStore";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 import { TTvShow, TPartialCommonMedia, TContentIterator } from "hooks/types";
 
 const TVShows = () => {
   useAiringTodayShows();
   useOnTheAirShows();
   useTopRatedShows();
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
   const tvShows: TTvShow = useSelector((store: RootState) => store.tvShows);
 

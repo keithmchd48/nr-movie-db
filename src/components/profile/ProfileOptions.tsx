@@ -4,12 +4,12 @@ import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
 import useTranslations from "hooks/useTranslations";
 import { RootState } from "store/appStore";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 import { UserInterface } from "store/slices/userSlice";
 
 const ProfileOptions = ({ isOpen }: {isOpen: boolean}) => {
   const user: UserInterface | null = useSelector((store: RootState) => store.user);
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
   const handleLogout = () => {
     signOut(auth).catch((error) => {

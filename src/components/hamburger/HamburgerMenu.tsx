@@ -4,7 +4,7 @@ import { AVATAR } from "utils/assets";
 import auth from "utils/firebase";
 import { signOut } from "firebase/auth";
 import useTranslations from "hooks/useTranslations";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 import { RootState } from "store/appStore";
 
 const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<any> }) => {
@@ -13,7 +13,7 @@ const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<any> }) => {
     (store: RootState) => store.config.hamburgerMenuOpen
   );
   const user = useSelector((store: RootState) => store.user);
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
   const isHamburgerMenuOpen = user && hamburgerMenuOpen;
 

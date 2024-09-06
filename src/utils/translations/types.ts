@@ -19,7 +19,7 @@ export type TMonths = {
   es: TMonth;
 };
 
-export type LanguageType = {
+export type TLanguage = {
   identifier: string;
   label: string;
   validations: {
@@ -91,9 +91,9 @@ export type LanguageType = {
 };
 
 export type TLanguages = {
-  en: LanguageType;
-  dk: LanguageType;
-  es: LanguageType;
+  en: TLanguage;
+  dk: TLanguage;
+  es: TLanguage;
 };
 
 export type TSupportedLanguage = {

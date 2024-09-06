@@ -41,6 +41,9 @@ export type TMenuRoute = {
   title: string;
   path: string;
 }
+
+export type THeaderMenu = TMenuRoute & {routeName: string};
+
 export const HEADER_MENU: TMenuRoute[] = [
   {
     name: "home",

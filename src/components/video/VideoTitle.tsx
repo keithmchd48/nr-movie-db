@@ -2,11 +2,11 @@ import { FaPlay } from "react-icons/fa";
 import { LuInfo } from "react-icons/lu";
 import useTranslations from "hooks/useTranslations";
 import { YOUTUBE_DOMAIN } from "utils/assets";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 import PrimaryButton from "components/units/PrimaryButton";
 
 const VideoTitle = ({ title, overview, videoKey, tmdbLink }: {title: string, overview: string, videoKey: string, tmdbLink: string}) => {
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
   const onPlay = (): void => {
     window.open(`${YOUTUBE_DOMAIN}watch?v=${videoKey}`, "_blank");

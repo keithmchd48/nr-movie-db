@@ -9,7 +9,7 @@ import MainLayout from "components/layouts/MainLayout";
 import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
 import { RootState } from "store/appStore";
-import { type LanguageType } from "utils/translations/types";
+import { type TLanguage } from "utils/translations/types";
 import { TMovie, TTvShow, TPartialCommonMedia, TContentIterator } from "hooks/types";
 
 const Browse = () => {
@@ -17,7 +17,7 @@ const Browse = () => {
   useAiringTodayShows();
   useTopRatedMovies();
 
-  const TRANSLATIONS: LanguageType = useTranslations();
+  const TRANSLATIONS: TLanguage = useTranslations();
 
   const movies: TMovie = useSelector((store: RootState) => store.movies);
   const tvShows: TTvShow = useSelector((store: RootState) => store.tvShows);
