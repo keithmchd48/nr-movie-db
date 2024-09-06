@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "store/appStore";
 
 const useTranslations = () => {
-  const preferredLang = useSelector((store: RootState) => store.config.preferredLang);
+  const preferredLang: string = useSelector((store: RootState) => store.config.preferredLang);
   return LANG[preferredLang as keyof TLanguages];
 };
 
