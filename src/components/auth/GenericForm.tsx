@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, RefObject, MouseEventHandler, MouseEvent } from "react";
 import { validateLoginForm, validateSignupForm } from "utils/validations";
 import auth from "utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { ADD_USER, LOGOUT_USER } from "store/slices/userSlice";
 import { AVATAR, PATHS } from "utils/assets";
 import useTranslations from "hooks/useTranslations";
-import { type TLanguage } from "utils/translations/types";
+import { type TLanguage, type TErrorMessage } from "utils/translations/types";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
 
@@ -24,7 +24,7 @@ const GenericForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formType, setFormType] = useState<string>(EnumForm.LOGIN);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<TErrorMessage>("");
 
   const TRANSLATIONS: TLanguage = useTranslations();
   const TRANSLATIONS_AUTH: TLanguage["auth"] = TRANSLATIONS.auth;
@@ -34,69 +34,72 @@ const GenericForm = () => {
     formType === EnumForm.LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;
   const toggleForm: () => void = () => {
     setFormType(formType === EnumForm.LOGIN ? EnumForm.SIGNUP : EnumForm.LOGIN);
-    setErrorMessage(null);
+    setErrorMessage(() => "");
   };
 
-  const name: React.RefObject<any> = useRef(null);
-  const email: React.RefObject<any> = useRef(null);
-  const password: React.RefObject<any> = useRef(null);
-  const confirmPassword: React.RefObject<any> = useRef(null);
+  const name: RefObject<HTMLInputElement> = useRef(null);
+  const email: RefObject<HTMLInputElement> = useRef(null);
+  const password: RefObject<HTMLInputElement> = useRef(null);
+  const confirmPassword: RefObject<HTMLInputElement> = useRef(null);
 
-  const handleOnClick: React.MouseEventHandler = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleOnClick: MouseEventHandler = (e: MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (formType === EnumForm.LOGIN) {
-      let message: string | null = validateLoginForm(email.current.value);
-      setErrorMessage(null);
-      if (message) {
-        // @ts-ignore
-        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message]);
+      const emailValue = email?.current?.value;
+      const passwordValue = password?.current?.value;
+      let message: TErrorMessage = validateLoginForm(emailValue || "", passwordValue || "");
+      setErrorMessage(() => "");
+      if (message !== "") {
+        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message] as TErrorMessage);
         return;
       }
 
       signInWithEmailAndPassword(
         auth,
-        email.current.value,
-        password.current.value
+        emailValue || "",
+        passwordValue || ""
       )
         .then(() => {
-          setErrorMessage(null);
+          setErrorMessage(() => "");
           navigate(PATHS.BROWSE);
         })
         .catch((error) => {
           console.log(error.code);
           if (error.code === INVALID_CREDENTIALS) {
-            let message: string = TRANSLATIONS_VALIDATIONS["invalidCredentials"];
-            setErrorMessage(message);
+            setErrorMessage(() => TRANSLATIONS_VALIDATIONS["invalidCredentials"] as TErrorMessage);
           }
         });
     } else {
-      const message: string | null = validateSignupForm(
-        name.current.value,
-        email.current.value,
-        password.current.value,
-        confirmPassword.current.value
+      const nameValue = name?.current?.value;
+      const emailValue = email?.current?.value;
+      const passwordValue = password?.current?.value;
+      const confirmPasswordValue = confirmPassword?.current?.value;
+      const message: TErrorMessage = validateSignupForm(
+        nameValue || "",
+        emailValue || "",
+        passwordValue || "",
+        confirmPasswordValue || ""
       );
-      setErrorMessage(null);
+      setErrorMessage(() => "");
       if (message) {
-        // @ts-ignore
-        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message]);
+        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message] as TErrorMessage);
         return;
       }
 
       createUserWithEmailAndPassword(
         auth,
-        email.current.value,
-        password.current.value
+        emailValue || "",
+        passwordValue || ""
       )
         .then(() => {
-          setErrorMessage(null);
+          setErrorMessage(() => "");
 
           if (!auth.currentUser) {
             dispatch(LOGOUT_USER());
             return;
           }
           updateProfile(auth.currentUser, {
-            displayName: name.current.value,
+            displayName: nameValue || "",
             photoURL: AVATAR,
           })
             .then(() => {
