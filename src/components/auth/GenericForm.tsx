@@ -34,7 +34,7 @@ const GenericForm = () => {
     formType === EnumForm.LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;
   const toggleForm: () => void = () => {
     setFormType(formType === EnumForm.LOGIN ? EnumForm.SIGNUP : EnumForm.LOGIN);
-    setErrorMessage("");
+    setErrorMessage(() => "");
   };
 
   const name: React.RefObject<any> = useRef(null);
@@ -46,7 +46,7 @@ const GenericForm = () => {
     e.preventDefault();
     if (formType === EnumForm.LOGIN) {
       let message: TErrorMessage = validateLoginForm(email.current.value, password.current.value);
-      setErrorMessage("");
+      setErrorMessage(() => "");
       if (message !== "") {
         setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message] as TErrorMessage);
         return;
