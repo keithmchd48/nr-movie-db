@@ -19,16 +19,12 @@ export type TMonths = {
   es: TMonth;
 };
 
+export type TErrorMessage = "invalidEmail" | "invalidPassword" | "passwordMismatch" | "fullNameRequired" | "invalidCredentials" | "emptyEmail" | "emptyPassword" | "";
+
 export type TLanguage = {
   identifier: string;
   label: string;
-  validations: {
-    invalidEmail: string;
-    invalidPassword: string;
-    passwordMismatch: string;
-    fullNameRequired: string;
-    invalidCredentials: string;
-  };
+  validations: Record<Exclude<TErrorMessage, "">, string>;
   auth: {
     newToApp: string;
     alreadyMember: string;

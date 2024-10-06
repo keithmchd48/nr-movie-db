@@ -6,6 +6,8 @@ export const LANG: TLanguages = {
     identifier: 'en',
     label: 'EN',
     validations: {
+      emptyEmail: 'Email is required',
+      emptyPassword: 'Password is required',
       invalidEmail: 'Email format is invalid',
       invalidPassword: 'Password must contain at least 8 characters, one letter, one number and one special character',
       passwordMismatch: 'Passwords do not match',
@@ -76,6 +78,8 @@ export const LANG: TLanguages = {
     identifier: 'dk',
     label: 'DK',
     validations: {
+      emptyEmail: 'Email er påkrævet',
+      emptyPassword: 'Adgangskode er påkrævet',
       invalidEmail: 'Email format er ugyldig',
       invalidPassword: 'Adgangskoden skal indeholde mindst 8 tegn, et bogstav, et tal og et specialtegn',
       passwordMismatch: 'Adgangskoderne matcher ikke',
@@ -146,6 +150,8 @@ export const LANG: TLanguages = {
     identifier: 'es',
     label: 'ES',
     validations: {
+      emptyEmail: 'Se requiere correo electrónico',
+      emptyPassword: 'Se requiere contraseña',
       invalidEmail: 'El formato de correo electrónico es inválido',
       invalidPassword: 'La contraseña debe contener al menos 8 caracteres, una letra, un número y un carácter especial',
       passwordMismatch: 'Las contraseñas no coinciden',

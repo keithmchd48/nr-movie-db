@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { ADD_USER, LOGOUT_USER } from "store/slices/userSlice";
 import { AVATAR, PATHS } from "utils/assets";
 import useTranslations from "hooks/useTranslations";
-import { type TLanguage } from "utils/translations/types";
+import { type TLanguage, type TErrorMessage } from "utils/translations/types";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
 
@@ -24,7 +24,7 @@ const GenericForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formType, setFormType] = useState<string>(EnumForm.LOGIN);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<TErrorMessage>("");
 
   const TRANSLATIONS: TLanguage = useTranslations();
   const TRANSLATIONS_AUTH: TLanguage["auth"] = TRANSLATIONS.auth;
@@ -34,7 +34,7 @@ const GenericForm = () => {
     formType === EnumForm.LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;
   const toggleForm: () => void = () => {
     setFormType(formType === EnumForm.LOGIN ? EnumForm.SIGNUP : EnumForm.LOGIN);
-    setErrorMessage(null);
+    setErrorMessage("");
   };
 
   const name: React.RefObject<any> = useRef(null);
@@ -45,11 +45,10 @@ const GenericForm = () => {
   const handleOnClick: React.MouseEventHandler = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (formType === EnumForm.LOGIN) {
-      let message: string | null = validateLoginForm(email.current.value);
-      setErrorMessage(null);
-      if (message) {
-        // @ts-ignore
-        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message]);
+      let message: TErrorMessage = validateLoginForm(email.current.value, password.current.value);
+      setErrorMessage("");
+      if (message !== "") {
+        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message] as TErrorMessage);
         return;
       }
 
@@ -59,27 +58,25 @@ const GenericForm = () => {
         password.current.value
       )
         .then(() => {
-          setErrorMessage(null);
+          setErrorMessage(() => "");
           navigate(PATHS.BROWSE);
         })
         .catch((error) => {
           console.log(error.code);
           if (error.code === INVALID_CREDENTIALS) {
-            let message: string = TRANSLATIONS_VALIDATIONS["invalidCredentials"];
-            setErrorMessage(message);
+            setErrorMessage(() => TRANSLATIONS_VALIDATIONS["invalidCredentials"] as TErrorMessage);
           }
         });
     } else {
-      const message: string | null = validateSignupForm(
+      const message: TErrorMessage = validateSignupForm(
         name.current.value,
         email.current.value,
         password.current.value,
         confirmPassword.current.value
       );
-      setErrorMessage(null);
+      setErrorMessage(() => "");
       if (message) {
-        // @ts-ignore
-        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message]);
+        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message] as TErrorMessage);
         return;
       }
 
@@ -89,7 +86,7 @@ const GenericForm = () => {
         password.current.value
       )
         .then(() => {
-          setErrorMessage(null);
+          setErrorMessage(() => "");
 
           if (!auth.currentUser) {
             dispatch(LOGOUT_USER());
