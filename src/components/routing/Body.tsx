@@ -8,14 +8,14 @@ import { PATHS } from "utils/assets";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
-    { path: "*", element: <Browse />},
     { path: PATHS.LOGIN, element: <AuthPage /> },
     { path: PATHS.AUTH, element: <AuthPage /> },
     {
       element: <ProtectedRoute />,
       children: [
-        { path: PATHS.MOVIES, element: <Movies /> },
+        { path: "*", element: <Browse />},
         { path: PATHS.BROWSE, element: <Browse /> },
+        { path: PATHS.MOVIES, element: <Movies /> },
         { path: PATHS.SHOWS, element: <TVShows /> },
       ],
     },
