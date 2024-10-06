@@ -5,7 +5,7 @@ import { TTrailer } from "hooks/types";
 declare global {
   interface Window {
     YT: any;
-    onYouTubeIframeAPIReady: any;
+    onYouTubeIframeAPIReady: null | (() => void);
   }
 }
 
