@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, RefObject, MouseEventHandler, MouseEvent } from "react";
 import { validateLoginForm, validateSignupForm } from "utils/validations";
 import auth from "utils/firebase";
 import { useNavigate } from "react-router-dom";
@@ -37,15 +37,17 @@ const GenericForm = () => {
     setErrorMessage(() => "");
   };
 
-  const name: React.RefObject<any> = useRef(null);
-  const email: React.RefObject<any> = useRef(null);
-  const password: React.RefObject<any> = useRef(null);
-  const confirmPassword: React.RefObject<any> = useRef(null);
+  const name: RefObject<HTMLInputElement> = useRef(null);
+  const email: RefObject<HTMLInputElement> = useRef(null);
+  const password: RefObject<HTMLInputElement> = useRef(null);
+  const confirmPassword: RefObject<HTMLInputElement> = useRef(null);
 
-  const handleOnClick: React.MouseEventHandler = (e: React.MouseEvent<HTMLInputElement>) => {
+  const handleOnClick: MouseEventHandler = (e: MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (formType === EnumForm.LOGIN) {
-      let message: TErrorMessage = validateLoginForm(email.current.value, password.current.value);
+      const emailValue = email?.current?.value;
+      const passwordValue = password?.current?.value;
+      let message: TErrorMessage = validateLoginForm(emailValue || "", passwordValue || "");
       setErrorMessage(() => "");
       if (message !== "") {
         setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message] as TErrorMessage);
@@ -54,8 +56,8 @@ const GenericForm = () => {
 
       signInWithEmailAndPassword(
         auth,
-        email.current.value,
-        password.current.value
+        emailValue || "",
+        passwordValue || ""
       )
         .then(() => {
           setErrorMessage(() => "");
@@ -68,11 +70,15 @@ const GenericForm = () => {
           }
         });
     } else {
+      const nameValue = name?.current?.value;
+      const emailValue = email?.current?.value;
+      const passwordValue = password?.current?.value;
+      const confirmPasswordValue = confirmPassword?.current?.value;
       const message: TErrorMessage = validateSignupForm(
-        name.current.value,
-        email.current.value,
-        password.current.value,
-        confirmPassword.current.value
+        nameValue || "",
+        emailValue || "",
+        passwordValue || "",
+        confirmPasswordValue || ""
       );
       setErrorMessage(() => "");
       if (message) {
@@ -82,8 +88,8 @@ const GenericForm = () => {
 
       createUserWithEmailAndPassword(
         auth,
-        email.current.value,
-        password.current.value
+        emailValue || "",
+        passwordValue || ""
       )
         .then(() => {
           setErrorMessage(() => "");
@@ -93,7 +99,7 @@ const GenericForm = () => {
             return;
           }
           updateProfile(auth.currentUser, {
-            displayName: name.current.value,
+            displayName: nameValue || "",
             photoURL: AVATAR,
           })
             .then(() => {
