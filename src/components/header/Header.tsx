@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, RefObject } from "react";
 import { PATHS } from "utils/assets";
 import { useNavigate } from "react-router-dom";
 import auth from "utils/firebase";
@@ -33,8 +33,8 @@ const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [scroll, setScroll] = useState(false);
-  const hbMenuRef = useRef(null);
-  const hbIconRef = useRef(null);
+  const hbMenuRef: RefObject<HTMLDivElement> = useRef(null);
+  const hbIconRef: RefObject<HTMLDivElement> = useRef(null);
 
   useClickOutside(hbMenuRef, hbIconRef, () => {
     if (hbMenuRef) {

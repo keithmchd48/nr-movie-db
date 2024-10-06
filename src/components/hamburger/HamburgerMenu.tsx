@@ -8,7 +8,7 @@ import { type TLanguage } from "utils/translations/types";
 import { RootState } from "store/appStore";
 import { TUser } from "store/slices/userSlice";
 
-const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<any> }) => {
+const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<HTMLDivElement> }) => {
   const menuItems = useRenderHeadermenu();
   const hamburgerMenuOpen: boolean = useSelector(
     (store: RootState) => store.config.hamburgerMenuOpen
