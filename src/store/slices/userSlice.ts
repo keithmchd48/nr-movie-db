@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type TUser = {
   uid: string;
@@ -13,7 +13,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: null as SliceState,
   reducers: {
-    ADD_USER(_, action) {
+    ADD_USER(_, action: PayloadAction<TUser>) {
       return action.payload;
     },
     LOGOUT_USER() {

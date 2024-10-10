@@ -1,20 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TPartialCommonMedia } from "hooks/types";
 
 const tvshowSlice = createSlice({
   name: "tvshows",
   initialState: {
-    airingToday: [],
-    onAirShows: [],
-    topRatedShows: [],
+    airingToday: [{}],
+    onAirShows: [{}],
+    topRatedShows: [{}],
   },
   reducers: {
-    ADD_AIRING_TODAY_SHOWS(state, action) {
+    ADD_AIRING_TODAY_SHOWS(state, action: PayloadAction<TPartialCommonMedia[]>) {
       state.airingToday = action.payload;
     },
-    ADD_ON_AIR_SHOWS(state, action) {
+    ADD_ON_AIR_SHOWS(state, action: PayloadAction<TPartialCommonMedia[]>) {
       state.onAirShows = action.payload;
     },
-    ADD_TOP_RATED_SHOWS(state, action) {
+    ADD_TOP_RATED_SHOWS(state, action: PayloadAction<TPartialCommonMedia[]>) {
       state.topRatedShows = action.payload;
     },
   },

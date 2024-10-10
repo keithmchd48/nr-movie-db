@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TTrailer } from "hooks/types";
 
 type SliceState = TTrailer | null;
@@ -10,7 +10,7 @@ const trailerSlice = createSlice({
     isMuted: true,
   },
   reducers: {
-    ADD_TRAILER(state, action) {
+    ADD_TRAILER(state, action: PayloadAction<TTrailer>) {
       state.trailer = action.payload;
     },
     TOGGLE_MUTE(state) {

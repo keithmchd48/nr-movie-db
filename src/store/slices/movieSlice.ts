@@ -1,20 +1,21 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { TPartialCommonMedia } from "hooks/types";
 
 const movieSlice = createSlice({
   name: "movies",
   initialState: {
-    nowPlayingMovies: [],
-    topRatedMovies: [],
-    upcomingMovies: [],
+    nowPlayingMovies: [{}],
+    topRatedMovies: [{}],
+    upcomingMovies: [{}],
   },
   reducers: {
-    ADD_NOW_PLAYING_MOVIES(state, action) {
+    ADD_NOW_PLAYING_MOVIES(state, action: PayloadAction<TPartialCommonMedia[]>) {
       state.nowPlayingMovies = action.payload;
     },
-    ADD_TOP_RATED_MOVIES(state, action) {
+    ADD_TOP_RATED_MOVIES(state, action: PayloadAction<TPartialCommonMedia[]>) {
       state.topRatedMovies = action.payload;
     },
-    ADD_UPCOMING_MOVIES(state, action) {
+    ADD_UPCOMING_MOVIES(state, action: PayloadAction<TPartialCommonMedia[]>) {
       state.upcomingMovies = action.payload;
     },
   },
