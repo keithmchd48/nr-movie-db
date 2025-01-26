@@ -14,6 +14,8 @@ import useTranslations from "hooks/useTranslations";
 import { type TLanguage, type TErrorMessage } from "utils/translations/types";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
+const DUMMY_USER_EMAIL: string = "john.doe@gmail.com";
+const DUMMY_USER_PASSWORD: string = "generic12345&";
 
 enum EnumForm {
   LOGIN = "login",
@@ -138,12 +140,14 @@ const GenericForm = () => {
         <input
           ref={email}
           type="text"
+          value={DUMMY_USER_EMAIL}
           placeholder={TRANSLATIONS_AUTH.emailPlaceholder}
           className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded"
         />
         <input
           ref={password}
           type="password"
+          value={DUMMY_USER_PASSWORD}
           placeholder={TRANSLATIONS_AUTH.passwordPlaceholder}
           className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
         />
