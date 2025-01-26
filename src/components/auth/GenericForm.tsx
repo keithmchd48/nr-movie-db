@@ -14,7 +14,7 @@ import useTranslations from "hooks/useTranslations";
 import { type TLanguage, type TErrorMessage } from "utils/translations/types";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
-const DUMMY_USER_EMAIL: string = "john.doe@gmail.com";
+const DUMMY_USER_EMAIL: string = "john@doe.com";
 const DUMMY_USER_PASSWORD: string = "generic12345&";
 
 enum EnumForm {
