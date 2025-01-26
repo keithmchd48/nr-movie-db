@@ -42,7 +42,7 @@ const TVShows = () => {
   ];
 
   const show: TPartialCommonMedia | null = tvShows?.topRatedShows?.[0] || null;
-  if (!show) return;
+  if (!show || !show.id) return;
 
   const tmdbLink: string = `${TMDB_DOMAIN_SHOW}${show.id}`;
 

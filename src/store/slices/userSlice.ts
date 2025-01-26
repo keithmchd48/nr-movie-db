@@ -2,9 +2,9 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type TUser = {
   uid: string;
-  email: string;
-  displayName: string;
-  photoURL: string;
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
 };
 
 type SliceState = TUser | null;

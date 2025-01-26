@@ -43,7 +43,7 @@ const Movies = () => {
   ];
 
   const movie: TPartialCommonMedia | null = movies?.nowPlayingMovies?.[0] || null;
-  if (!movie) return;
+  if (!movie || !movie.id) return;
 
   const tmdbLink: string = `${TMDB_DOMAIN_MOVIE}${movie.id}`;
 
