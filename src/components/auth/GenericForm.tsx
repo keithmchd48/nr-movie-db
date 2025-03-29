@@ -141,6 +141,7 @@ const GenericForm = () => {
           ref={email}
           type="text"
           value={DUMMY_USER_EMAIL}
+          onChange={() => {}}
           placeholder={TRANSLATIONS_AUTH.emailPlaceholder}
           className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded"
         />
@@ -148,6 +149,7 @@ const GenericForm = () => {
           ref={password}
           type="password"
           value={DUMMY_USER_PASSWORD}
+          onChange={() => {}}
           placeholder={TRANSLATIONS_AUTH.passwordPlaceholder}
           className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
         />
