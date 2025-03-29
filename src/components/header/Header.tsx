@@ -1,38 +1,36 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, useRef, RefObject } from "react";
+import { useEffect, useRef, RefObject } from "react";
 import { PATHS } from "utils/assets";
 import { useNavigate } from "react-router-dom";
 import auth from "utils/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from "react-redux";
 import { LOGOUT_USER, ADD_USER, TUser } from "store/slices/userSlice";
 import { UPDATE_SEARCH_QUERY } from "store/slices/searchSlice";
 import { TOGGLE_HAMBURGER_MENU } from "store/slices/configSlice";
 import ProfileDropdown from "components/profile/ProfileDropdown";
 import SearchComponent from "components/search/SearchComponent";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import LangSelect from "components/translations/LangSelect";
+import ScrollContainer from "components/header/ScrollContainer";
 import HeaderMenu from "components/header/HeaderMenu";
+import HamburgerIcon from "components/hamburger/HamburgerIcon";
 import HamburgerMenu from "components/hamburger/HamburgerMenu";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { FaTimes } from "react-icons/fa";
+import XIcon from "components/hamburger/XIcon";
 import MainLogo from "components/units/MainLogo";
 import useClickOutside from "hooks/utilities/useClickOutside";
 import useDocumentTitle from "hooks/useDocumentTitle";
 import { RootState } from "store/appStore";
 
 const Header = () => {
+  console.log('Header  render');
   useDocumentTitle();
   const user: TUser | null = useSelector((store: RootState) => store.user);
-  const hamburgerMenuOpen: boolean = useSelector(
-    (store: RootState) => store.config.hamburgerMenuOpen
-  );
 
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [scroll, setScroll] = useState(false);
+  
   const hbMenuRef: RefObject<HTMLDivElement> = useRef(null);
   const hbIconRef: RefObject<HTMLDivElement> = useRef(null);
 
@@ -42,25 +40,7 @@ const Header = () => {
     }
   });
 
-  const addGradient: () => void = () => {
-    setScroll(window.scrollY > 20);
-  };
-
-  const openMenu: () => void = () => {
-    dispatch(TOGGLE_HAMBURGER_MENU(true));
-  };
-
-  const closeMenu: () => void = () => {
-    dispatch(TOGGLE_HAMBURGER_MENU(false));
-  };
-
-  const isHamburgerIconVisible: boolean = !!user && !hamburgerMenuOpen;
-
-  const isCloseIconVisible: boolean = !!user && hamburgerMenuOpen;
-
   useEffect(() => {
-    window.addEventListener("scroll", addGradient);
-
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
@@ -81,7 +61,6 @@ const Header = () => {
     // When component is unmounted, unsubscribe from the listener
     return () => {
       unsubscribe();
-      window.removeEventListener("scroll", addGradient);
     };
   }, []);
 
@@ -92,37 +71,14 @@ const Header = () => {
   return (
     <div>
       {<HamburgerMenu innerRef={hbMenuRef} />}
-      <div
-        className={`layout-padding flex fixed w-screen z-30 justify-between items-center py-3 ${
-          scroll
-            ? "bg-brand-black"
-            : "xs:bg-brand-black l:bg-transparent l:bg-gradient-to-b l:from-brand-black"
-        }`}
-      >
+      <ScrollContainer>
         <div className="flex gap-3 items-center">
-          {
-            <>
-              {/*Hamburger Icon*/}
-              <div
-                ref={hbIconRef}
-                onClick={openMenu}
-                className={`sm:hidden text-white text-xl ${
-                  isHamburgerIconVisible ? "xs:block" : "xs:hidden"
-                }`}
-              >
-                <GiHamburgerMenu />
-              </div>
-              {/*close Icon*/}
-              <div
-                onClick={closeMenu}
-                className={`sm:hidden text-white text-xl ${
-                  isCloseIconVisible ? "xs:block" : "xs:hidden"
-                }`}
-              >
-                <FaTimes />
-              </div>
-            </>
-          }
+          <>
+            {/*Hamburger Icon*/}
+            <HamburgerIcon ref={hbIconRef} />
+            {/*close Icon*/}
+            <XIcon />
+          </>
           <MainLogo />
           <HeaderMenu />
         </div>
@@ -130,8 +86,8 @@ const Header = () => {
           <LangSelect />
           {user && <SearchComponent />}
           <ProfileDropdown />
-        </div>
-      </div>
+        </div>  
+      </ScrollContainer>
     </div>
   );
 };

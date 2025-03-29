@@ -4,6 +4,7 @@ import { RootState } from "store/appStore";
 import { TUser } from "store/slices/userSlice";
 
 const HeaderMenu = () => {
+  console.log('HeaderMenu render');
   const menuItems = useRenderHeadermenu();
   const user: TUser | null = useSelector((store: RootState) => store.user);
 

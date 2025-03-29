@@ -2,6 +2,7 @@ import { PATHS, MAIN_LOGO } from "utils/assets";
 import { NavLink } from "react-router-dom";
 
 const MainLogo = () => {
+  console.log('MainLogo render');
   return (
     <NavLink to={PATHS.AUTH}>
       <img

@@ -5,14 +5,23 @@ import { useSelector } from "react-redux";
 import { RootState } from "store/appStore";
 import React from 'react'
 
-const MainLayout = ({ children }: {children: React.ReactNode}) => {
+const SearchSection = ({ children }: {children: React.ReactNode}) => {
   const searchQuery: string = useSelector((store: RootState) => store.search.searchQuery);
+  return (
+    <>
+      {searchQuery && <SearchResults />}
+      <div className={searchQuery ? "hidden" : "block"}>{children}</div>
+    </>
+  );
+};
+
+const MainLayout = ({ children }: {children: React.ReactNode}) => {
+  
 
   return (
     <>
       <Header />
-      {searchQuery && <SearchResults />}
-      <div className={searchQuery ? "hidden" : "block"}>{children}</div>
+      <SearchSection>{children}</SearchSection>
       <Footer />
     </>
   );
