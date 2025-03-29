@@ -16,8 +16,6 @@ const SearchSection = ({ children }: {children: React.ReactNode}) => {
 };
 
 const MainLayout = ({ children }: {children: React.ReactNode}) => {
-  
-
   return (
     <>
       <Header />
