@@ -5,7 +5,6 @@ import HeroContainer from "components/containers/HeroContainer";
 import SecondaryContainer from "components/containers/SecondaryContainer";
 import { useSelector } from "react-redux";
 import useMovieTrailer from "hooks/movies/useMovieTrailer";
-import MainLayout from "components/layouts/MainLayout";
 import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
 import { type TLanguage } from "utils/translations/types";
@@ -48,14 +47,14 @@ const Movies = () => {
   const tmdbLink: string = `${TMDB_DOMAIN_MOVIE}${movie.id}`;
 
   return (
-    <MainLayout>
+    <>
       <HeroContainer
         sample={movie}
         tmdbLink={tmdbLink}
         fetchTrailer={useMovieTrailer}
       />
       <SecondaryContainer content={content} />
-    </MainLayout>
+    </>
   );
 };
 
