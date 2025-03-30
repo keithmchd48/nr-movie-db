@@ -17,7 +17,7 @@ const SampleList = ({ sectionData }: {sectionData: TContentIterator}) => {
                 <SampleCard
                   sampleType={sampleType}
                   sample={sample}
-                  key={sample.id}
+                  key={sample.id + sampleType}
                 />
               );
             })}
