@@ -14,11 +14,11 @@ const ProtectedRoute = () => {
   }
   console.log('ProtectedRoute render');
   return (
-    <Suspense fallback={<LoadingPage/>}>
-      <MainLayout>
+    <MainLayout>
+      <Suspense fallback={<LoadingPage/>}>
         <Outlet />
-      </MainLayout>
-    </Suspense>
+      </Suspense>
+    </MainLayout>
   );
 }
 
