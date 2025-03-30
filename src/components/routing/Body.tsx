@@ -1,10 +1,12 @@
-import AuthPage from "pages/AuthPage";
-import Browse from "pages/Browse";
-import TVShows from "pages/TVShows";
-import Movies from "pages/Movies";
 import ProtectedRoute from "components/routing/ProtectedRoute";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PATHS } from "utils/assets";
+import { lazy } from 'react';
+
+const Browse = lazy(() => import("pages/Browse"))
+const Movies = lazy(() => import("pages/Movies"))
+const TVShows = lazy(() => import("pages/TVShows"))
+const AuthPage = lazy(() => import("pages/AuthPage"))
 
 const Body = () => {
   const appRouter = createBrowserRouter([
