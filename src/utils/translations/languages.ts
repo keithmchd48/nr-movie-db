@@ -127,7 +127,7 @@ export const LANG: TLanguages = {
     footer: {
       madeBy: 'Lavet af'
     },
-    months: MONTHS.dk,
+    months: MONTHS.da,
     searchResults: {
       movies: 'Film',
       tvShows: 'TV Shows',

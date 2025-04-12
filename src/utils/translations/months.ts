@@ -15,7 +15,7 @@ export const MONTHS: TMonths = {
     nov: 'Nov',
     dec: 'Dec'
   },
-  dk: {
+  da: {
     jan: 'Jan',
     feb: 'Feb',
     mar: 'Mar',

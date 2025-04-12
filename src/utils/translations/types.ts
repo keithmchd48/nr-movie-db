@@ -15,7 +15,7 @@ export type TMonth = {
 
 export type TMonths = {
   en: TMonth;
-  dk: TMonth;
+  da: TMonth;
   es: TMonth;
 };
 
