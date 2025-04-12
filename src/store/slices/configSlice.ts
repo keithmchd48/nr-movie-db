@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LANG } from "utils/translations/languages";
+import { EnumLanguages } from "utils/translations/types";
 
 const configSlice = createSlice({
   name: "config",
   initialState: {
-    preferredLang: LANG.en.identifier,
+    preferredLang: EnumLanguages.ENGLISH,
     hamburgerMenuOpen: false,
   },
   reducers: {

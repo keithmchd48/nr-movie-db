@@ -14,8 +14,8 @@ import { type TErrorMessage } from "utils/translations/types";
 import { useTranslation } from "react-i18next";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
-// const DUMMY_USER_EMAIL: string = "john@doe.com";
-// const DUMMY_USER_PASSWORD: string = "generic12345&";
+const DUMMY_USER_EMAIL: string = "john@doe.com";
+const DUMMY_USER_PASSWORD: string = "generic12345&";
 
 enum EnumForm {
   LOGIN = "login",
@@ -27,7 +27,7 @@ const GenericForm = () => {
   const navigate = useNavigate();
   const [formType, setFormType] = useState<string>(EnumForm.LOGIN);
   const [errorMessage, setErrorMessage] = useState<TErrorMessage>("");
-  const { t } = useTranslation();  
+  const { t } = useTranslation();
 
   const formTitle: string =
     formType === EnumForm.LOGIN ? t("signIn") : t("signUp");
@@ -137,6 +137,7 @@ const GenericForm = () => {
         <input
           ref={email}
           type="text"
+          value={DUMMY_USER_EMAIL}
           onChange={() => {}}
           placeholder={t("emailPlaceholder")}
           className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded"
@@ -144,6 +145,7 @@ const GenericForm = () => {
         <input
           ref={password}
           type="password"
+          value={DUMMY_USER_PASSWORD}
           onChange={() => {}}
           placeholder={t("passwordPlaceholder")}
           className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
@@ -171,7 +173,7 @@ const GenericForm = () => {
       {/* form footer */}
       {formType === EnumForm.LOGIN ? (
         <p className="text-gray-300 mt-40 font-normal">
-          {t("newToApp")}{" "}
+          {t("newToApp")}
           <button
             onClick={toggleForm}
             className="text-white hover:underline font-medium ml-2"
@@ -181,7 +183,7 @@ const GenericForm = () => {
         </p>
       ) : (
         <p className="text-gray-300 mt-40 font-normal">
-          {t("alreadyMember")}{" "}
+          {t("alreadyMember")}
           <button
             onClick={toggleForm}
             className="text-white hover:underline font-medium ml-2"

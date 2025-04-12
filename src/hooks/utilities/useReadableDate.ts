@@ -1,9 +1,7 @@
-import useTranslations from "hooks/useTranslations";
-import { TMonth, type TLanguage } from "utils/translations/types";
+import { useTranslation } from "react-i18next";
 
 function useReadableDate(inputDate: string) {
-  const TRANSLATIONS: TLanguage = useTranslations();
-  const MONTH_TRANSLATIONS: TMonth = TRANSLATIONS.months;
+  const { t } = useTranslation();
 
   function formatDate(inputDate: string) {
     if (!inputDate) {
@@ -18,7 +16,7 @@ function useReadableDate(inputDate: string) {
 
     const dayWithSuffix: string = getDayWithSuffix(formattedDate.getDate());
     const monthName: string = formattedDate.toLocaleString("default", { month: "short" });
-    const translatedMonthName: string = MONTH_TRANSLATIONS[monthName.toLowerCase() as keyof typeof MONTH_TRANSLATIONS];
+    const translatedMonthName: string = t(monthName.toLowerCase());
     const fullYear: number = formattedDate.getFullYear();
 
     return `${dayWithSuffix} ${translatedMonthName} ${fullYear}`;

@@ -2,14 +2,13 @@ import { VscAccount } from "react-icons/vsc";
 import auth from "utils/firebase";
 import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
-import useTranslations from "hooks/useTranslations";
 import { RootState } from "store/appStore";
-import { type TLanguage } from "utils/translations/types";
 import { TUser } from "store/slices/userSlice";
+import { useTranslation } from "react-i18next";
 
 const ProfileOptions = ({ isOpen }: {isOpen: boolean}) => {
+  const { t } = useTranslation();
   const user: TUser | null = useSelector((store: RootState) => store.user);
-  const TRANSLATIONS: TLanguage = useTranslations();
 
   const handleLogout = () => {
     signOut(auth).catch((error) => {
@@ -32,7 +31,7 @@ const ProfileOptions = ({ isOpen }: {isOpen: boolean}) => {
           onClick={handleLogout}
           className="block w-full hover:underline align-middle text-center"
         >
-          {TRANSLATIONS.profileDropdown.signOut}
+          {t("signOut")}
         </button>
       </div>
     </div>

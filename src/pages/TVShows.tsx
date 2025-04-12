@@ -5,36 +5,35 @@ import HeroContainer from "components/containers/HeroContainer";
 import SecondaryContainer from "components/containers/SecondaryContainer";
 import { useSelector } from "react-redux";
 import useTvshowTrailer from "hooks/tvshows/useTvshowTrailer";
-import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_SHOW, EnumMedia } from "utils/assets";
 import { RootState } from "store/appStore";
-import { type TLanguage } from "utils/translations/types";
 import { TTvShow, TPartialCommonMedia, TContentIterator } from "hooks/types";
+import { useTranslation } from "react-i18next";
 
 const TVShows = () => {
   useAiringTodayShows();
   useOnTheAirShows();
   useTopRatedShows();
-  const TRANSLATIONS: TLanguage = useTranslations();
+  const { t } = useTranslation();
 
   const tvShows: TTvShow = useSelector((store: RootState) => store.tvShows);
 
   let content: TContentIterator[] = [
     {
       id: "tvshows-airing-today",
-      title: TRANSLATIONS.shows.airingToday,
+      title: t("airingToday"),
       samples: tvShows?.airingToday,
       sampleType: EnumMedia.TV,
     },
     {
       id: "tvshows-on-the-air",
-      title: TRANSLATIONS.shows.onTheAir,
+      title: t("onTheAir"),
       samples: tvShows?.onAirShows,
       sampleType: EnumMedia.TV,
     },
     {
       id: "tvshows-top-rated",
-      title: TRANSLATIONS.shows.topRated,
+      title: t("topRatedShows"),
       samples: tvShows?.topRatedShows,
       sampleType: EnumMedia.TV,
     },

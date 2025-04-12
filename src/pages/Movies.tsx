@@ -5,37 +5,35 @@ import HeroContainer from "components/containers/HeroContainer";
 import SecondaryContainer from "components/containers/SecondaryContainer";
 import { useSelector } from "react-redux";
 import useMovieTrailer from "hooks/movies/useMovieTrailer";
-import useTranslations from "hooks/useTranslations";
 import { TMDB_DOMAIN_MOVIE, EnumMedia } from "utils/assets";
-import { type TLanguage } from "utils/translations/types";
 import { RootState } from "store/appStore";
 import { TMovie, TPartialCommonMedia, TContentIterator } from "hooks/types";
+import { useTranslation } from "react-i18next";
 
 const Movies = () => {
   useTopRatedMovies();
   useNowPlayingMovies();
   useUpcomingMovies();
-  const TRANSLATIONS: TLanguage = useTranslations();
-
+  const { t } = useTranslation();
 
   const movies: TMovie = useSelector((store: RootState) => store.movies);
 
   let content: TContentIterator[] = [
     {
       id: "movies-now-playing",
-      title: TRANSLATIONS.movies.nowPlaying,
+      title: t("nowPlaying"),
       samples: movies?.nowPlayingMovies,
       sampleType: EnumMedia.MOVIE,
     },
     {
       id: "movies-upcoming",
-      title: TRANSLATIONS.movies.upcoming,
+      title: t("upcoming"),
       samples: movies?.upcomingMovies,
       sampleType: EnumMedia.MOVIE,
     },
     {
       id: "movies-top-rated",
-      title: TRANSLATIONS.movies.topRated,
+      title: t("topRatedMovies"),
       samples: movies?.topRatedMovies,
       sampleType: EnumMedia.MOVIE,
     },
