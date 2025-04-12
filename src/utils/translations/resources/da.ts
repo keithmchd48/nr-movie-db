@@ -1,5 +1,3 @@
-import {MONTHS} from 'utils/translations/months';
-
 export const da = {
   translation: {
     // validations
@@ -41,8 +39,8 @@ export const da = {
     topRatedMovies: 'Bedst bedømte film', 
     // footer
     madeBy: 'Lavet af',
-    // months
-    ...MONTHS.da,
+    // Date
+    intlDateTime: `{{val, datetime}}`,
     // search results
     searching: 'Søger...',
     //errors

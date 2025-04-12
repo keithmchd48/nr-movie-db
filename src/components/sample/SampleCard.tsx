@@ -3,8 +3,8 @@ import {
   TMDB_DOMAIN,
   BACKDROP_PLACEHOLDER,
 } from "utils/assets";
-import useReadableDate from "hooks/utilities/useReadableDate";
 import { TPartialCommonMedia } from "hooks/types";
+import FormattedDate from "components/utils/FormattedDate";
 
 const SampleCard = ({ sample, sampleType }: {sample: TPartialCommonMedia, sampleType: string}) => {
   const title: string = sample?.title || "";
@@ -13,8 +13,6 @@ const SampleCard = ({ sample, sampleType }: {sample: TPartialCommonMedia, sample
   const release_date: string = sample?.release_date || "";
   const id: number = sample?.id || 0;
   const backdrop_path: string = sample?.backdrop_path || "";
-
-  const readableDate: string = useReadableDate(release_date || first_air_date);
 
   const backdropSrc: string = backdrop_path
     ? `${POSTER_PATH_URL}${backdrop_path}`
@@ -29,7 +27,7 @@ const SampleCard = ({ sample, sampleType }: {sample: TPartialCommonMedia, sample
       <img src={backdropSrc} alt="sample_poster" className="rounded-md" />
       <div className="text-white text-left absolute inset-0 flex flex-col justify-end items-start p-2 bg-black bg-opacity-35 hover:bg-opacity-10 transition-bg-opacity ease-in-out duration-200">
         <h4 className="text-xl">{title || original_name}</h4>
-        <p className="text-sm">{readableDate}</p>
+        <FormattedDate date={release_date || first_air_date} />
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ const TVShows = lazy(() => import("pages/TVShows"))
 const AuthPage = lazy(() => import("pages/AuthPage"))
 
 const Body = () => {
+  console.log('Body render');
   const appRouter = createBrowserRouter([
     { path: PATHS.LOGIN, element: <AuthPage /> },
     { path: PATHS.AUTH, element: <Navigate to={PATHS.LOGIN} replace /> },
