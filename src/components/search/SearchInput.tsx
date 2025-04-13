@@ -2,7 +2,7 @@ import { GoSearch } from "react-icons/go";
 import { RxCross2 } from "react-icons/rx";
 import React, { useEffect, useRef } from "react";
 
-interface SearchInputProps {
+type SearchInputProps = {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

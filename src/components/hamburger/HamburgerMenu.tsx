@@ -7,6 +7,26 @@ import { RootState } from "store/appStore";
 import { TUser } from "store/slices/userSlice";
 import { useTranslation } from "react-i18next";
 
+const User = () => {
+  const user: TUser | null = useSelector((store: RootState) => store.user);
+  return (
+    <>
+      {user && (
+        <div className="flex items-center">
+          <img
+            alt="avatar"
+            src={user.photoURL || AVATAR}
+            className="xs:w-6 l:w-8 cursor-pointer"
+          ></img>
+          {user.displayName && (
+            <p className="text-white text-sm ml-2">{user.displayName}</p>
+          )}
+        </div>
+      )}
+    </>
+  );
+};
+
 const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<HTMLDivElement> }) => {
   const menuItems = useRenderHeadermenu();
   const { t } = useTranslation();
@@ -30,18 +50,7 @@ const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<HTMLDivElement>
         isHamburgerMenuOpen ? "xs:flex" : "xs:hidden"
       } xs:text-base fixed pt-[56px] sm:hidden flex-col gap-1 bg-brand-black px-4 py-4 z-30`}
     >
-      {user && (
-        <div className="flex items-center">
-          <img
-            alt="avatar"
-            src={user.photoURL || AVATAR}
-            className="xs:w-6 l:w-8 cursor-pointer"
-          ></img>
-          {user.displayName && (
-            <p className="text-white text-sm ml-2">{user.displayName}</p>
-          )}
-        </div>
-      )}
+      <User />
       <button
         onClick={handleLogout}
         className="w-full py-2 text-white text-sm text-start hover:underline border-b-[0.5px]"
