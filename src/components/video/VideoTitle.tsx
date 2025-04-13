@@ -1,12 +1,11 @@
 import { FaPlay } from "react-icons/fa";
 import { LuInfo } from "react-icons/lu";
-import useTranslations from "hooks/useTranslations";
 import { YOUTUBE_DOMAIN } from "utils/assets";
-import { type TLanguage } from "utils/translations/types";
 import PrimaryButton from "components/units/PrimaryButton";
+import { useTranslation } from "react-i18next";
 
 const VideoTitle = ({ title, overview, videoKey, tmdbLink }: {title: string, overview: string, videoKey: string, tmdbLink: string}) => {
-  const TRANSLATIONS: TLanguage = useTranslations();
+  const { t } = useTranslation();
 
   const onPlay = (): void => {
     window.open(`${YOUTUBE_DOMAIN}watch?v=${videoKey}`, "_blank");
@@ -29,14 +28,14 @@ const VideoTitle = ({ title, overview, videoKey, tmdbLink }: {title: string, ove
       <div className="flex">
         <PrimaryButton onClick={onPlay} className="bg-white text-black">
           <FaPlay className="mr-2" />
-          {TRANSLATIONS.play}
+          {t("play")}
         </PrimaryButton>
         <PrimaryButton
           onClick={onMoreInfo}
           className="bg-gray-600 text-white ml-3"
         >
           <LuInfo className="mr-2 font-bold text-2xl" />
-          {TRANSLATIONS.moreInfo}
+          {t("moreInfo")}
         </PrimaryButton>
       </div>
     </div>

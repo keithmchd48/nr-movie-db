@@ -10,8 +10,8 @@ import {
 import { useDispatch } from "react-redux";
 import { ADD_USER, LOGOUT_USER } from "store/slices/userSlice";
 import { AVATAR, PATHS } from "utils/assets";
-import useTranslations from "hooks/useTranslations";
-import { type TLanguage, type TErrorMessage } from "utils/translations/types";
+import { type TErrorMessage } from "utils/translations/types";
+import { useTranslation } from "react-i18next";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
 const DUMMY_USER_EMAIL: string = "john@doe.com";
@@ -27,13 +27,10 @@ const GenericForm = () => {
   const navigate = useNavigate();
   const [formType, setFormType] = useState<string>(EnumForm.LOGIN);
   const [errorMessage, setErrorMessage] = useState<TErrorMessage>("");
-
-  const TRANSLATIONS: TLanguage = useTranslations();
-  const TRANSLATIONS_AUTH: TLanguage["auth"] = TRANSLATIONS.auth;
-  const TRANSLATIONS_VALIDATIONS: TLanguage["validations"] = TRANSLATIONS.validations;
+  const { t } = useTranslation();
 
   const formTitle: string =
-    formType === EnumForm.LOGIN ? TRANSLATIONS_AUTH.signIn : TRANSLATIONS_AUTH.signUp;
+    formType === EnumForm.LOGIN ? t("signIn") : t("signUp");
   const toggleForm: () => void = () => {
     setFormType(formType === EnumForm.LOGIN ? EnumForm.SIGNUP : EnumForm.LOGIN);
     setErrorMessage(() => "");
@@ -52,7 +49,7 @@ const GenericForm = () => {
       let message: TErrorMessage = validateLoginForm(emailValue || "", passwordValue || "");
       setErrorMessage(() => "");
       if (message !== "") {
-        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message] as TErrorMessage);
+        setErrorMessage(() => t(message) as TErrorMessage);
         return;
       }
 
@@ -68,7 +65,7 @@ const GenericForm = () => {
         .catch((error) => {
           console.log(error.code);
           if (error.code === INVALID_CREDENTIALS) {
-            setErrorMessage(() => TRANSLATIONS_VALIDATIONS["invalidCredentials"] as TErrorMessage);
+            setErrorMessage(() => t("invalidCredentials") as TErrorMessage);
           }
         });
     } else {
@@ -84,7 +81,7 @@ const GenericForm = () => {
       );
       setErrorMessage(() => "");
       if (message) {
-        setErrorMessage(() => TRANSLATIONS_VALIDATIONS[message] as TErrorMessage);
+        setErrorMessage(() => t(message) as TErrorMessage);
         return;
       }
 
@@ -133,7 +130,7 @@ const GenericForm = () => {
           <input
             ref={name}
             type="text"
-            placeholder={TRANSLATIONS_AUTH.fullNamePlaceholder}
+            placeholder={t("fullNamePlaceholder")}
             className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded"
           />
         )}
@@ -142,7 +139,7 @@ const GenericForm = () => {
           type="text"
           value={DUMMY_USER_EMAIL}
           onChange={() => {}}
-          placeholder={TRANSLATIONS_AUTH.emailPlaceholder}
+          placeholder={t("emailPlaceholder")}
           className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded"
         />
         <input
@@ -150,14 +147,14 @@ const GenericForm = () => {
           type="password"
           value={DUMMY_USER_PASSWORD}
           onChange={() => {}}
-          placeholder={TRANSLATIONS_AUTH.passwordPlaceholder}
+          placeholder={t("passwordPlaceholder")}
           className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
         />
         {formType === EnumForm.SIGNUP && (
           <input
             ref={confirmPassword}
             type="password"
-            placeholder={TRANSLATIONS_AUTH.confirmPasswordPlaceholder}
+            placeholder={t("confirmPasswordPlaceholder")}
             className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
           />
         )}
@@ -176,22 +173,22 @@ const GenericForm = () => {
       {/* form footer */}
       {formType === EnumForm.LOGIN ? (
         <p className="text-gray-300 mt-40 font-normal">
-          {TRANSLATIONS_AUTH.newToApp}{" "}
+          {t("newToApp")}
           <button
             onClick={toggleForm}
             className="text-white hover:underline font-medium ml-2"
           >
-            {TRANSLATIONS_AUTH.signUpNow}
+            {t("signUpNow")}
           </button>
         </p>
       ) : (
         <p className="text-gray-300 mt-40 font-normal">
-          {TRANSLATIONS_AUTH.alreadyMember}{" "}
+          {t("alreadyMember")}
           <button
             onClick={toggleForm}
             className="text-white hover:underline font-medium ml-2"
           >
-            {TRANSLATIONS_AUTH.signInNow}
+            {t("signInNow")}
           </button>
         </p>
       )}

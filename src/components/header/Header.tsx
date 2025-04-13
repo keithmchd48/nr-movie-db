@@ -54,7 +54,6 @@ const Header = () => {
       } else {
         dispatch(UPDATE_SEARCH_QUERY(""));
         dispatch(LOGOUT_USER());
-        navigate(PATHS.LOGIN);
       }
     });
 
@@ -70,7 +69,7 @@ const Header = () => {
 
   return (
     <div>
-      {<HamburgerMenu innerRef={hbMenuRef} />}
+      <HamburgerMenu innerRef={hbMenuRef} />
       <ScrollContainer>
         <div className="flex gap-3 items-center">
           <>

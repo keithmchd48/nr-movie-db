@@ -4,8 +4,7 @@ import useClickOutside from "hooks/utilities/useClickOutside";
 import { useRef, useState } from "react";
 import { UPDATE_SEARCH_QUERY } from "store/slices/searchSlice";
 import { useDispatch } from "react-redux";
-import useTranslations from "hooks/useTranslations";
-import { type TLanguage } from "utils/translations/types";
+import { useTranslation } from "react-i18next";
 
 const SearchComponent = () => {
   const dispatch = useDispatch();
@@ -13,8 +12,7 @@ const SearchComponent = () => {
   const [query, setQuery] = useState("");
   const searchInputRef = useRef(null);
   const searchIcon = useRef(null);
-
-  const TRANSLATIONS: TLanguage = useTranslations();
+  const { t } = useTranslation();
 
   useClickOutside(searchInputRef, searchIcon, () => {
     if (isSearchInputVisible && !query) {
@@ -48,7 +46,7 @@ const SearchComponent = () => {
       </div>
       <div ref={searchInputRef}>
         <SearchInput
-          placeholder={TRANSLATIONS.headerMenu.searchPlaceholder}
+          placeholder={t("searchPlaceholder")}
           value={query}
           onChange={updateQuery}
           onClear={clearQuery}

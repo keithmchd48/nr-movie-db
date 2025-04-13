@@ -3,18 +3,17 @@ import { useSelector } from "react-redux";
 import { AVATAR } from "utils/assets";
 import auth from "utils/firebase";
 import { signOut } from "firebase/auth";
-import useTranslations from "hooks/useTranslations";
-import { type TLanguage } from "utils/translations/types";
 import { RootState } from "store/appStore";
 import { TUser } from "store/slices/userSlice";
+import { useTranslation } from "react-i18next";
 
 const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<HTMLDivElement> }) => {
   const menuItems = useRenderHeadermenu();
+  const { t } = useTranslation();
   const hamburgerMenuOpen: boolean = useSelector(
     (store: RootState) => store.config.hamburgerMenuOpen
   );
   const user: TUser | null = useSelector((store: RootState) => store.user);
-  const TRANSLATIONS: TLanguage = useTranslations();
 
   const isHamburgerMenuOpen = user && hamburgerMenuOpen;
 
@@ -47,7 +46,7 @@ const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<HTMLDivElement>
         onClick={handleLogout}
         className="w-full py-2 text-white text-sm text-start hover:underline border-b-[0.5px]"
       >
-        {TRANSLATIONS.profileDropdown.signOut}
+        {t("signOut")}
       </button>
       <ul className="flex flex-col gap-2 font-light text-gray-300">
         {menuItems}

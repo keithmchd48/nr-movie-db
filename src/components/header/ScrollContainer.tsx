@@ -1,11 +1,13 @@
-import { useEffect, useState, ReactNode } from "react";
+import { useEffect, useState, useCallback, ReactNode } from "react";
 
 const ScrollContainer = ({children}: {children: ReactNode}) => {
   const [scroll, setScroll] = useState(false);
 
-  const addGradient: () => void = () => {
+  console.log("ScrollContainer render");
+
+  const addGradient = useCallback(() => {
     setScroll(window.scrollY > 20);
-  };
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", addGradient);
@@ -14,7 +16,7 @@ const ScrollContainer = ({children}: {children: ReactNode}) => {
     return () => {
       window.removeEventListener("scroll", addGradient);
     };
-  }, []);
+  }, [addGradient]);
 
   return (
     <div

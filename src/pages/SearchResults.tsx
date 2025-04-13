@@ -3,18 +3,17 @@ import {
   TMDB_API_DOMAIN,
   EnumMedia,
 } from "utils/assets";
-import useTranslations from "hooks/useTranslations";
 import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import debounce from "lodash.debounce";
 import SampleList from "components/sample/SampleList";
 import { RootState } from "store/appStore";
 import { TCommonMedia, TContentIterator } from "hooks/types";
-import { type TLanguage } from "utils/translations/types";
+import { useTranslation } from "react-i18next";
 
 const SearchResults = () => {
   const searchQuery = useSelector((state: RootState) => state.search.searchQuery);
-  const TRANSLATIONS: TLanguage = useTranslations();
+  const { t } = useTranslation();
   const [movies, setMovies] = useState<TCommonMedia[]>([]);
   const [tvShows, setTvShows] = useState<TCommonMedia[]>([]);
   const [isSearching, setIsSearching] = useState(false);
@@ -45,13 +44,13 @@ const SearchResults = () => {
   const content: TContentIterator[] = [
     {
       id: "search-movies",
-      title: TRANSLATIONS.searchResults.movies,
+      title: t("movies"),
       samples: movies,
       sampleType: EnumMedia.MOVIE,
     },
     {
       id: "search-tvshows",
-      title: TRANSLATIONS.searchResults.tvShows,
+      title: t("tvShows"),
       samples: tvShows,
       sampleType: EnumMedia.TV,
     },
@@ -69,7 +68,7 @@ const SearchResults = () => {
     <div className="h-screen w-full layout-padding flex flex-col justify-center">
       {isSearching && (
         <div className="text-white xs:text-sm m:text-xl text-center">
-          {TRANSLATIONS.searchResults.searching}
+          {t("searching")}
         </div>
       )}
       {!isSearching &&

@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 import { APP_NAME } from 'utils/assets';
 import { useLocation } from "react-router-dom";
-import useTranslations from "hooks/useTranslations";
 import { useSelector } from "react-redux";
-import { type TLanguage } from "utils/translations/types";
 import { RootState } from "store/appStore";
+import { useTranslation } from 'react-i18next';
 
 const useDocumentTitle: () => void = () => {
-  const TRANSLATIONS: TLanguage = useTranslations();
+  const { t } = useTranslation();
   const location = useLocation();
   const path: string = location.pathname;
   const preferredLang: string = useSelector((store: RootState) => store.config.preferredLang);
@@ -16,15 +15,15 @@ const useDocumentTitle: () => void = () => {
     const HEAD_TITLES: {
       [key: string]: string;
     } = {
-      "/": `${APP_NAME} | ${TRANSLATIONS.headTitles.login}`,
-      '/login': `${APP_NAME} | ${TRANSLATIONS.headTitles.login}`,
-      '/browse': `${APP_NAME} | ${TRANSLATIONS.headTitles.browse}`,
-      '/shows': `${APP_NAME} | ${TRANSLATIONS.headTitles.shows}`,
-      '/movies': `${APP_NAME} | ${TRANSLATIONS.headTitles.movies}`,
-      '/error': `${APP_NAME} | ${TRANSLATIONS.headTitles.error}`,
+      "/": `${APP_NAME} | ${t("login")}`,
+      '/login': `${APP_NAME} | ${t("login")}`,
+      '/browse': `${APP_NAME} | ${t("browse")}`,
+      '/shows': `${APP_NAME} | ${t("shows")}`,
+      '/movies': `${APP_NAME} | ${t("movies")}`,
+      '/error': `${APP_NAME} | ${t("error")}`,
     };
 
     document.title = `${HEAD_TITLES[path as keyof typeof HEAD_TITLES]}`;
-  }, [preferredLang, path, TRANSLATIONS]);
+  }, [preferredLang, path, t]);
 };
 export default useDocumentTitle;
