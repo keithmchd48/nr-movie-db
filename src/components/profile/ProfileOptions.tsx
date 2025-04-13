@@ -6,13 +6,24 @@ import { RootState } from "store/appStore";
 import { TUser } from "store/slices/userSlice";
 import { useTranslation } from "react-i18next";
 
+const LogOut = () => {
+  const user: TUser | null = useSelector((store: RootState) => store.user);
+
+  return (
+    <div className="p-2 flex items-center text-nowrap	">
+      <VscAccount className="mr-2" />
+      
+      {user && user.displayName && <p>{user.displayName}</p>}
+    </div>
+  );
+};
+
 const ProfileOptions = ({ isOpen }: {isOpen: boolean}) => {
   const { t } = useTranslation();
-  const user: TUser | null = useSelector((store: RootState) => store.user);
 
   const handleLogout = () => {
     signOut(auth).catch((error) => {
-      console.log(error.message);
+      console.log('Log out failed', error.message);
     });
   };
   return (
@@ -21,11 +32,7 @@ const ProfileOptions = ({ isOpen }: {isOpen: boolean}) => {
         isOpen ? "block" : "hidden"
       }`}
     >
-      <div className="p-2 flex items-center text-nowrap	">
-        <VscAccount className="mr-2" />{" "}
-        
-        {user && user.displayName && <p>{user.displayName}</p>}
-      </div>
+      <LogOut />
       <div className="p-2 border-t-[0.5px]">
         <button
           onClick={handleLogout}
