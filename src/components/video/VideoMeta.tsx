@@ -28,7 +28,7 @@ const MuteSection = () => {
 
 const VideoMeta = ({ isAdult }: {isAdult: boolean}) => {
   return (
-    <div className="relative right-0 xs:top-36 s:top-36 m:top-50 l:top-56 sm:top-64 md:top-72 lg:top-[500px] flex items-center justify-end">
+    <div className="relative flex items-center justify-end">
       <MuteSection />
       <div className="bg-gray-400/20 text-white py-1 pl-3 border-l-4 border-solid m:min-w-16 lg:min-w-24 xs:text-sm sm:text-lg">
         {isAdult ? "18+" : "13+"}
