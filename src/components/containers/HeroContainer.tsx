@@ -1,5 +1,4 @@
 import VideoTitle from "components/video/VideoTitle";
-import VideoMeta from "components/video/VideoMeta";
 import YTComponent from "components/video/YTComponent";
 import { useSelector } from "react-redux";
 import { RootState } from "store/appStore";
@@ -31,9 +30,9 @@ const HeroContainer = ({ sample, tmdbLink, fetchTrailer }: {
           overview={overview}
           videoKey={trailer.key}
           tmdbLink={tmdbLink}
+          isAdult={adult}
         />
       }
-      <VideoMeta isAdult={adult} />
       <YTComponent trailer={trailer} muted={isMuted} />
     </div>
   );

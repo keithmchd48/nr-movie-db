@@ -66,7 +66,7 @@ type TApiHeaders = {
   method: string,
   headers: {
     accept: string,
-    Authorization: string,
+    Authorization: `Bearer ${string}`,
   },
 }
 
@@ -74,7 +74,7 @@ export const API_REQUEST_OPTIONS: TApiHeaders = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization: `Bearer ${process.env['REACT_APP_TMDB_API_KEY']}`,
+    Authorization: `Bearer ${import.meta.env['VITE_TMDB_API_KEY']}`,
   },
 };
 

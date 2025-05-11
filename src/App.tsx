@@ -10,7 +10,7 @@ function App() {
   return (
     <Provider store={appStore}>
       <PersistGate loading={<LoadingPage/>} persistor={persistor}>
-        <div className="font-Roboto bg-brand-black w-full h-full">
+        <div className="font-roboto bg-brand-black w-full h-full">
           <Body />
         </div>
       </PersistGate>

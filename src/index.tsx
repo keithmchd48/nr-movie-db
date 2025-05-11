@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "index.css";
+import "./index.css";
 import "utils/translations/i18n";
 
-import App from "App";
-import reportWebVitals from "reportWebVitals";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 const rootElement: HTMLDivElement | null = document.getElementById("root") as HTMLDivElement;
 if (!rootElement) {
