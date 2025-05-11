@@ -1,13 +1,8 @@
 [Live!](https://flixwatcher.netlify.app/)
 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-```
-npx create-react-app nr-movie-db
-```
- - Uses `webpack` as the bundler - not `parcel`
+This project uses vite
   
-
   # Features
   - Built using React 18 & Typescript
   - UI/UX inspired by [Netflix](https://www.netflix.com/)
