@@ -14,8 +14,8 @@ import { type TErrorMessage } from "utils/translations/types";
 import { useTranslation } from "react-i18next";
 
 const INVALID_CREDENTIALS: string = "auth/invalid-credential";
-const DUMMY_USER_EMAIL: string = "john@doe.com";
-const DUMMY_USER_PASSWORD: string = "generic12345&";
+// const DUMMY_USER_EMAIL: string = "john@doe.com";
+// const DUMMY_USER_PASSWORD: string = "generic12345&";
 
 enum EnumForm {
   LOGIN = "login",
@@ -123,7 +123,7 @@ const GenericForm = () => {
   };
 
   return (
-    <div className="max-w-md my-0 mx-auto py-12 sm:px-16 bg-opacity-80 bg-brand-black rounded">
+    <div className="max-w-md my-0 mx-auto py-12 sm:px-16 bg-brand-black/80 rounded">
       <h1 className="text-white text-4xl mb-7 font-bold">{formTitle}</h1>
       <div onSubmit={(e) => e.preventDefault()}>
         {formType === EnumForm.SIGNUP && (
@@ -137,7 +137,6 @@ const GenericForm = () => {
         <input
           ref={email}
           type="text"
-          value={DUMMY_USER_EMAIL}
           onChange={() => {}}
           placeholder={t("emailPlaceholder")}
           className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded"
@@ -145,7 +144,6 @@ const GenericForm = () => {
         <input
           ref={password}
           type="password"
-          value={DUMMY_USER_PASSWORD}
           onChange={() => {}}
           placeholder={t("passwordPlaceholder")}
           className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"

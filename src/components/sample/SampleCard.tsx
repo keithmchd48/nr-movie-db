@@ -25,7 +25,7 @@ const SampleCard = ({ sample, sampleType }: {sample: TPartialCommonMedia, sample
   return (
     <div onClick={openTMDBLink} className="w-60 relative cursor-pointer">
       <img src={backdropSrc} alt="sample_poster" className="rounded-md" />
-      <div className="text-white text-left absolute inset-0 flex flex-col justify-end items-start p-2 bg-black bg-opacity-35 hover:bg-opacity-10 transition-bg-opacity ease-in-out duration-200">
+      <div className="text-white w-100 text-left relative inset-0 flex flex-col justify-end items-start p-2 bg-black bg-opacity-35 hover:bg-opacity-10 transition-bg-opacity ease-in-out duration-200">
         <h4 className="text-xl">{title || original_name}</h4>
         <FormattedDate date={release_date || first_air_date} />
       </div>

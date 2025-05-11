@@ -26,13 +26,13 @@ const VideoTitle = ({ title, overview, videoKey, tmdbLink }: {title: string, ove
       </p>
       {/* Play and More Info buttons */}
       <div className="flex">
-        <PrimaryButton onClick={onPlay} className="bg-white text-black">
+        <PrimaryButton onClick={onPlay} className="bg-white text-black hover:bg-white/85">
           <FaPlay className="mr-2" />
           {t("play")}
         </PrimaryButton>
         <PrimaryButton
           onClick={onMoreInfo}
-          className="bg-gray-600 text-white ml-3"
+          className="bg-gray-600 text-white ml-3 hover:bg-gray-600/85"
         >
           <LuInfo className="mr-2 font-bold text-2xl" />
           {t("moreInfo")}
