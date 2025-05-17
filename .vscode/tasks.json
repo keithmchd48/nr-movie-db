@@ -2,28 +2,36 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"type": "npm",
-			"script": "build",
+			"type": "shell",
+			"command": "pnpm dev",
 			"group": "build",
 			"problemMatcher": [],
-			"label": "npm: build",
-			"detail": "react-scripts build"
+			"label": "pnpm: dev",
+			"detail": "vite dev server"
 		},
 		{
-			"type": "npm",
-			"script": "test",
+			"type": "shell",
+			"command": "pnpm build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "pnpm: build",
+			"detail": "vite build"
+		},
+		{
+			"type": "shell",
+			"command": "pnpm test",
 			"group": "test",
 			"problemMatcher": [],
-			"label": "npm: test",
-			"detail": "react-scripts test"
+			"label": "pnpm: test",
+			"detail": "vitest"
 		},
 		{
-			"type": "npm",
-			"script": "start",
-			"group": "build",
+			"type": "shell",
+			"command": "pnpm test:ui",
+			"group": "test",
 			"problemMatcher": [],
-			"label": "npm: start",
-			"detail": "react-scripts start"
+			"label": "pnpm: test:ui",
+			"detail": "vitest --ui"
 		}
 	]
 }
