@@ -17,7 +17,7 @@ const VideoTitle = ({ title, overview, videoKey, tmdbLink, isAdult }: {title: st
   };
 
   return (
-    <div className="absolute layout-padding pr-0 top-10 pt-[20%] w-screen aspect-video bg-gradient-to-r from-brand-black">
+    <div className="absolute layout-padding pr-0 top-10 pt-[20%] w-screen aspect-video bg-gradient-to-r">
       {/* Title and Overview */}
       <h1 className="lg:text-6xl m:text-3xl xs:text-xl text-white font-bold">
         {title}
