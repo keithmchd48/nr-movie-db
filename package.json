@@ -1,5 +1,13 @@
 {
   "name": "nr-movie-db",
+  "description": "A movie database built with React, Redux, and Tailwind CSS",
+  "author": "Keith Machado",
+  "license": "MIT",
+  "homepage": "https://keithmchd48.github.io/nr-movie-db",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keithmchd48/nr-movie-db"
+  },
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,6 +16,7 @@
     "@types/jest": "^29.5.12",
     "@types/youtube": "^0.0.50",
     "firebase": "^10.8.0",
+    "gh-pages": "^6.3.0",
     "i18next": "^24.2.3",
     "lodash.debounce": "^4.0.8",
     "react": "^18.2.0",
@@ -32,7 +41,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
-    "test:ui": "vitest --ui"
+    "test:ui": "vitest --ui",
+    "predeploy": "pnpm build",
+    "deploy": "gh-pages -d dist"
   },
   "eslintConfig": {
     "extends": [
