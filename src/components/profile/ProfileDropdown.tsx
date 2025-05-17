@@ -1,16 +1,16 @@
 import { AVATAR } from "utils/assets";
 import ProfileOptions from "components/profile/ProfileOptions";
 import { useSelector } from "react-redux";
-import { useRef, useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import useClickOutside from "hooks/utilities/useClickOutside";
 import { RootState } from "store/appStore";
 
 const ProfileDropdown = () => {
   const user = useSelector((store: RootState) => store.user);
-  const profileDropdownRef = useRef(null);
+  const profileDropdownRef: RefObject<HTMLDivElement | null> = useRef(null);
   const [isProfileOptionsOpen, setIsProfileOptionsOpen] = useState(false);
 
-  useClickOutside(profileDropdownRef, null, () => {
+  useClickOutside(profileDropdownRef as RefObject<HTMLDivElement>, null, () => {
     if (isProfileOptionsOpen) {
       setIsProfileOptionsOpen(false);
     }

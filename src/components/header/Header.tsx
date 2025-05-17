@@ -31,10 +31,10 @@ const Header = () => {
 
   const dispatch = useDispatch();
   
-  const hbMenuRef: RefObject<HTMLDivElement> = useRef(null);
-  const hbIconRef: RefObject<HTMLDivElement> = useRef(null);
+  const hbMenuRef: RefObject<HTMLDivElement | null> = useRef(null);
+  const hbIconRef: RefObject<HTMLDivElement | null> = useRef(null);
 
-  useClickOutside(hbMenuRef, hbIconRef, () => {
+  useClickOutside(hbMenuRef as RefObject<HTMLDivElement>, hbIconRef as RefObject<HTMLDivElement>, () => {
     if (hbMenuRef) {
       dispatch(TOGGLE_HAMBURGER_MENU(false));
     }
@@ -42,7 +42,7 @@ const Header = () => {
 
   return (
     <div>
-      <HamburgerMenu innerRef={hbMenuRef} />
+      <HamburgerMenu innerRef={hbMenuRef as RefObject<HTMLDivElement>} />
       <ScrollContainer>
         <div className="flex gap-3 items-center">
           <>

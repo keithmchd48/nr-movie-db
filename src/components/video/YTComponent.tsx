@@ -13,7 +13,7 @@ const YOUTUBE_SCRIPT_ID: string = "youtube-iframe-api";
 const YOUTUBE_IFRAME_ID: string = "youtube-trailer";
 
 const YTComponent = ({ trailer, muted } : {trailer: TTrailer | null, muted: boolean}) => {
-  let playerRef: React.RefObject<HTMLElement> = useRef(null);
+  let playerRef: React.RefObject<HTMLElement | null> = useRef(null);
 
   let videoOptions: string = ``;
   if (trailer?.key) {

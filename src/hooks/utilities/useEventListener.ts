@@ -5,7 +5,7 @@ export default function useEventListener(
   callback: (event: MouseEvent) => void,
   element = window
 ) {
-  const callBackRef: React.MutableRefObject<(event: MouseEvent) => void> = useRef(callback);
+  const callBackRef: React.RefObject<(event: MouseEvent) => void> = useRef(callback);
 
   useEffect(() => {
     callBackRef.current = callback;

@@ -36,10 +36,10 @@ const GenericForm = () => {
     setErrorMessage(() => "");
   };
 
-  const name: RefObject<HTMLInputElement> = useRef(null);
-  const email: RefObject<HTMLInputElement> = useRef(null);
-  const password: RefObject<HTMLInputElement> = useRef(null);
-  const confirmPassword: RefObject<HTMLInputElement> = useRef(null);
+  const name: RefObject<HTMLInputElement | null> = useRef(null);
+  const email: RefObject<HTMLInputElement | null> = useRef(null);
+  const password: RefObject<HTMLInputElement | null> = useRef(null);
+  const confirmPassword: RefObject<HTMLInputElement | null> = useRef(null);
 
   const handleOnClick: MouseEventHandler = (e: MouseEvent<HTMLInputElement>) => {
     e.preventDefault();

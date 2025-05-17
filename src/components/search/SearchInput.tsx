@@ -12,7 +12,7 @@ type SearchInputProps = {
 
 const SearchInput = (props: SearchInputProps) => {
   let { placeholder, value, onChange, isVisible, onClear } = props;
-  const searchInputRef: React.RefObject<HTMLInputElement> = useRef(null);
+  const searchInputRef: React.RefObject<HTMLInputElement | null> = useRef(null);
 
   useEffect(() => {
     if (isVisible) {

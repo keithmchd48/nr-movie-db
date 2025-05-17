@@ -1,7 +1,7 @@
 import { GoSearch } from "react-icons/go";
 import SearchInput from "components/search/SearchInput";
 import useClickOutside from "hooks/utilities/useClickOutside";
-import { useRef, useState } from "react";
+import { RefObject, useRef, useState } from "react";
 import { UPDATE_SEARCH_QUERY } from "store/slices/searchSlice";
 import { useDispatch } from "react-redux";
 import { useTranslation } from "react-i18next";
@@ -10,11 +10,11 @@ const SearchComponent = () => {
   const dispatch = useDispatch();
   const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
   const [query, setQuery] = useState("");
-  const searchInputRef = useRef(null);
-  const searchIcon = useRef(null);
+  const searchInputRef: RefObject<HTMLDivElement | null> = useRef(null);
+  const searchIcon: RefObject<HTMLDivElement | null> = useRef(null);
   const { t } = useTranslation();
 
-  useClickOutside(searchInputRef, searchIcon, () => {
+  useClickOutside(searchInputRef as RefObject<HTMLDivElement>, searchIcon as RefObject<HTMLDivElement>, () => {
     if (isSearchInputVisible && !query) {
       setIsSearchInputVisible(false);
     }
