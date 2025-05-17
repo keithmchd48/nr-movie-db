@@ -1,0 +1,1 @@
+import{b as o,r as e,c,A as n,l as r}from"./index-uNlUZMbh.js";const p=()=>{const s=o(),a=async()=>{const t=await(await fetch(`${c}/tv/airing_today?page=1`,n)).json();s(r(t.results))};e.useEffect(()=>{a()},[])};export{p as u};
