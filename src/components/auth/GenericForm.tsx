@@ -1,195 +1,37 @@
-import { useState, useRef, RefObject, MouseEventHandler, MouseEvent } from "react";
-import { validateLoginForm, validateSignupForm } from "utils/validations";
-import auth from "utils/firebase";
+import { MouseEventHandler, MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { ADD_USER, LOGOUT_USER } from "store/slices/userSlice";
-import { AVATAR, PATHS } from "utils/assets";
-import { type TErrorMessage } from "utils/translations/types";
+import { PATHS } from "utils/assets";
 import { useTranslation } from "react-i18next";
-
-const INVALID_CREDENTIALS: string = "auth/invalid-credential";
-// const DUMMY_USER_EMAIL: string = "john@doe.com";
-// const DUMMY_USER_PASSWORD: string = "generic12345&";
-
-enum EnumForm {
-  LOGIN = "login",
-  SIGNUP = "signup",
-};
+import { useAuth0 } from "@auth0/auth0-react";
 
 const GenericForm = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [formType, setFormType] = useState<string>(EnumForm.LOGIN);
-  const [errorMessage, setErrorMessage] = useState<TErrorMessage>("");
   const { t } = useTranslation();
-
-  const formTitle: string =
-    formType === EnumForm.LOGIN ? t("signIn") : t("signUp");
-  const toggleForm: () => void = () => {
-    setFormType(formType === EnumForm.LOGIN ? EnumForm.SIGNUP : EnumForm.LOGIN);
-    setErrorMessage(() => "");
-  };
-
-  const name: RefObject<HTMLInputElement | null> = useRef(null);
-  const email: RefObject<HTMLInputElement | null> = useRef(null);
-  const password: RefObject<HTMLInputElement | null> = useRef(null);
-  const confirmPassword: RefObject<HTMLInputElement | null> = useRef(null);
+  const { loginWithRedirect } = useAuth0();
 
   const handleOnClick: MouseEventHandler = (e: MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
-    if (formType === EnumForm.LOGIN) {
-      const emailValue = email?.current?.value;
-      const passwordValue = password?.current?.value;
-      let message: TErrorMessage = validateLoginForm(emailValue || "", passwordValue || "");
-      setErrorMessage(() => "");
-      if (message !== "") {
-        setErrorMessage(() => t(message) as TErrorMessage);
-        return;
-      }
-
-      signInWithEmailAndPassword(
-        auth,
-        emailValue || "",
-        passwordValue || ""
-      )
+      loginWithRedirect()
         .then(() => {
-          setErrorMessage(() => "");
           navigate(PATHS.BROWSE);
         })
         .catch((error) => {
-          console.log(error.code);
-          if (error.code === INVALID_CREDENTIALS) {
-            setErrorMessage(() => t("invalidCredentials") as TErrorMessage);
-          }
-        });
-    } else {
-      const nameValue = name?.current?.value;
-      const emailValue = email?.current?.value;
-      const passwordValue = password?.current?.value;
-      const confirmPasswordValue = confirmPassword?.current?.value;
-      const message: TErrorMessage = validateSignupForm(
-        nameValue || "",
-        emailValue || "",
-        passwordValue || "",
-        confirmPasswordValue || ""
-      );
-      setErrorMessage(() => "");
-      if (message) {
-        setErrorMessage(() => t(message) as TErrorMessage);
-        return;
-      }
-
-      createUserWithEmailAndPassword(
-        auth,
-        emailValue || "",
-        passwordValue || ""
-      )
-        .then(() => {
-          setErrorMessage(() => "");
-
-          if (!auth.currentUser) {
-            dispatch(LOGOUT_USER());
-            return;
-          }
-          updateProfile(auth.currentUser, {
-            displayName: nameValue || "",
-            photoURL: AVATAR,
-          })
-            .then(() => {
-              const uid: string = auth?.currentUser?.uid || "";
-              const email: string = auth?.currentUser?.email || "";
-              const photoURL: string = auth?.currentUser?.photoURL || "";
-              const displayName: string = auth?.currentUser?.displayName || "";
-              // dispatching again on purpose because displayName is not updated onAuthChanged because it
-              // triggers before updateProfile is called
-              dispatch(ADD_USER({ uid, email, displayName, photoURL }));
-            })
-            .catch((error) => {
-              const message = error.message;
-              console.log(message);
-            });
-        })
-        .catch((error) => {
-          const message = error.message;
-          console.log(message);
-        });
-    }
+          console.error(error);
+      });
   };
 
   return (
     <div className="max-w-md my-0 mx-auto py-12 sm:px-16 bg-brand-black/80 rounded">
-      <h1 className="text-white text-4xl mb-7 font-bold">{formTitle}</h1>
+      <h1 className="text-white text-4xl mb-7 font-bold">{t("signIn")}</h1>
       <div onSubmit={(e) => e.preventDefault()}>
-        {formType === EnumForm.SIGNUP && (
-          <input
-            ref={name}
-            type="text"
-            placeholder={t("fullNamePlaceholder")}
-            className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded"
-          />
-        )}
-        <input
-          ref={email}
-          type="text"
-          onChange={() => {}}
-          placeholder={t("emailPlaceholder")}
-          className="w-full bg-gray-800 opacity-80 text-white p-3 mb-4 rounded"
-        />
-        <input
-          ref={password}
-          type="password"
-          onChange={() => {}}
-          placeholder={t("passwordPlaceholder")}
-          className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
-        />
-        {formType === EnumForm.SIGNUP && (
-          <input
-            ref={confirmPassword}
-            type="password"
-            placeholder={t("confirmPasswordPlaceholder")}
-            className="w-full bg-gray-800 text-white p-3 mb-4 opacity-80 rounded"
-          />
-        )}
         {/* Submit button */}
         <button
           onClick={handleOnClick}
           className="w-full bg-brand-orange text-white p-3 opacity-100 rounded hover:bg-[#e55303]"
         >
-          {formTitle}
+          {t("signIn")}
         </button>
-        {errorMessage && (
-          <p className="text-red-500 font-thin text-sm my-2">{errorMessage}</p>
-        )}
       </div>
-
-      {/* form footer */}
-      {formType === EnumForm.LOGIN ? (
-        <p className="text-gray-300 mt-40 font-normal">
-          {t("newToApp")}
-          <button
-            onClick={toggleForm}
-            className="text-white hover:underline font-medium ml-2"
-          >
-            {t("signUpNow")}
-          </button>
-        </p>
-      ) : (
-        <p className="text-gray-300 mt-40 font-normal">
-          {t("alreadyMember")}
-          <button
-            onClick={toggleForm}
-            className="text-white hover:underline font-medium ml-2"
-          >
-            {t("signInNow")}
-          </button>
-        </p>
-      )}
     </div>
   );
 };

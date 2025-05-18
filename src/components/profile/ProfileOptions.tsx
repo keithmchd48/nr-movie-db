@@ -1,6 +1,5 @@
 import { VscAccount } from "react-icons/vsc";
-import auth from "utils/firebase";
-import { signOut } from "firebase/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
 import { RootState } from "store/appStore";
 import { TUser } from "store/slices/userSlice";
@@ -20,11 +19,10 @@ const LogOut = () => {
 
 const ProfileOptions = ({ isOpen }: {isOpen: boolean}) => {
   const { t } = useTranslation();
+  const { logout } = useAuth0();
 
   const handleLogout = () => {
-    signOut(auth).catch((error) => {
-      console.log('Log out failed', error.message);
-    });
+    logout({ logoutParams: { returnTo: window.location.origin } });
   };
   return (
     <div

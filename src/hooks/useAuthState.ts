@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { onAuthStateChanged } from "firebase/auth";
-import auth from "utils/firebase";
+import { useAuth0 } from "@auth0/auth0-react";
 import { PATHS } from "utils/assets";
 import { LOGOUT_USER, ADD_USER } from "store/slices/userSlice";
 import { UPDATE_SEARCH_QUERY } from "store/slices/searchSlice";
@@ -11,39 +10,31 @@ export const useAuthState = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+  const { user, isAuthenticated, isLoading } = useAuth0();
+
   // Handle auth state changes
   useEffect(() => {
-    console.log('Auth state hook running');
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in
-        const { uid, email, displayName, photoURL } = user;
-        dispatch(ADD_USER({ uid, email, displayName, photoURL }));
-        
-        // Navigation logic
-        const allowedPaths = Object.values(PATHS).filter(
-          path => path !== PATHS.AUTH && path !== PATHS.LOGIN
-        );
-        
-        if (allowedPaths.includes(location.pathname)) {
-          navigate(location.pathname);
-        } else {
-          navigate(PATHS.BROWSE);
-        }
+    if (isLoading) return;
+    if (isAuthenticated && user) {
+      const uid = user.sub || "";
+      const email = user.email || null;
+      const displayName = user.name || null;
+      const photoURL = user.picture || null;
+      dispatch(ADD_USER({ uid, email, displayName, photoURL }));
+      const allowedPaths = Object.values(PATHS).filter(
+        path => path !== PATHS.AUTH && path !== PATHS.LOGIN
+      );
+      if (allowedPaths.includes(location.pathname)) {
+        navigate(location.pathname);
       } else {
-        // User is signed out
-        dispatch(UPDATE_SEARCH_QUERY(""));
-        dispatch(LOGOUT_USER());
+        navigate(PATHS.BROWSE);
       }
-    });
+    } else if (!isAuthenticated && !isLoading) {
+      dispatch(UPDATE_SEARCH_QUERY(""));
+      dispatch(LOGOUT_USER());
+    }
+  }, [dispatch, navigate, location.pathname, isAuthenticated, isLoading, user]);
 
-    // Clean up subscription
-    return () => {
-      unsubscribe();
-    };
-  }, [dispatch, navigate, location.pathname]);
-  
   // Reset search query when location changes
   useEffect(() => {
     dispatch(UPDATE_SEARCH_QUERY(""));

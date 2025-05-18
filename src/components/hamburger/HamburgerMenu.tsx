@@ -1,8 +1,7 @@
 import useRenderHeadermenu from "hooks/useRenderHeadermenu";
 import { useSelector } from "react-redux";
 import { AVATAR } from "utils/assets";
-import auth from "utils/firebase";
-import { signOut } from "firebase/auth";
+import { useAuth0 } from "@auth0/auth0-react";
 import { RootState } from "store/appStore";
 import { TUser } from "store/slices/userSlice";
 import { useTranslation } from "react-i18next";
@@ -37,10 +36,10 @@ const HamburgerMenu = ({ innerRef }: { innerRef: React.RefObject<HTMLDivElement>
 
   const isHamburgerMenuOpen = user && hamburgerMenuOpen;
 
+  const { logout } = useAuth0();
+
   const handleLogout: () => void = () => {
-    signOut(auth).catch((error) => {
-      console.log(error.message);
-    });
+    logout({ logoutParams: { returnTo: window.location.origin } });
   };
 
   return (
