@@ -15,7 +15,6 @@ import MainLogo from "components/units/MainLogo";
 import useClickOutside from "hooks/utilities/useClickOutside";
 import useDocumentTitle from "hooks/useDocumentTitle";
 import { RootState } from "store/appStore";
-import { useAuthState } from "hooks/useAuthState";
 
 const RenderSearch = () => {
   const user: TUser | null = useSelector((store: RootState) => store.user);
@@ -27,7 +26,6 @@ const RenderSearch = () => {
 const Header = () => {
   console.log('Header  render');
   useDocumentTitle();
-  useAuthState();
 
   const dispatch = useDispatch();
   

@@ -27,7 +27,7 @@ const GenericForm = () => {
         {/* Submit button */}
         <button
           onClick={handleOnClick}
-          className="w-full bg-brand-orange text-white p-3 opacity-100 rounded hover:bg-[#e55303]"
+          className="w-full bg-brand-orange text-white p-3 opacity-100 rounded cursor-pointer hover:bg-brand-orange-hover"
         >
           {t("signIn")}
         </button>

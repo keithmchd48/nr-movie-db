@@ -32,6 +32,7 @@ export const useAuthState = () => {
     } else if (!isAuthenticated && !isLoading) {
       dispatch(UPDATE_SEARCH_QUERY(""));
       dispatch(LOGOUT_USER());
+      navigate(PATHS.LOGIN);
     }
   }, [dispatch, navigate, location.pathname, isAuthenticated, isLoading, user]);
 

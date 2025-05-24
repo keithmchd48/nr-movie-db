@@ -4,6 +4,7 @@
   --font-roboto: "Roboto", "ui-sans-serif", "system-ui", "sans-serif";
   --color-brand-black: #000;
   --color-brand-orange: #FF5A00;
+  --color-brand-orange-hover: #e55303;
 
   --breakpoint-xs: 0px;
   --breakpoint-s: 320px;
