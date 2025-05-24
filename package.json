@@ -12,10 +12,10 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@auth0/auth0-react": "^2.3.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.12",
     "@types/youtube": "^0.0.50",
-    "firebase": "^10.8.0",
     "gh-pages": "^6.3.0",
     "i18next": "^24.2.3",
     "lodash.debounce": "^4.0.8",

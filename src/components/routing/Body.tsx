@@ -1,7 +1,9 @@
 import ProtectedRoute from "components/routing/ProtectedRoute";
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { PATHS } from "utils/assets";
 import { lazy } from 'react';
+import PublicOnlyRoute from "components/routing/PublicOnlyRoute";
+import RootLayout from "components/routing/RootLayout";
 
 const Browse = lazy(() => import("pages/Browse"))
 const Movies = lazy(() => import("pages/Movies"))
@@ -11,18 +13,37 @@ const AuthPage = lazy(() => import("pages/AuthPage"))
 const Body = () => {
   console.log('Body render');
   const appRouter = createBrowserRouter([
-    { path: PATHS.LOGIN, element: <AuthPage /> },
-    { path: PATHS.AUTH, element: <Navigate to={PATHS.LOGIN} replace /> },
     {
-      element: <ProtectedRoute />,
+      element: <RootLayout />, // Top-level layout for auth state
       children: [
-        { path: "*", element: <Browse />},
-        { path: PATHS.BROWSE, element: <Browse /> },
-        { path: PATHS.MOVIES, element: <Movies /> },
-        { path: PATHS.SHOWS, element: <TVShows /> },
+        {
+          path: PATHS.AUTH,
+          element: (
+            <PublicOnlyRoute>
+              <AuthPage />
+            </PublicOnlyRoute>
+          ),
+        },
+        {
+          path: PATHS.LOGIN,
+          element: (
+            <PublicOnlyRoute>
+              <AuthPage />
+            </PublicOnlyRoute>
+          ),
+        },
+        {
+          element: <ProtectedRoute />, // All children require auth
+          children: [
+            { path: PATHS.BROWSE, element: <Browse /> },
+            { path: PATHS.MOVIES, element: <Movies /> },
+            { path: PATHS.SHOWS, element: <TVShows /> },
+            { path: "*", element: <Browse /> },
+          ],
+        },
+        { path: PATHS.ERROR, element: <h1>Error</h1> },
       ],
     },
-    { path: PATHS.ERROR, element: <h1>Error</h1> },
   ]);
 
   return <RouterProvider router={appRouter} />;
