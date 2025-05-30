@@ -38,7 +38,7 @@ export const es = {
     upcoming: 'Próximas películas',
     topRatedMovies: 'Películas mejor calificadas',
     // footer
-    madeBy: 'Hecho por',
+    createdBy: 'Creado por',
     // Date
     intlDateTime: `{{val, datetime}}`,
     // search results

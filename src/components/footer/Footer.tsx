@@ -9,7 +9,7 @@ const Footer = () => {
     <footer className="xs:text-xs m:text-sm bg-brand-black text-white font-light text-center p-4">
       <p>&copy; {currentYear} {APP_NAME}</p>
       <p className="mt-2">
-        {t("madeBy")}
+        {t("createdBy")}
         <a
           rel="noreferrer"
           className="text-brand-orange hover:underline ml-2"

@@ -38,7 +38,7 @@ export const en = {
     upcoming: 'Upcoming Movies',
     topRatedMovies: 'Top Rated Movies',
     // footer
-    madeBy: 'Made by',
+    createdBy: 'Created by',
     // Date
     intlDateTime: `{{val, datetime}}`,
     // search results

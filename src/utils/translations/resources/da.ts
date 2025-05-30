@@ -38,7 +38,7 @@ export const da = {
     upcoming: 'Kommende film',
     topRatedMovies: 'Bedst bedømte film', 
     // footer
-    madeBy: 'Lavet af',
+    createdBy: 'Skabt af',
     // Date
     intlDateTime: `{{val, datetime}}`,
     // search results

@@ -4,13 +4,15 @@ import Footer from './Footer';
 import React from 'react';
 import '@testing-library/jest-dom/vitest';
 
-// Mock the hooks and constants
-vi.mock('hooks/useTranslations', () => ({
-  default: () => ({
-    footer: {
-      madeBy: 'Made with ❤️ by'
-    }
-  })
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key) => {
+      const translations = {
+        createdBy: 'Created by',
+      };
+      return translations[key] || key;
+    },
+  }),
 }));
 
 vi.mock('utils/assets', () => ({
@@ -23,11 +25,12 @@ describe('Footer', () => {
     const currentYear = new Date().getFullYear();
     render(<Footer />);
     expect(screen.getByText("© 2025 Test App")).toBeInTheDocument();
-    expect(screen.getByText(/Made with ❤️ by/)).toBeInTheDocument();
+    expect(screen.getByText("Created by")).toBeInTheDocument();
     expect(screen.getByText(`© ${currentYear} Test App`)).toBeInTheDocument();
   });
 
   it('renders the author link with correct attributes', () => {
+    render(<Footer />);
     const authorLink = screen.getByText('@keithmchd48');
     
     expect(authorLink).toBeInTheDocument();
