@@ -4,34 +4,32 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import HamburgerMenu from './HamburgerMenu';
 import { AVATAR } from "utils/assets";
-import * as firebaseAuth from "firebase/auth";
 import '@testing-library/jest-dom/vitest';
 import React from 'react';
 
-// Mock the hooks and firebase
+// Mock the hooks and assets
 vi.mock('hooks/useRenderHeadermenu', () => ({
   default: () => [<li key="1">Menu Item 1</li>, <li key="2">Menu Item 2</li>]
 }));
 
-vi.mock('hooks/useTranslations', () => ({
-  default: () => ({
-    profileDropdown: {
-      signOut: 'Sign Out'
-    }
-  })
+// Mock Auth0
+const mockLogout = vi.fn();
+vi.mock('@auth0/auth0-react', () => ({
+  useAuth0: () => ({
+    logout: mockLogout,
+  }),
 }));
 
-vi.mock('utils/firebase', () => ({
-  default: 'mocked-auth'
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key) => {
+      const translations = {
+        signOut: 'Sign Out'
+      };
+      return translations[key] || key;
+    },
+  }),
 }));
-
-vi.mock('firebase/auth', async () => {
-  const actual = await vi.importActual('firebase/auth');
-  return {
-    ...actual,
-    signOut: vi.fn().mockImplementation(() => Promise.resolve(undefined))
-  };
-});
 
 describe('HamburgerMenu Component', () => {
   const mockRef = { current: document.createElement('div') };
@@ -152,8 +150,8 @@ describe('HamburgerMenu Component', () => {
     const logoutButton = screen.getByText('Sign Out');
     fireEvent.click(logoutButton);
 
-    expect(firebaseAuth.signOut).toHaveBeenCalledTimes(1);
-    expect(firebaseAuth.signOut).toHaveBeenCalledWith('mocked-auth');
+    expect(mockLogout).toHaveBeenCalledTimes(1);
+    expect(mockLogout).toHaveBeenCalledWith({ logoutParams: { returnTo: window.location.origin } });
   });
 
   it('should render menu items from useRenderHeadermenu', () => {
