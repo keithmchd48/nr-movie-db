@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "@tanstack/react-router";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { PATHS } from "utils/assets";
@@ -20,19 +20,21 @@ export const useAuthState = () => {
       const email = user.email || null;
       const displayName = user.name || null;
       const photoURL = user.picture || null;
+
       dispatch(ADD_USER({ uid, email, displayName, photoURL }));
+      
       const allowedPaths = Object.values(PATHS).filter(
         path => path !== PATHS.AUTH && path !== PATHS.LOGIN
       );
       if (allowedPaths.includes(location.pathname)) {
-        navigate(location.pathname);
+        navigate({ to: location.pathname });
       } else {
-        navigate(PATHS.BROWSE);
+        navigate({ to: PATHS.BROWSE });
       }
     } else if (!isAuthenticated && !isLoading) {
       dispatch(UPDATE_SEARCH_QUERY(""));
       dispatch(LOGOUT_USER());
-      navigate(PATHS.LOGIN);
+      navigate({ to: PATHS.LOGIN });
     }
   }, [dispatch, navigate, location.pathname, isAuthenticated, isLoading, user]);
 

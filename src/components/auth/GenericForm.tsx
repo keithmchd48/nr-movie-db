@@ -1,10 +1,11 @@
 import { MouseEventHandler, MouseEvent } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "@tanstack/react-router";
 import { PATHS } from "utils/assets";
 import { useTranslation } from "react-i18next";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const GenericForm = () => {
+  console.log('GenericForm render');
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { loginWithRedirect } = useAuth0();
@@ -13,7 +14,7 @@ const GenericForm = () => {
     e.preventDefault();
       loginWithRedirect()
         .then(() => {
-          navigate(PATHS.BROWSE);
+          navigate({ to: PATHS.BROWSE });
         })
         .catch((error) => {
           console.error(error);

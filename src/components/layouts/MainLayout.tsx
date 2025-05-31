@@ -4,6 +4,8 @@ import SearchResults from "pages/SearchResults";
 import { useSelector } from "react-redux";
 import { RootState } from "store/appStore";
 import React from 'react'
+import { useLocation } from "@tanstack/react-router";
+import { PATHS } from "utils/assets";
 
 const SearchSection = ({ children }: {children: React.ReactNode}) => {
   const searchQuery: string = useSelector((store: RootState) => store.search.searchQuery);
@@ -16,11 +18,12 @@ const SearchSection = ({ children }: {children: React.ReactNode}) => {
 };
 
 const MainLayout = ({ children }: {children: React.ReactNode}) => {
+  const location = useLocation();
   return (
     <>
       <Header />
       <SearchSection>{children}</SearchSection>
-      <Footer />
+      {location.pathname !== PATHS.LOGIN && <Footer />}
     </>
   );
 };

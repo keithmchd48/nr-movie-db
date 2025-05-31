@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { APP_NAME } from 'utils/assets';
-import { useLocation } from "react-router-dom";
+import { useLocation } from "@tanstack/react-router";
 import { useSelector } from "react-redux";
 import { RootState } from "store/appStore";
 import { useTranslation } from 'react-i18next';

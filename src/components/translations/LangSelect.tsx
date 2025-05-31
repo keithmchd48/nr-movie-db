@@ -2,8 +2,7 @@ import { EnumLanguages } from "utils/translations/types";
 import { useDispatch, useSelector } from "react-redux";
 import { SELECT_LANGUAGE } from "store/slices/configSlice";
 import { RootState } from "store/appStore";
-import React, { useEffect } from 'react';
-import i18n from "i18next";
+import React from 'react';
 
 const SUPPORTED_LANGUAGES: EnumLanguages[] = [
   EnumLanguages.ENGLISH,
@@ -15,12 +14,6 @@ const LangSelect = () => {
   console.log('LangSelect render');
   const dispatch = useDispatch();
   const preferredLang = useSelector((store: RootState) => store.config.preferredLang);
-
-  useEffect(() => {
-    i18n.changeLanguage(preferredLang).catch((error) => {
-      console.error("Error changing language:", error);
-    });
-  }, [preferredLang]);
 
   const selectLanguage: React.ChangeEventHandler<HTMLSelectElement> = (e) => {
     const target = e.target as HTMLSelectElement;
